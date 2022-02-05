@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer components {
+  .grid-item {
+    @apply w-[24px] h-[24px] bg-gray-500 rounded-md;
+  }
+  .grid-item:hover {
+    @apply cursor-pointer;
+  }
+}
