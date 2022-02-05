@@ -1,3 +1,11 @@
+import {
+  startOfYear,
+  startOfWeekWithOptions,
+  format,
+  endOfWeekWithOptions,
+  endOfYear,
+} from "date-fns/fp";
+
 function getAddedDate(original: Date, days: number) {
   var date = new Date(original.valueOf());
   date.setDate(date.getDate() + days);
@@ -14,13 +22,22 @@ function getDateRange(startDate: Date, endDate: Date) {
   return dates;
 }
 
-export function getDaysUntilNow() {
-  const range = getDateRange(new Date("2022-01-01"), new Date());
+export function getWeeksUntilNow() {
+  const today = new Date();
+  const firstMondayOfCalendar = startOfWeekWithOptions({
+    weekStartsOn: 1,
+  })(startOfYear(today));
+
+  const lastSundayOfCalendar = endOfWeekWithOptions({
+    weekStartsOn: 1,
+  })(endOfYear(today));
+
+  const range = getDateRange(firstMondayOfCalendar, lastSundayOfCalendar);
   const weeks = [];
   let aWeek = [];
 
   for (let day of range) {
-    aWeek.push(day);
+    aWeek.push(format("yyyy-MM-dd")(day));
     if (aWeek.length === 7) {
       weeks.push(aWeek);
       aWeek = [];
