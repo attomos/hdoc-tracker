@@ -1,7 +1,6 @@
 import {
   startOfYear,
   startOfWeekWithOptions,
-  format,
   endOfWeekWithOptions,
   endOfYear,
 } from "date-fns/fp";
@@ -22,6 +21,10 @@ function getDateRange(startDate: Date, endDate: Date) {
   return dates;
 }
 
+function format(date: Date) {
+  return date.toISOString().slice(0, 10);
+}
+
 export function getWeeksUntilNow() {
   const today = new Date();
   const firstMondayOfCalendar = startOfWeekWithOptions({
@@ -37,7 +40,7 @@ export function getWeeksUntilNow() {
   let aWeek = [];
 
   for (let day of range) {
-    aWeek.push(format("yyyy-MM-dd")(day));
+    aWeek.push(format(day));
     if (aWeek.length === 7) {
       weeks.push(aWeek);
       aWeek = [];
