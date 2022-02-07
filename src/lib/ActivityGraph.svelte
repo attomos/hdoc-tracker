@@ -1,14 +1,24 @@
 <script lang="ts">
   import { onMount } from "svelte";
-
   import { getWeeksUntilNow } from "./dateUtils";
-
-  const array = Array(150).fill(1);
+  import { getFillColor } from "./styleUtils";
+  import { getTweets, getTweetsCounter } from "./tweetUtils";
 
   const DAYS = ["Mon", "Wed", "Fri", "Sun"];
 
+  const tweets = getTweets();
+  const tweetsCounter = getTweetsCounter(tweets);
+  console.log(tweetsCounter);
+
   // const weeks = Array(53).fill(Array(7).fill(1));
-  const weeks = getWeeksUntilNow();
+  const weeks = getWeeksUntilNow().map((week) => {
+    return week.map((date) => {
+      return {
+        date,
+        count: tweetsCounter[date] || 0,
+      };
+    });
+  });
 
   const RECT_W = 10;
   const RECT_W_2 = RECT_W + 5;
@@ -73,15 +83,18 @@
           y={RECT_H_2 - 10}
           rx="2"
         />
-        {#each week as d, j}
+        {#each week as { date, count }, j}
           <rect
-            class="hover:cursor-pointer fill-gray-200 hover:fill-fuchsia-300 stroke-gray-400"
+            class="hover:cursor-pointer hover:fill-fuchsia-300 stroke-gray-400 {getFillColor(
+              count
+            )}"
             width={RECT_W}
             height={RECT_H}
             x={START_X}
             y={j * RECT_H_2 + RECT_H_2}
             rx="2"
-            data-date={d}
+            data-date={date}
+            data-count={count}
           />
         {/each}
       </g>

@@ -1,5 +1,6 @@
 import {
   startOfYear,
+  parseISO,
   startOfWeekWithOptions,
   endOfWeekWithOptions,
   endOfYear,
@@ -23,6 +24,11 @@ function getDateRange(startDate: Date, endDate: Date) {
 
 function format(date: Date) {
   return date.toISOString().slice(0, 10);
+}
+
+export function formatTwitterDate(twitterDate: string) {
+  // UTC => UTC+7 in short ISO format
+  return parseISO(twitterDate).toISOString().substring(0, 10);
 }
 
 export function getWeeksUntilNow() {
