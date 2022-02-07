@@ -1,10 +1,10 @@
-import os
 import json
+import os
 from pathlib import Path
 from typing import Dict, List
 
-from dotenv import load_dotenv
 import requests
+from dotenv import load_dotenv
 
 load_dotenv()
 
