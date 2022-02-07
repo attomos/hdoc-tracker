@@ -12,7 +12,8 @@ load_dotenv()
 BEARER_TOKEN = os.getenv("BEARER_TOKEN")
 
 
-def make_request(url, headers, payload, hashtags_filter: List[str] = None) -> Dict:
+def make_request(url, headers, payload, hashtags_filter: List[str] = []) -> Dict:
+    hashtags_set = set(hashtags_filter)
     response = requests.get(url, headers=headers, params=payload)
     if response.status_code != 200:
         return {"error": response.json}
@@ -22,9 +23,11 @@ def make_request(url, headers, payload, hashtags_filter: List[str] = None) -> Di
         data = json_response["data"]
         filtered_tweets = []
         for tweet in data:
-            for ht in tweet.get("entities", {}).get("hashtags", []):
-                if ht.get("tag") in hashtags_filter:
-                    filtered_tweets.append(tweet)
+            tags = set(
+                [ht.get("tag") for ht in tweet.get("entities", {}).get("hashtags", [])]
+            )
+            if tags.intersection(hashtags_set):
+                filtered_tweets.append(tweet)
         return {
             "data": filtered_tweets,
             "meta": json_response.get("meta"),
@@ -34,14 +37,13 @@ def make_request(url, headers, payload, hashtags_filter: List[str] = None) -> Di
 
 def get_tweets() -> Dict:
     # TODO: use since_id
-    # TODO: remove hard-coded start_time, end_time
+    # TODO: remove hard-coded start_time
     # TODO: setup GitHub Actions to automatically update tweets
     payload = {
         "tweet.fields": "conversation_id,created_at,entities,public_metrics",
         "max_results": 100,
         "exclude": "retweets",
         "start_time": "2022-01-01T00:00:00Z",
-        "end_time": "2022-04-01T00:00:00Z",
     }
 
     headers = {
