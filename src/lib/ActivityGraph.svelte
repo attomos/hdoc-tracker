@@ -76,7 +76,7 @@
         transform="translate({i * RECT_W_2}, {START_Y})"
       >
         <rect
-          class="fill-[#ccfbf1]"
+          class="fill-teal-100"
           width={RECT_W + 4}
           height={RECT_H * 12}
           x={START_X - 2}

@@ -4,7 +4,7 @@
   import ActivityGraph from "./lib/ActivityGraph.svelte";
 </script>
 
-<main>
+<main class="bg-teal-100">
   <div class="flex h-screen">
     <div class="mx-auto">
       <Tweets />
@@ -12,9 +12,3 @@
     </div>
   </div>
 </main>
-
-<style>
-  main {
-    background-color: #ccfbf1;
-  }
-</style>
