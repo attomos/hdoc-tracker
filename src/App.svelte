@@ -5,10 +5,8 @@
 </script>
 
 <main class="bg-teal-100">
-  <div class="flex h-screen">
-    <div class="mx-auto">
-      <Tweets />
-      <ActivityGraph />
-    </div>
+  <div class="mx-auto flex flex-col w-1/2 h-screen">
+    <ActivityGraph />
+    <Tweets />
   </div>
 </main>
