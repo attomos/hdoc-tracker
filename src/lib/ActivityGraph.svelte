@@ -1,21 +1,20 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { getWeeksUntilNow } from "./dateUtils";
+  import { tweets } from "./stores";
   import { getFillColor } from "./styleUtils";
-  import { getTweets, getTweetsCounter } from "./tweetUtils";
+  import { getTweetsLookupDict } from "./tweetUtils";
 
   const DAYS = ["Mon", "Wed", "Fri", "Sun"];
 
-  const tweets = getTweets();
-  const tweetsCounter = getTweetsCounter(tweets);
-  console.log(tweetsCounter);
+  const tweetsLookup = getTweetsLookupDict($tweets);
 
   // const weeks = Array(53).fill(Array(7).fill(1));
   const weeks = getWeeksUntilNow().map((week) => {
     return week.map((date) => {
       return {
         date,
-        count: tweetsCounter[date] || 0,
+        count: tweetsLookup[date]?.length || 0,
       };
     });
   });
@@ -56,7 +55,11 @@
 
 <!-- {@debug weeks} -->
 
-<div>
+<div class="h-1/3">
+  <h2 class="text-lg font-bold">
+    {$tweets.data.length} tweets so far
+  </h2>
+
   <div
     id="tooltip"
     class="text-xs bg-slate-700 rounded-md text-white py-2 px-1 absolute hidden"
@@ -85,9 +88,9 @@
         />
         {#each week as { date, count }, j}
           <rect
-            class="hover:cursor-pointer hover:fill-fuchsia-300 stroke-gray-400 {getFillColor(
+            class="hover:cursor-pointer hover:ring-2 stroke-gray-400 {getFillColor(
               count
-            )}"
+            )} stroke-gray-400 {getFillColor(count)}"
             width={RECT_W}
             height={RECT_H}
             x={START_X}

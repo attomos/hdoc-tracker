@@ -6,17 +6,17 @@ function getTweets() {
   return data;
 }
 
-function getTweetsCounter(tweets: TweetResponse) {
-  const counter = {};
+function getTweetsLookupDict(tweets: TweetResponse) {
+  const lookup = {};
   tweets.data.forEach((tweet) => {
     const createdAt = formatTwitterDate(tweet.created_at);
-    if (counter.hasOwnProperty(createdAt)) {
-      counter[createdAt]++;
+    if (lookup.hasOwnProperty(createdAt)) {
+      lookup[createdAt].push(tweet);
     } else {
-      counter[createdAt] = 1;
+      lookup[createdAt] = [tweet];
     }
   });
-  return counter;
+  return lookup;
 }
 
-export { getTweets, getTweetsCounter };
+export { getTweets, getTweetsLookupDict };
