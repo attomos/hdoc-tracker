@@ -73,7 +73,7 @@
       width="862"
       height="140"
       xmlns="http://www.w3.org/2000/svg"
-      class="border-2 border-black rounded-md mx-auto"
+      class="border-2 border-black rounded-md mx-auto min-w-max"
     >
       {#each weeks as week, i}
         <g
