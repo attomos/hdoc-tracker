@@ -1,4 +1,4 @@
-export interface TweetResponse {
+export type TweetResponse = {
   data: {
     text: string;
     entities: Entities;
@@ -7,30 +7,30 @@ export interface TweetResponse {
     conversation_id: string;
     id: string;
   }[];
-}
+};
 
-export interface Entities {
+export type Entities = {
   hashtags?: Hashtag[] | null;
   urls?: TweetUrl[] | null;
-}
+};
 
-export interface Hashtag {
+export type Hashtag = {
   start: number;
   end: number;
   tag: string;
-}
+};
 
-export interface TweetUrl {
+export type TweetUrl = {
   start: number;
   end: number;
   url: string;
   expanded_url: string;
   display_url: string;
-}
+};
 
-export interface PublicMetrics {
+export type PublicMetrics = {
   retweet_count: number;
   reply_count: number;
   like_count: number;
   quote_count: number;
-}
+};
