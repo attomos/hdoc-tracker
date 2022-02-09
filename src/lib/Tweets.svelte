@@ -2,11 +2,11 @@
   import { tweets } from "./stores";
 </script>
 
-<div class="my-4 flex flex-col w-4/5 flex-grow h-full">
-  <h2 class="text-lg font-bold">List of tweets go here...</h2>
-  <div class="overflow-scroll flex-grow">
+<div class="mt-4 flex flex-col flex-grow overflow-scroll">
+  <h2 class="text-lg font-bold my-4">List of tweets go here...</h2>
+  <div class="flex-grow overflow-scroll pb-40">
     <ul class="list-disc ml-6 ">
-      {#each $tweets.data.slice(0, 40) as tweet}
+      {#each $tweets.data as tweet}
         <li class="">{tweet.text}</li>
       {/each}
     </ul>
