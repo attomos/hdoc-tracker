@@ -1,7 +1,7 @@
 <script lang="ts">
   import "./app.css";
-  import Tweets from "./lib/Tweets.svelte";
-  import ActivityGraph from "./lib/ActivityGraph.svelte";
+  import Tweets from "./components/Tweets.svelte";
+  import ActivityGraph from "./components/ActivityGraph.svelte";
 </script>
 
 <main class="bg-teal-100">

@@ -1,9 +1,9 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { getWeeksUntilNow } from "./dateUtils";
-  import { tweets } from "./stores";
-  import { getFillColor } from "./styleUtils";
-  import { getTweetsLookupDict } from "./tweetUtils";
+  import { getWeeksUntilNow } from "../lib/dateUtils";
+  import { tweets } from "../lib/stores";
+  import { getFillColor } from "../lib/styleUtils";
+  import { getTweetsLookupDict } from "../lib/tweetUtils";
 
   const DAYS = ["Mon", "Wed", "Fri", "Sun"];
 

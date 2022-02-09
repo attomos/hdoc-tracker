@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { tweets } from "./stores";
+  import { tweets } from "../lib/stores";
 </script>
 
 <div class="mt-4 flex flex-col flex-grow overflow-scroll">
