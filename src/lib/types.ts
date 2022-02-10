@@ -1,12 +1,14 @@
+export type Tweet = {
+  text: string;
+  entities: Entities;
+  created_at: string;
+  public_metrics: PublicMetrics;
+  conversation_id: string;
+  id: string;
+};
+
 export type TweetResponse = {
-  data: {
-    text: string;
-    entities: Entities;
-    created_at: string;
-    public_metrics: PublicMetrics;
-    conversation_id: string;
-    id: string;
-  }[];
+  data: Tweet[];
 };
 
 export type Entities = {

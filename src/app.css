@@ -2,12 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer components {
   .grid-item {
     @apply w-[24px] h-[24px] bg-gray-500 rounded-md;
   }
+
   .grid-item:hover {
     @apply cursor-pointer;
+  }
+
+  .tweet-box {
+    @apply text-sm bg-gray-100 p-4 mb-4 rounded-lg flex relative;
+  }
+
+  .tweet-box:hover {
+    @apply cursor-pointer bg-teal-500 text-white;
+  }
+
+  .tweet-box-child {
+    @apply ml-12;
+  }
+
+  .tweet-box-child::before {
+    content: "";
+    position: absolute;
+    top: 0.25rem;
+    bottom: 0.25rem;
+    left: -2rem;
+    width: 2px;
+    background: #000;
   }
 }
