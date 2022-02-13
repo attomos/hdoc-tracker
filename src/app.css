@@ -15,8 +15,12 @@
     @apply text-sm bg-gray-100 p-4 mb-4 rounded-lg flex relative;
   }
 
-  .tweet-box:hover {
-    @apply cursor-pointer bg-teal-500 text-white;
+  /* .focused {
+    @apply ring-4 ring-pink-300 rounded-lg;
+  } */
+
+  .focused .tweet-box {
+    @apply cursor-pointer bg-teal-500 text-white ring-4 ring-teal-300;
   }
 
   .tweet-box-child {
