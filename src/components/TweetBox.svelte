@@ -21,19 +21,20 @@
     active = false;
   }
 
-  function focusItem(element) {
+  function focusItem(element, shouldScroll = true) {
     element.setAttribute("aria-selected", "true");
     element.classList.add("focused");
-    const rect = element.getBoundingClientRect();
-    console.log(rect);
-    console.log(element.offsetTop);
-    const { y, height } = element.getBoundingClientRect();
-    const ulParent = document.querySelector("#tweet-list").parentElement;
-    console.log(ulParent);
-    // ulParent.scrollBy(0, y - height - 80);
-    // ulParent.scrollBy(0, height);
-    // ulParent.scrollTo(element.offsetTop, 0);
-    // ul.scrollBy()
+    if (shouldScroll) {
+      const rect = element.getBoundingClientRect();
+      const ul = document.querySelector("#tweet-list");
+      const ulParent = ul.parentElement;
+      const ulParentRect = ulParent.getBoundingClientRect();
+      const ulPaddingTop = window
+        .getComputedStyle(ul, null)
+        .getPropertyValue("padding-top");
+      const yToScroll = rect.y - ulParentRect.y - parseFloat(ulPaddingTop);
+      ulParent.scrollBy(0, yToScroll);
+    }
   }
 
   function findNextOption(currentOption) {
@@ -63,6 +64,16 @@
       document.querySelector("#tweet-list li[aria-selected='true']") ||
       document.querySelector("#tweet-list li[aria-selected]:first-child");
 
+    const shouldPreventDefault =
+      e.key === "ArrowDown" ||
+      e.key === "j" ||
+      e.key === "ArrowUp" ||
+      e.key === "k";
+
+    if (shouldPreventDefault) {
+      e.preventDefault();
+    }
+
     if (e.key === "ArrowDown" || e.key === "j") {
       const nextItem = findNextOption(currentItem);
       currentItem.setAttribute("aria-selected", "false");
@@ -74,7 +85,17 @@
       currentItem.classList.remove("focused");
       focusItem(prevItem);
     }
-    e.preventDefault();
+  }
+
+  function handleClick(e) {
+    const currentItem =
+      document.querySelector("#tweet-list li[aria-selected='true']") ||
+      document.querySelector("#tweet-list li[aria-selected]:first-child");
+
+    currentItem.setAttribute("aria-selected", "false");
+    currentItem.classList.remove("focused");
+    const listItem = e.target.closest("li");
+    focusItem(listItem, false);
   }
 </script>
 
@@ -89,6 +110,7 @@ on:blur={handleMouseOut}
   role="option"
   aria-selected={active}
   on:keydown={handleKeyDown}
+  on:click={handleClick}
   class={active ? "" : ""}
 >
   {#if tweet.conversation_id === tweet.id}
