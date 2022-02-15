@@ -14,6 +14,7 @@ export type TweetResponse = {
 export type Entities = {
   hashtags?: Hashtag[] | null;
   urls?: TweetUrl[] | null;
+  days?: HdocDay[] | null;
 };
 
 export type Hashtag = {
@@ -28,6 +29,12 @@ export type TweetUrl = {
   url: string;
   expanded_url: string;
   display_url: string;
+};
+
+export type HdocDay = {
+  start: number;
+  end: number;
+  day: string;
 };
 
 export type PublicMetrics = {

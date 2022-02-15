@@ -12,7 +12,7 @@
   }
 
   .tweet-box {
-    @apply text-sm bg-gray-100 p-4 mb-4 rounded-lg flex relative;
+    @apply text-sm bg-gray-100 p-4 mb-4 rounded-lg block relative whitespace-pre-wrap;
   }
 
   /* .focused {
