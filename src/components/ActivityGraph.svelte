@@ -32,9 +32,17 @@
   const START_Y = 6;
 
   function mouseOverHandler(e: MouseEvent) {
-    const date = (e.target as SVGRectElement).getAttribute("data-date");
+    const [date, count] = [
+      (e.target as SVGRectElement).getAttribute("data-date"),
+      parseInt((e.target as SVGRectElement).getAttribute("data-count"), 10),
+    ];
     const tooltip = document.getElementById("tooltip");
-    tooltip.innerText = date;
+    if (count > 0) {
+      tooltip.innerText = `${count} tweets on ${date}`;
+    } else {
+      tooltip.innerText = `No tweets on ${date}`;
+    }
+
     tooltip.style.display = "block";
     tooltip.style.left = e.pageX - 30 + "px";
     tooltip.style.top = e.pageY - 40 + "px";
