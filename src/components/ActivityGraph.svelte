@@ -1,31 +1,35 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { getWeeksUntilNow } from "../lib/dateUtils";
+  import {
+    DAYS,
+    getMonthString,
+    getWeeksUntilNow,
+    MONTHS,
+  } from "../lib/dateUtils";
   import { tweets } from "../lib/stores";
   import { getFillColor } from "../lib/styleUtils";
   import { getTweetsCount, getTweetsLookupDict } from "../lib/tweetUtils";
 
-  const DAYS = ["Mon", "Wed", "Fri", "Sun"];
-
   const tweetsLookup = getTweetsLookupDict($tweets);
   const tweetsCount = getTweetsCount($tweets);
 
-  // const weeks = Array(53).fill(Array(7).fill(1));
   const weeks = getWeeksUntilNow().map((week) => {
     return week.map((date) => {
       return {
         date,
         count: tweetsLookup[date]?.length || 0,
+        month: getMonthString(date),
       };
     });
   });
 
+  const GAP = 3;
   const RECT_W = 10;
-  const RECT_W_2 = RECT_W + 5;
+  const RECT_W_2 = RECT_W + GAP;
   const RECT_H = 10;
-  const RECT_H_2 = RECT_H + 5;
+  const RECT_H_2 = RECT_H + GAP;
   const START_X = 36;
-  const START_Y = 5;
+  const START_Y = 6;
 
   function mouseOverHandler(e: MouseEvent) {
     const date = (e.target as SVGRectElement).getAttribute("data-date");
@@ -34,8 +38,6 @@
     tooltip.style.display = "block";
     tooltip.style.left = e.pageX - 30 + "px";
     tooltip.style.top = e.pageY - 40 + "px";
-
-    console.log(date);
   }
 
   function mouseLeaveHandler() {
@@ -51,6 +53,61 @@
       rect.addEventListener("mousemove", mouseOverHandler);
       rect.addEventListener("mouseleave", mouseLeaveHandler);
     });
+    const activityGraph = document.querySelector("#activities-graph");
+    const groups = activityGraph.querySelectorAll("g");
+    const firstGroup = activityGraph.querySelector("g");
+
+    function appendDays() {
+      const rectsInFirstGroup = firstGroup.querySelectorAll("rect[data-date]");
+      console.log(rectsInFirstGroup);
+      let j = 0;
+      const { top: svgTop } = activityGraph.getBoundingClientRect();
+      rectsInFirstGroup.forEach((rect, i) => {
+        if (i % 2 == 0) {
+          const { x, y, top } = rect.getBoundingClientRect();
+          const text = document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "text"
+          );
+          text.classList.add("text-[9px]");
+          text.setAttribute("dx", "4");
+          text.setAttribute("dy", `${top - svgTop + RECT_W_2 - 5}`);
+          text.innerHTML = DAYS[j];
+          activityGraph.appendChild(text);
+          j++;
+        }
+      });
+    }
+
+    function appendMonths() {
+      const columns = Array.from(groups).map((group) => {
+        const dataMonths = Array.from(
+          group.querySelectorAll("rect[data-date]")
+        ).map((rect) => rect.getAttribute("data-month"));
+        return [...new Set(dataMonths)];
+      });
+      let currentIndex = 0;
+      const answer = [];
+      columns.forEach((column, columnIndex) => {
+        if (column.includes(MONTHS[currentIndex])) {
+          const text = document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "text"
+          );
+          text.classList.add("text-[9px]");
+          text.setAttribute("dx", `${36 + RECT_W_2 * columnIndex}`);
+          text.setAttribute("dy", "10");
+          text.innerHTML = MONTHS[currentIndex];
+          activityGraph.appendChild(text);
+          answer.push(columnIndex);
+          currentIndex++;
+        }
+      });
+      console.log(answer);
+    }
+
+    appendDays();
+    appendMonths();
   });
 </script>
 
@@ -70,11 +127,12 @@
   </div>
   <div class="flex">
     <svg
-      viewBox="0 0 862 140"
+      viewBox="0 0 862 126"
       width="862"
-      height="140"
+      height="126"
       xmlns="http://www.w3.org/2000/svg"
       class="border-2 border-black rounded-md mx-auto min-w-max"
+      id="activities-graph"
     >
       {#each weeks as week, i}
         <g
@@ -84,12 +142,12 @@
           <rect
             class="fill-teal-100"
             width={RECT_W + 4}
-            height={RECT_H * 12}
+            height={RECT_H * 8 + GAP * 8}
             x={START_X - 2}
-            y={RECT_H_2 - 10}
+            y={RECT_H_2 - 8}
             rx="2"
           />
-          {#each week as { date, count }, j}
+          {#each week as { date, month, count }, j}
             <rect
               class="hover:cursor-pointer hover:ring-2 stroke-gray-400 {getFillColor(
                 count
@@ -100,13 +158,11 @@
               y={j * RECT_H_2 + RECT_H_2}
               rx="2"
               data-date={date}
+              data-month={month}
               data-count={count}
             />
           {/each}
         </g>
-      {/each}
-      {#each DAYS as day, i}
-        <text class="text-xs" dx="0" dy={30 + 29 * i}>{day}</text>
       {/each}
     </svg>
   </div>

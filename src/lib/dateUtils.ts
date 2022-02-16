@@ -3,7 +3,24 @@ import {
   startOfWeekWithOptions,
   endOfWeekWithOptions,
   endOfYear,
+  getMonth,
 } from "date-fns/fp";
+
+export const DAYS = ["Mon", "Wed", "Fri", "Sun"];
+export const MONTHS = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
 
 function getAddedDate(original: Date, days: number) {
   var date = new Date(original.valueOf());
@@ -53,4 +70,9 @@ export function getWeeksUntilNow() {
   }
 
   return weeks;
+}
+
+export function getMonthString(shortDate: string) {
+  const month = getMonth(new Date(shortDate));
+  return MONTHS[month] || "unknown";
 }
