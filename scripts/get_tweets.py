@@ -1,7 +1,10 @@
 import json
 import os
+import re
+from collections import OrderedDict
 from pathlib import Path
 from typing import Dict, List
+from typing import OrderedDict as OD
 
 import requests
 from dotenv import load_dotenv
@@ -9,6 +12,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
+PATTERN = r"(([Dd]ay \d{1,3}) of|R\d{1,2}D\d{1,3}) #100DaysOfCode"
 BEARER_TOKEN = os.getenv("BEARER_TOKEN")
 
 
@@ -74,10 +78,45 @@ def get_tweets() -> Dict:
     return data
 
 
+def get_hdoc_day(pattern, text):
+    if m := re.match(pattern, text):
+        if len(m.groups()) == 2:
+            hdoc_day = m.group(2)
+            start, end = m.span(2)
+            return {"days": [{"start": start, "end": end, "day": hdoc_day}]}
+
+
+def add_hdoc_to_tweets(tweets) -> Dict:
+    tweets_data = tweets.get("data", [])
+    for tweet in tweets_data:
+        text = tweet.get("text", "")
+        hdoc_day = get_hdoc_day(PATTERN, text)
+        entities = tweet["entities"]
+        if hdoc_day:
+            entities.update(hdoc_day)
+    return tweets
+
+
+def group_tweets(tweets) -> OD:
+    grouped_tweets = OrderedDict()
+    for tweet in tweets["data"][::-1]:
+        conversation_id = tweet["conversation_id"]
+        id = tweet["id"]
+        if conversation_id == id:
+            grouped_tweets[conversation_id] = [tweet]
+        else:
+            grouped_tweets[conversation_id].append(tweet)
+    for key in sorted(grouped_tweets.keys(), reverse=True):
+        grouped_tweets.move_to_end(key)
+    return grouped_tweets
+
+
 def main():
     tweets = get_tweets()
+    tweets = add_hdoc_to_tweets(tweets)
+    grouped_tweets = group_tweets(tweets)
     out_path = Path("tweets.json")
-    out_path.write_text(json.dumps(tweets))
+    out_path.write_text(json.dumps(grouped_tweets))
 
 
 if __name__ == "__main__":

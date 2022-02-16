@@ -122,13 +122,12 @@ on:blur={handleMouseOut}
   on:click={handleClick}
   class={active ? "" : ""}
 >
-  {#if tweet.conversation_id === tweet.id}
-    <a class="tweet-box" href="#content">
-      {@html tweetHtmlText}
-    </a>
-  {:else}
-    <a class="tweet-box tweet-box-child" href="#content">
-      {@html tweetHtmlText}
-    </a>
-  {/if}
+  <a
+    class="tweet-box {tweet.conversation_id === tweet.id
+      ? ''
+      : 'tweet-box-child'}"
+    href="#content"
+  >
+    {@html tweetHtmlText}
+  </a>
 </li>

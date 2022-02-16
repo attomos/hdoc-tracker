@@ -7,6 +7,10 @@ export type Tweet = {
   id: string;
 };
 
+export type GroupedTweets = {
+  [key: string]: Tweet[];
+};
+
 export type TweetResponse = {
   data: Tweet[];
 };

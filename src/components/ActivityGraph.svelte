@@ -3,11 +3,12 @@
   import { getWeeksUntilNow } from "../lib/dateUtils";
   import { tweets } from "../lib/stores";
   import { getFillColor } from "../lib/styleUtils";
-  import { getTweetsLookupDict } from "../lib/tweetUtils";
+  import { getTweetsCount, getTweetsLookupDict } from "../lib/tweetUtils";
 
   const DAYS = ["Mon", "Wed", "Fri", "Sun"];
 
   const tweetsLookup = getTweetsLookupDict($tweets);
+  const tweetsCount = getTweetsCount($tweets);
 
   // const weeks = Array(53).fill(Array(7).fill(1));
   const weeks = getWeeksUntilNow().map((week) => {
@@ -58,7 +59,7 @@
 <!-- TODO: get year from store, updated from year navbar -->
 <div>
   <h2 class="text-lg font-bold my-2">
-    {$tweets.data.length} tweets in 2022
+    {tweetsCount} tweets in 2022
   </h2>
 
   <div
