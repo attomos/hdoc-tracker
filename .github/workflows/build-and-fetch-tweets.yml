@@ -30,7 +30,7 @@ jobs:
       working-directory: ./scripts
       run: |
         python get_tweets.py
-      with: # Set the secret as an input
+      env: # Set the secret as an input
         BEARER_TOKEN: ${{ secrets.BEARER_TOKEN }}
 
 #     - name: Lint with flake8
