@@ -30,6 +30,9 @@ jobs:
       working-directory: ./scripts
       run: |
         python get_tweets.py
+      with: # Set the secret as an input
+        BEARER_TOKEN: ${{ secrets.BEARER_TOKEN }}
+
 #     - name: Lint with flake8
 #       run: |
 #         # stop the build if there are Python syntax errors or undefined names
