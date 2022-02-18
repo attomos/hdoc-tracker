@@ -8,7 +8,7 @@ on:
     - cron:  '23 16 * * *'  # 16 (UTC) means 23:00 (UTC+7) in my usual hours for #100DaysOfCode
 
 jobs:
-  build-and-fetch-tweets:
+  fetch-and-commit-tweets:
 
     runs-on: ubuntu-latest
 
