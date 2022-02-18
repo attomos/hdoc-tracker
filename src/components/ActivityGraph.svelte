@@ -123,13 +123,13 @@
 
 <!-- TODO: get year from store, updated from year navbar -->
 <div>
-  <h2 class="text-lg font-bold my-2">
+  <h2 class="my-2 text-lg font-bold">
     {tweetsCount} tweets in 2022
   </h2>
 
   <div
     id="tooltip"
-    class="text-xs bg-slate-700 rounded-md text-white py-2 px-1 absolute hidden"
+    class="absolute hidden rounded-md bg-slate-700 py-2 px-1 text-xs text-white"
   >
     mock data
   </div>
@@ -139,7 +139,7 @@
       width="862"
       height="126"
       xmlns="http://www.w3.org/2000/svg"
-      class="border-2 border-black rounded-md mx-auto min-w-max"
+      class="mx-auto min-w-max rounded-md border-2 border-black"
       id="activities-graph"
     >
       {#each weeks as week, i}
@@ -157,7 +157,7 @@
           />
           {#each week as { date, month, count }, j}
             <rect
-              class="hover:cursor-pointer hover:ring-2 stroke-gray-400 {getFillColor(
+              class="stroke-gray-400 hover:cursor-pointer hover:ring-2 {getFillColor(
                 count
               )} stroke-gray-400 {getFillColor(count)}"
               width={RECT_W}

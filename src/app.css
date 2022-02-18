@@ -4,7 +4,7 @@
 
 @layer components {
   .grid-item {
-    @apply w-[24px] h-[24px] bg-gray-500 rounded-md;
+    @apply h-[24px] w-[24px] rounded-md bg-gray-500;
   }
 
   .grid-item:hover {
@@ -12,7 +12,7 @@
   }
 
   .tweet-box {
-    @apply text-sm bg-gray-100 p-4 mb-4 rounded-lg block relative whitespace-pre-wrap;
+    @apply relative mb-4 block whitespace-pre-wrap rounded-lg bg-gray-100 p-4 text-sm;
   }
 
   /* .focused {

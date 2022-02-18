@@ -5,7 +5,7 @@
 </script>
 
 <main class="bg-teal-100">
-  <div class="mx-auto flex flex-col w-1/2 h-screen">
+  <div class="mx-auto flex h-screen w-1/2 flex-col">
     <ActivityGraph />
     <Tweets />
   </div>
