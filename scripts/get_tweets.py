@@ -13,7 +13,9 @@ load_dotenv()
 
 
 PATTERN = r"(([Dd]ay \d{1,3}) of|R\d{1,2}D\d{1,3}) #100DaysOfCode"
-BEARER_TOKEN = os.getenv("BEARER_TOKEN")
+BEARER_TOKEN = os.getenv("BEARER_TOKEN", "")
+
+print(BEARER_TOKEN[:4])
 
 
 def make_request(url, headers, payload, hashtags_filter: List[str] = []) -> Dict:
