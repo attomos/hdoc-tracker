@@ -4,10 +4,8 @@
 name: Python application
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  schedule:
+    - cron:  '23 16 * * *'  # 16 (UTC) means 23:00 (UTC+7) in my usual hours for #100DaysOfCode
 
 jobs:
   build-and-fetch-tweets:
@@ -26,12 +24,14 @@ jobs:
         python -m pip install --upgrade pip
         # pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: Fetch new tweets
+    - name: Fetch new tweets and push changes to GitHub
       working-directory: ./scripts
       run: |
         python get_tweets.py
+        python commit_new_tweets.py
       env: # Set the secret as an input
         BEARER_TOKEN: ${{ secrets.BEARER_TOKEN }}
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
 #     - name: Lint with flake8
 #       run: |
