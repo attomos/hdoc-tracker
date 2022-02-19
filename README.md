@@ -17,6 +17,8 @@
 - [ ] mobile friendly
 - [ ] dark mode
 - [ ] adaptive SVG favicon
+- [ ] performance measturement
+- [ ] performance improvements
 - [ ] support for new rounds (backend)
   - [ ] folder-based?
 - [ ] support for new rounds (UI)
