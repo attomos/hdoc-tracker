@@ -8,10 +8,16 @@
   } from "../lib/dateUtils";
   import { tweets } from "../lib/stores";
   import { getFillColor } from "../lib/styleUtils";
-  import { getTweetsCount, getTweetsLookupDict } from "../lib/tweetUtils";
+  import {
+    computeStreaks,
+    getTweetsCount,
+    getTweetsLookupDict,
+  } from "../lib/tweetUtils";
 
   const tweetsLookup = getTweetsLookupDict($tweets);
   const tweetsCount = getTweetsCount($tweets);
+
+  const [longestStreak, currentStreak] = computeStreaks(tweetsLookup);
 
   const weeks = getWeeksUntilNow().map((week) => {
     return week.map((date) => {
@@ -67,7 +73,6 @@
 
     function appendDays() {
       const rectsInFirstGroup = firstGroup.querySelectorAll("rect[data-date]");
-      console.log(rectsInFirstGroup);
       let j = 0;
       const { top: svgTop } = activityGraph.getBoundingClientRect();
       rectsInFirstGroup.forEach((rect, i) => {
@@ -111,7 +116,6 @@
           currentIndex++;
         }
       });
-      console.log(answer);
     }
 
     appendDays();
@@ -133,7 +137,7 @@
   >
     mock data
   </div>
-  <div class="flex">
+  <div class="flex flex-col">
     <svg
       viewBox="0 0 862 126"
       width="862"
@@ -173,5 +177,20 @@
         </g>
       {/each}
     </svg>
+
+    <div class="mx-auto mt-4 flex gap-x-16">
+      <div>
+        <span class="font-bold">Total days:</span>
+        {Object.keys(tweetsLookup).length}
+      </div>
+      <div>
+        <span class="font-bold">Longest streak:</span>
+        {longestStreak.count}
+      </div>
+      <div>
+        <span class="font-bold">Current streak:</span>
+        {currentStreak.count}
+      </div>
+    </div>
   </div>
 </div>

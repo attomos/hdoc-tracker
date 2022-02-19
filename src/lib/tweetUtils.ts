@@ -1,3 +1,4 @@
+import { differenceInDays } from "date-fns/fp";
 import data from "../../scripts/tweets.json";
 import { formatTwitterDate } from "./dateUtils";
 import type { GroupedTweets } from "./types";
@@ -29,4 +30,56 @@ function getTweetsCount(tweets: GroupedTweets) {
   return groupCount.reduce((a, b) => a + b, 0);
 }
 
-export { getTweets, getTweetsLookupDict, getTweetsCount };
+function computeStreaks(tweetsLookup: any) {
+  const days = Object.keys(tweetsLookup);
+  days.sort();
+
+  if (days.length === 0) {
+    return [{}, {}];
+  }
+  const streaks = [];
+  let start = 0;
+  let end = 0;
+  let currentStreak = { start, end, count: 1 };
+  let previousDate = new Date(days[start]);
+  for (end = 1; end < days.length; end++) {
+    const date = new Date(days[end]);
+    const diff = differenceInDays(previousDate, date);
+    previousDate = date;
+    if (diff === 1) {
+      currentStreak = {
+        ...currentStreak,
+        end,
+        count: currentStreak.count + 1,
+      };
+      if (end === days.length - 1) {
+        streaks.push(currentStreak);
+      }
+    } else {
+      streaks.push(currentStreak);
+      currentStreak = {
+        start: end,
+        end,
+        count: 1,
+      };
+    }
+  }
+
+  if (streaks.length === 1) {
+    return [streaks[0], streaks[0]];
+  }
+
+  let longestStreak = -1;
+  let longestStreakIdx = 0;
+  for (let i = 0; i < streaks.length; i++) {
+    const streak = streaks[i];
+    if (streak.count >= longestStreak) {
+      longestStreak = streak.count;
+      longestStreakIdx = i;
+    }
+  }
+
+  return [streaks[longestStreakIdx], streaks.at(-1)];
+}
+
+export { getTweets, getTweetsLookupDict, getTweetsCount, computeStreaks };
