@@ -9,10 +9,9 @@ from typing import OrderedDict as OD
 import requests
 from dotenv import load_dotenv
 
+from scripts.patterns import DEMO_PATTERN, HDOC_PATTERN, SRC_PATTERN, PatternConfig
+
 load_dotenv()
-
-
-PATTERN = r"(([Dd]ay \d{1,3}) of|R\d{1,2}D\d{1,3}) #100DaysOfCode"
 BEARER_TOKEN = os.getenv("BEARER_TOKEN", "")
 
 
@@ -42,7 +41,6 @@ def make_request(url, headers, payload, hashtags_filter: List[str] = []) -> Dict
 def get_tweets() -> Dict:
     # TODO: use since_id
     # TODO: remove hard-coded start_time
-    # TODO: setup GitHub Actions to automatically update tweets
     payload = {
         "tweet.fields": "conversation_id,created_at,entities,public_metrics",
         "max_results": 100,
@@ -78,22 +76,48 @@ def get_tweets() -> Dict:
     return data
 
 
-def get_hdoc_day(pattern, text):
-    if m := re.match(pattern, text):
-        if len(m.groups()) == 2:
-            hdoc_day = m.group(2)
-            start, end = m.span(2)
-            return {"days": [{"start": start, "end": end, "day": hdoc_day}]}
+def get_extra_entities(pc: PatternConfig, text: str):
+    if m := re.search(pc.pattern, text):
+        if len(m.groups()) == pc.expected_groups_len:
+            entity = m.group(pc.target_group_position)
+            start, end = m.span(pc.target_group_position)
+            if pc.optional_flag and pc.optional_flag_position:
+                flag = bool(m.group(pc.optional_flag_position))
+                return {
+                    f"{pc.key.value}s": [
+                        {
+                            "start": start,
+                            "end": end,
+                            pc.key.value: entity,
+                            pc.optional_flag: flag,
+                        }
+                    ]
+                }
+            return {
+                f"{pc.key.value}s": [
+                    {
+                        "start": start,
+                        "end": end,
+                        pc.key.value: entity,
+                    }
+                ]
+            }
 
 
-def add_hdoc_to_tweets(tweets) -> Dict:
+def add_extra_entities_to_tweets(tweets) -> Dict:
     tweets_data = tweets.get("data", [])
     for tweet in tweets_data:
         text = tweet.get("text", "")
-        hdoc_day = get_hdoc_day(PATTERN, text)
+        hdoc_day = get_extra_entities(HDOC_PATTERN, text)
+        src = get_extra_entities(SRC_PATTERN, text)
+        demo = get_extra_entities(DEMO_PATTERN, text)
         entities = tweet["entities"]
         if hdoc_day:
             entities.update(hdoc_day)
+        if src:
+            entities.update(src)
+        if demo:
+            entities.update(demo)
     return tweets
 
 
@@ -113,10 +137,10 @@ def group_tweets(tweets) -> OD:
 
 def main():
     tweets = get_tweets()
-    tweets = add_hdoc_to_tweets(tweets)
+    tweets = add_extra_entities_to_tweets(tweets)
     grouped_tweets = group_tweets(tweets)
     out_path = Path("tweets.json")
-    out_path.write_text(json.dumps(grouped_tweets))
+    out_path.write_text(json.dumps(grouped_tweets, sort_keys=True))
 
 
 if __name__ == "__main__":
