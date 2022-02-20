@@ -3,9 +3,8 @@
 ## TODO
 
 - [x] GitHub actions
-- [ ] Streak count (longest and current)
-- [ ] extract more entities (link to src, demo, etc.)
-- [ ] Filter by round
+- [x] Streak count (longest and current)
+- [x] extract more entities (link to src, demo, etc.)
 - [ ] compact view
 - [ ] detailed view
 - [ ] pytest
@@ -21,4 +20,6 @@
 - [ ] performance improvements
 - [ ] support for new rounds (backend)
   - [ ] folder-based?
+  - [ ] Filter by round
+  - [ ] need an API for new rounds (or for the sake of learning 😏)
 - [ ] support for new rounds (UI)
