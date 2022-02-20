@@ -1,0 +1,9 @@
+{
+  "python.linting.flake8Args": [
+    "--config",
+    "scripts/.flake8"
+  ],
+  "terminal.integrated.env.osx": {
+    "PYTHONPATH": "${workspaceFolder}"
+  }
+}
