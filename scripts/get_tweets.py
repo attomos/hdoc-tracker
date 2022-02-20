@@ -140,7 +140,7 @@ def main():
     tweets = add_extra_entities_to_tweets(tweets)
     grouped_tweets = group_tweets(tweets)
     out_path = Path("tweets.json")
-    out_path.write_text(json.dumps(grouped_tweets, sort_keys=True))
+    out_path.write_text(json.dumps(grouped_tweets))
 
 
 if __name__ == "__main__":
