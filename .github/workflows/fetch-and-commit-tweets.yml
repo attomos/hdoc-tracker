@@ -31,7 +31,7 @@ jobs:
     - name: Fetch new tweets and push changes to GitHub
       working-directory: ./scripts
       run: |
-        PYTHONPATH=. python get_tweets.py
+        PYTHONPATH=.. python get_tweets.py
         python commit_new_tweets.py
       env: # Set the secret as an input
         BEARER_TOKEN: ${{ secrets.BEARER_TOKEN }}
