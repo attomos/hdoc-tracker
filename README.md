@@ -1,4 +1,4 @@
-# hdoc-tracker
+# hdoc-tracker [3/21]
 
 ## TODO
 
@@ -8,6 +8,10 @@
 - [ ] compact view
 - [ ] detailed view
 - [ ] pytest
+  - [x] at least have some tests
+  - [ ] 80% coverage
+  - [x] coverage
+  - [ ] GitHub Actions
 - [ ] jest unit tests
 - [ ] cypress
 - [ ] refactor UI code
