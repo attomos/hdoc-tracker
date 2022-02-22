@@ -1,4 +1,4 @@
-# hdoc-tracker [3/21]
+# hdoc-tracker [5/26]
 
 ## TODO
 
@@ -27,3 +27,7 @@
   - [ ] Filter by round
   - [ ] need an API for new rounds (or for the sake of learning 😏)
 - [ ] support for new rounds (UI)
+
+## bugs
+
+- [ ] time zone bug in `formatTwitterDate` function
