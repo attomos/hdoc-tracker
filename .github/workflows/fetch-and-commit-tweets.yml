@@ -28,13 +28,14 @@ jobs:
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
         if [ -f requirements-dev.txt ]; then pip install -r requirements-dev.txt; fi
+        pip install -e .
     - name: Test with pytest
+      working-directory: ./scripts
       run: |
-        pytest
+        pytest --cov=hdoc_tracker --cov-report html tests
     - name: Fetch new tweets and push changes to GitHub
       working-directory: ./scripts
       run: |
-        pip install -e .
         python hdoc_tracker/get_tweets.py
         python hdoc_tracker/commit_new_tweets.py
       env: # Set the secret as an input
