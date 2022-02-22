@@ -26,7 +26,6 @@ def test_demo_entities():
 def test_hdoc_entites():
     entities = get_extra_entities(HDOC_PATTERN, "day 1 of #100DaysOfCode")
     assert entities == {"days": [{"day": "day 1", "end": 5, "start": 0}]}
-    assert 1 == 0  # testing GitHub Actions
     # entities = get_extra_entities(HDOC_PATTERN, "R2D1 #100DaysOfCode")
     # assert entities == {"days": [{"day": "day 1", "end": 5, "start": 0}]}
     # entities = get_extra_entities(HDOC_PATTERN, "day1 of #100DaysOfCode")
