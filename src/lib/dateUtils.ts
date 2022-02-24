@@ -1,9 +1,10 @@
+import { formatInTimeZone } from "date-fns-tz";
 import {
-  startOfYear,
-  startOfWeekWithOptions,
   endOfWeekWithOptions,
   endOfYear,
   getMonth,
+  startOfWeekWithOptions,
+  startOfYear,
 } from "date-fns/fp";
 
 export const DAYS = ["Mon", "Wed", "Fri", "Sun"];
@@ -44,7 +45,9 @@ function format(date: Date) {
 
 export function formatTwitterDate(twitterDate: string) {
   // UTC => UTC+7 in short ISO format
-  return new Date(twitterDate).toISOString().substring(0, 10);
+  // return new Date(twitterDate).toISOString().substring(0, 10);
+  // TODO: add unit test for this
+  return formatInTimeZone(new Date(twitterDate), "Asia/Bangkok", "yyyy-MM-dd");
 }
 
 export function getWeeksUntilNow() {
