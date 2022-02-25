@@ -23,13 +23,13 @@ export const MONTHS = [
   "Dec",
 ];
 
-function getAddedDate(original: Date, days: number) {
+export function getAddedDate(original: Date, days: number) {
   var date = new Date(original.valueOf());
   date.setDate(date.getDate() + days);
   return date;
 }
 
-function getDateRange(startDate: Date, endDate: Date) {
+export function getDateRange(startDate: Date, endDate: Date) {
   let dates = [];
   let currentDate = startDate;
   while (currentDate < endDate) {

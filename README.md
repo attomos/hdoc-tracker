@@ -1,4 +1,4 @@
-# hdoc-tracker [5/26]
+# hdoc-tracker [6/29]
 
 ## TODO
 
@@ -13,6 +13,9 @@
   - [x] coverage
   - [ ] GitHub Actions
 - [ ] jest unit tests
+  - [ ] at least have some tests
+  - [ ] 80% coverage
+  - [ ] GitHub Actions
 - [ ] cypress
 - [ ] refactor UI code
 - [ ] refactor backend code
@@ -30,4 +33,8 @@
 
 ## bugs
 
-- [ ] time zone bug in `formatTwitterDate` function
+- [x] time zone bug in `formatTwitterDate` function
+
+## useful resources
+
+- https://github.com/facebook/jest/issues/2234#issuecomment-731451275
