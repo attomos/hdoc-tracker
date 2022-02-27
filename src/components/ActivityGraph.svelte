@@ -152,7 +152,7 @@
           transform="translate({i * RECT_W_2}, {START_Y})"
         >
           <rect
-            class="fill-teal-100"
+            class="fill-white"
             width={RECT_W + 4}
             height={RECT_H * 8 + GAP * 8}
             x={START_X - 2}

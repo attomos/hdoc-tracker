@@ -3,6 +3,37 @@
 @tailwind utilities;
 
 @layer components {
+  .app-layout {
+    @apply grid h-screen;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+      "header header"
+      "sidebar main"
+      "sidebar main";
+  }
+
+  .nav-bar {
+    @apply grid grid-cols-4 items-center justify-between border-b border-b-gray-300 p-2 px-8;
+    grid-area: header;
+  }
+
+  .nav-rail {
+    @apply border-r border-r-gray-300 pt-4;
+    height: calc(100vh - 59px);
+    grid-area: sidebar;
+  }
+
+  /* TODO: find out if this the legit usage of @layer components */
+  .nav-rail a:not(:first-child) {
+    margin-top: 1rem;
+  }
+
+  main {
+    height: calc(100vh - 59px);
+    grid-area: main;
+  }
+
   .grid-item {
     @apply h-[24px] w-[24px] rounded-md bg-gray-500;
   }

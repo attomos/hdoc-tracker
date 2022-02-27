@@ -37,4 +37,12 @@
 
 ## useful resources
 
-- https://github.com/facebook/jest/issues/2234#issuecomment-731451275
+- mocking Date in jest
+  - https://github.com/facebook/jest/issues/2234#issuecomment-731451275
+- crop PNG
+  - https://www.iloveimg.com/crop-image/crop-png
+
+## layout resource, inspirations
+
+- grid layout with side navigation rails
+  - https://developer.chrome.com/
