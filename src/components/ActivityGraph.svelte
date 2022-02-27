@@ -1,4 +1,6 @@
 <script lang="ts">
+  import type { Tweet } from "src/lib/types";
+
   import { onMount } from "svelte";
   import {
     DAYS,
@@ -15,6 +17,13 @@
   } from "../lib/tweetUtils";
 
   const tweetsLookup = getTweetsLookupDict($tweets);
+  const daysCount = Object.keys(tweetsLookup)
+    .map((key) => {
+      return tweetsLookup[key].filter((tweet: Tweet) => {
+        return tweet.text.includes("of #100DaysOfCode");
+      });
+    })
+    .flat().length;
   const tweetsCount = getTweetsCount($tweets);
 
   const [longestStreak, currentStreak] = computeStreaks(tweetsLookup);
@@ -181,7 +190,7 @@
     <div class="mx-auto mt-4 flex gap-x-16">
       <div>
         <span class="font-bold">Total days:</span>
-        {Object.keys(tweetsLookup).length}
+        {daysCount}
       </div>
       <div>
         <span class="font-bold">Longest streak:</span>
