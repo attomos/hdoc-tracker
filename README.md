@@ -1,4 +1,4 @@
-# hdoc-tracker [6/29]
+# hdoc-tracker [8/31]
 
 ## TODO
 
@@ -13,17 +13,19 @@
   - [x] coverage
   - [ ] GitHub Actions
 - [ ] jest unit tests
-  - [ ] at least have some tests
+  - [x] at least have some tests
   - [ ] 80% coverage
   - [ ] GitHub Actions
 - [ ] cypress
+- [x] routing
 - [ ] refactor UI code
 - [ ] refactor backend code
 - [ ] responsive
 - [ ] mobile friendly
+- [ ] Search functionality
 - [ ] dark mode
 - [ ] adaptive SVG favicon
-- [ ] performance measturement
+- [ ] performance measurement
 - [ ] performance improvements
 - [ ] support for new rounds (backend)
   - [ ] folder-based?

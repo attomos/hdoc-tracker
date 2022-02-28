@@ -1,23 +1,23 @@
 <script lang="ts">
-  import { Home, DataFile } from "@icon-park/svg";
+  import { Link, useLocation } from "svelte-navigator";
+  import { getIcon } from "../lib/iconUtils";
 
-  const homeSvg = Home({ theme: "filled", size: "1.5em" });
-  const dataFileSvg = DataFile({ theme: "outline", size: "1.5em" });
+  const location = useLocation();
 </script>
 
 <div class="nav-rail">
-  <a
-    class="flex flex-col items-center px-4 py-2 text-sm hover:cursor-pointer"
-    href="/"
-  >
-    <div>{@html homeSvg}</div>
-    <span class="mt-2">Home</span>
-  </a>
-  <a
-    class="flex flex-col items-center px-4 py-2 text-sm hover:cursor-pointer"
-    href="/tweets"
-  >
-    <div>{@html dataFileSvg}</div>
-    <span class="mt-2">Tweets</span>
-  </a>
+  <Link class="nav-rail-item" to="/">
+    <div>{@html getIcon("home", $location.pathname)}</div>
+    <span class={$location.pathname === "/" ? "active-rail-item" : "rail-item"}
+      >Home</span
+    >
+  </Link>
+  <Link class="nav-rail-item" to="settings">
+    <div>{@html getIcon("setting-two", $location.pathname)}</div>
+    <span
+      class={$location.pathname === "/settings"
+        ? "active-rail-item"
+        : "rail-item"}>Settings</span
+    >
+  </Link>
 </div>

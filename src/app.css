@@ -24,14 +24,21 @@
     grid-area: sidebar;
   }
 
-  /* TODO: find out if this the legit usage of @layer components */
-  .nav-rail a:not(:first-child) {
-    margin-top: 1rem;
+  .nav-rail-item {
+    @apply flex flex-col items-center p-3 text-sm hover:cursor-pointer hover:bg-gray-100;
   }
 
   main {
     height: calc(100vh - 59px);
     grid-area: main;
+  }
+
+  .rail-item {
+    @apply mt-2 text-slate-500;
+  }
+
+  .active-rail-item {
+    @apply rail-item text-black;
   }
 
   .grid-item {
@@ -45,10 +52,6 @@
   .tweet-box {
     @apply relative mb-4 block whitespace-pre-wrap rounded-lg bg-gray-100 p-4 text-sm;
   }
-
-  /* .focused {
-    @apply ring-4 ring-pink-300 rounded-lg;
-  } */
 
   .focused .tweet-box {
     @apply cursor-pointer bg-teal-500 text-white ring-4 ring-teal-300;
