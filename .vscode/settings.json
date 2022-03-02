@@ -3,9 +3,6 @@
     "--config",
     "scripts/.flake8"
   ],
-  "terminal.integrated.env.osx": {
-    "PYTHONPATH": "${workspaceFolder}"
-  },
   "python.testing.pytestArgs": [
     "scripts",
     "--cov=scripts/hdoc_tracker",

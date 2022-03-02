@@ -1,47 +1,51 @@
 from collections import OrderedDict
 import re
-from typing import Dict
+from typing import Dict, List, Match
 from typing import OrderedDict as OD
 
-from hdoc_tracker.patterns import DEMO_PATTERN, HDOC_PATTERN, PatternConfig, SRC_PATTERN
+from hdoc_tracker.patterns import (
+    DEMO_PATTERN,
+    HDOC_PATTERN,
+    MODERN_HDOC_PATTERN,
+    PatternConfig,
+    SRC_PATTERN,
+)
+
+
+def build_entities(pc: PatternConfig, m: Match):
+    entity = m.group(pc.target_group_position)
+    start, end = m.span(pc.target_group_position)
+    key = pc.key.value
+    if key == "modern_day":
+        key = "day"
+    entities = {
+        key: entity,
+        "start": start,
+        "end": end,
+    }
+    if pc.optional_flag and pc.optional_flag_position:
+        flag = bool(m.group(pc.optional_flag_position))
+        entities[pc.optional_flag] = flag
+    return {f"{pc.key.value}_list": [entities]}
 
 
 def get_extra_entities(pc: PatternConfig, text: str):
     if m := re.search(pc.pattern, text):
         if len(m.groups()) == pc.expected_groups_len:
-            entity = m.group(pc.target_group_position)
-            start, end = m.span(pc.target_group_position)
-            if pc.optional_flag and pc.optional_flag_position:
-                flag = bool(m.group(pc.optional_flag_position))
-                return {
-                    f"{pc.key.value}s": [
-                        {
-                            "start": start,
-                            "end": end,
-                            pc.key.value: entity,
-                            pc.optional_flag: flag,
-                        }
-                    ]
-                }
-            return {
-                f"{pc.key.value}s": [
-                    {
-                        "start": start,
-                        "end": end,
-                        pc.key.value: entity,
-                    }
-                ]
-            }
+            return build_entities(pc, m)
 
 
 def add_extra_entities_to_tweets(tweets) -> Dict:
     tweets_data = tweets.get("data", [])
     for tweet in tweets_data:
         text = tweet.get("text", "")
+        modern_hdoc_day = get_extra_entities(MODERN_HDOC_PATTERN, text)
         hdoc_day = get_extra_entities(HDOC_PATTERN, text)
         src = get_extra_entities(SRC_PATTERN, text)
         demo = get_extra_entities(DEMO_PATTERN, text)
         entities = tweet["entities"]
+        if modern_hdoc_day:
+            entities.update(modern_hdoc_day)
         if hdoc_day:
             entities.update(hdoc_day)
         if src:
@@ -52,7 +56,9 @@ def add_extra_entities_to_tweets(tweets) -> Dict:
 
 
 def group_tweets(tweets) -> OD:
-    grouped_tweets = OrderedDict()
+    grouped_tweets: OD[int, List] = OrderedDict(
+        {t["conversation_id"]: [] for t in tweets["data"]}
+    )
     for tweet in tweets["data"][::-1]:
         conversation_id = tweet["conversation_id"]
         id = tweet["id"]
