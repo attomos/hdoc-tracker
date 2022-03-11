@@ -42,6 +42,10 @@ function computeStreaks(tweetsLookup: any) {
   let end = 0;
   let currentStreak = { start, end, count: 1 };
   let previousDate = new Date(days[start]);
+  if (days.length === 1) {
+    streaks.push(currentStreak);
+  }
+
   for (end = 1; end < days.length; end++) {
     const date = new Date(days[end]);
     const diff = differenceInDays(previousDate, date);
@@ -62,6 +66,9 @@ function computeStreaks(tweetsLookup: any) {
         end,
         count: 1,
       };
+      if (end === days.length - 1) {
+        streaks.push(currentStreak);
+      }
     }
   }
 
