@@ -53,7 +53,11 @@
     @apply relative mb-4 block whitespace-pre-wrap rounded-lg bg-gray-100 p-4 text-sm;
   }
 
-  .focused .tweet-box {
+  .tweet-box:focus {
+    @apply outline-none ring-4 ring-teal-300;
+  }
+
+  .selected .tweet-box {
     @apply cursor-pointer bg-teal-500 text-white ring-4 ring-teal-300;
   }
 

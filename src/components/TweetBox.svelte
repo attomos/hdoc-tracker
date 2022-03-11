@@ -31,8 +31,12 @@
   }
 
   function focusItem(element, shouldScroll = true) {
+    if (!element.getAttribute("role")) {
+      return focusItem(element.parentElement, false);
+    }
     element.setAttribute("aria-selected", "true");
-    element.classList.add("focused");
+    element.focus();
+    element.classList.add("selected");
     if (shouldScroll) {
       const rect = element.getBoundingClientRect();
       const ul = document.querySelector("#tweet-list");
@@ -77,22 +81,29 @@
       e.key === "ArrowDown" ||
       e.key === "j" ||
       e.key === "ArrowUp" ||
-      e.key === "k";
+      e.key === "k" ||
+      e.key === "Enter";
 
     if (shouldPreventDefault) {
       e.preventDefault();
     }
 
+    function deselectCurrentItem() {
+      currentItem.setAttribute("aria-selected", "false");
+      currentItem.classList.remove("selected");
+    }
+
+    let itemToFocus;
     if (e.key === "ArrowDown" || e.key === "j") {
-      const nextItem = findNextOption(currentItem);
-      currentItem.setAttribute("aria-selected", "false");
-      currentItem.classList.remove("focused");
-      focusItem(nextItem);
+      itemToFocus = findNextOption(currentItem);
     } else if (e.key === "ArrowUp" || e.key === "k") {
-      const prevItem = findPrevOption(currentItem);
-      currentItem.setAttribute("aria-selected", "false");
-      currentItem.classList.remove("focused");
-      focusItem(prevItem);
+      itemToFocus = findPrevOption(currentItem);
+    } else if (e.key === "Enter") {
+      itemToFocus = e.target;
+    }
+    if (itemToFocus) {
+      deselectCurrentItem();
+      focusItem(itemToFocus);
     }
   }
 
@@ -102,7 +113,7 @@
       document.querySelector("#tweet-list li[aria-selected]:first-child");
 
     currentItem.setAttribute("aria-selected", "false");
-    currentItem.classList.remove("focused");
+    currentItem.classList.remove("selected");
     const listItem = e.target.closest("li");
     focusItem(listItem, false);
   }
@@ -122,12 +133,12 @@ on:blur={handleMouseOut}
   on:click={handleClick}
   class={active ? "" : ""}
 >
-  <a
+  <div
     class="tweet-box {tweet.conversation_id === tweet.id
       ? ''
       : 'tweet-box-child'}"
-    href="#content"
+    tabindex="0"
   >
     {@html tweetHtmlText}
-  </a>
+  </div>
 </li>
