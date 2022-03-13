@@ -5,10 +5,10 @@
   export let tweet: Tweet;
 
   let tweetHtmlText = tweet.text;
-  if (tweet.entities.days?.length) {
-    const { start, end } = tweet.entities.days[0];
+  if (tweet.entities.day_list?.length) {
+    const { start, end } = tweet.entities.day_list[0];
     tweetHtmlText =
-      `<mark class="bg-teal-300 p-1 rounded-sm">${tweetHtmlText.substring(
+      `<mark class="bg-teal-300 p-1 rounded-sm" data-testid="mark">${tweetHtmlText.substring(
         start,
         end
       )}</mark>` + tweetHtmlText.substring(end);

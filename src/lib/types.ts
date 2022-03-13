@@ -18,7 +18,7 @@ export type TweetResponse = {
 export type Entities = {
   hashtags?: Hashtag[] | null;
   urls?: TweetUrl[] | null;
-  days?: HdocDay[] | null;
+  day_list?: HdocDay[] | null;
 };
 
 export type Hashtag = {
