@@ -39,10 +39,6 @@ export function getDateRange(startDate: Date, endDate: Date) {
   return dates;
 }
 
-function format(date: Date) {
-  return date.toISOString().slice(0, 10);
-}
-
 export function formatTwitterDate(twitterDate: string) {
   // UTC => UTC+7 in short ISO format
   // return new Date(twitterDate).toISOString().substring(0, 10);
@@ -65,7 +61,7 @@ export function getWeeksUntilNow() {
   let aWeek = [];
 
   for (let day of range) {
-    aWeek.push(format(day));
+    aWeek.push(formatInTimeZone(day, "Asia/Bangkok", "yyyy-MM-dd"));
     if (aWeek.length === 7) {
       weeks.push(aWeek);
       aWeek = [];
