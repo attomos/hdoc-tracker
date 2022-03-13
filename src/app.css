@@ -4,7 +4,7 @@
 
 @layer components {
   .app-layout {
-    @apply grid h-screen;
+    @apply grid h-screen outline-none;
     grid-template-columns: auto 1fr;
     grid-template-rows: auto 1fr auto;
     grid-template-areas:
@@ -51,10 +51,6 @@
 
   .tweet-box {
     @apply relative mb-4 block whitespace-pre-wrap rounded-lg bg-gray-100 p-4 text-sm;
-  }
-
-  .tweet-box:focus {
-    @apply outline-none ring-4 ring-teal-300;
   }
 
   .selected .tweet-box {

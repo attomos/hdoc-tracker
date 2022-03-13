@@ -21,15 +21,10 @@
 <div class="mt-4 flex flex-grow flex-col overflow-auto">
   <h2 class="my-4 text-lg font-bold">List of tweets go here...</h2>
   <div class="flex-grow overflow-auto pb-40">
-    <ul class="mx-8 w-1/2 py-2" role="listbox" id="tweet-list">
+    <ul class="mx-8 w-1/2 py-2 outline-none" role="listbox" id="tweet-list">
       {#each topLevelTweets as tweet}
         <TweetBox {tweet} />
       {/each}
-      <!-- {#each Object.keys($tweets) as conversationId}
-        {#each $tweets[conversationId] as tweet}
-          <TweetBox {tweet} />
-        {/each}
-      {/each} -->
     </ul>
   </div>
 </div>
