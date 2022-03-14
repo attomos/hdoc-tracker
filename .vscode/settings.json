@@ -11,5 +11,18 @@
     "tests"
   ],
   "python.testing.unittestEnabled": false,
-  "python.testing.pytestEnabled": true
+  "python.testing.pytestEnabled": true,
+  "workbench.colorCustomizations": {
+    "sash.hoverBorder": "#ccbcfc",
+    "statusBar.background": "#a78bfa",
+    "statusBar.foreground": "#15202b",
+    "statusBarItem.hoverBackground": "#825af8",
+    "statusBarItem.remoteBackground": "#a78bfa",
+    "statusBarItem.remoteForeground": "#15202b",
+    "titleBar.activeBackground": "#a78bfa",
+    "titleBar.activeForeground": "#15202b",
+    "titleBar.inactiveBackground": "#a78bfa99",
+    "titleBar.inactiveForeground": "#15202b99"
+  },
+  "peacock.color": "a78bfa"
 }
