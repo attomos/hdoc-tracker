@@ -1,4 +1,4 @@
-# hdoc-tracker [8/31]
+# hdoc-tracker [9/31]
 
 ## TODO
 
@@ -22,7 +22,7 @@
 - [ ] refactor backend code
 - [ ] responsive
 - [ ] mobile friendly
-- [ ] Search functionality
+- [x] Search functionality
 - [ ] dark mode
 - [ ] adaptive SVG favicon
 - [ ] performance measurement
