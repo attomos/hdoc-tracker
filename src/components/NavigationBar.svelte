@@ -1,6 +1,23 @@
 <script lang="ts">
   import { Search } from "@icon-park/svg";
+  import { searchTerm } from "../lib/stores";
   const searchSvg = Search({ theme: "outline", size: "1em" });
+
+  let timer: ReturnType<typeof setTimeout>;
+
+  const DEBOUNCE_DURATION = 100;
+
+  const debounce = (e) => {
+    if (e.key === "Escape") {
+      e.target.blur();
+      searchTerm.update((t) => e.target.value);
+      return;
+    }
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      searchTerm.update((t) => e.target.value);
+    }, DEBOUNCE_DURATION);
+  };
 </script>
 
 <nav class="nav-bar">
@@ -14,10 +31,16 @@
         {@html searchSvg}
       </span>
       <input
-        class="w-full rounded-lg border border-gray-400 px-4 pl-10"
+        id="search-bar"
+        class="search-input"
         type="text"
         placeholder="Quick search..."
+        on:keyup={debounce}
       />
+      <span
+        class="absolute inset-y-0 right-6 my-2 flex items-center rounded-md bg-slate-200 p-2 text-purple-500"
+        >/</span
+      >
     </div>
   </div>
 

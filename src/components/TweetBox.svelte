@@ -4,11 +4,11 @@
 
   export let tweet: Tweet;
 
-  let tweetHtmlText = tweet.text;
-  if (tweet.entities.day_list?.length) {
+  $: tweetHtmlText = tweet.text;
+  $: if (tweet.entities.day_list?.length) {
     const { start, end } = tweet.entities.day_list[0];
     tweetHtmlText =
-      `<mark class="bg-teal-300 p-1 rounded-sm" data-testid="mark">${tweetHtmlText.substring(
+      `<mark class="bg-violet-200 p-1 rounded-sm" data-testid="mark">${tweetHtmlText.substring(
         start,
         end
       )}</mark>` + tweetHtmlText.substring(end);

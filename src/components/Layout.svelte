@@ -55,6 +55,16 @@
 
     const currentItem = getCurrentItem();
 
+    if (e.key === "/") {
+      document.getElementById("search-bar").focus();
+
+      if (currentItem) {
+        deselectCurrentItem(currentItem);
+      }
+      e.preventDefault();
+      return;
+    }
+
     if (!currentItem) return;
 
     const shouldPreventDefault =

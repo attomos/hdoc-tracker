@@ -3,8 +3,20 @@ import data from "../../scripts/tweets.json";
 import { formatTwitterDate } from "./dateUtils";
 import type { GroupedTweets } from "./types";
 
-function getTweets() {
-  return data;
+// TODO: fix type error here
+function getTweets(searchTerm: string) {
+  if (searchTerm === "") return data;
+  const filteredTweets = Object.entries(data).filter((e) => {
+    const [, value] = e;
+    const ans = value
+      .filter((tweet) => tweet.conversation_id === tweet.id)
+      .some(({ text }: { text: string }) =>
+        text.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    return ans;
+  });
+
+  return Object.fromEntries(filteredTweets);
 }
 
 function getTweetsLookupDict(tweets: GroupedTweets) {
