@@ -91,7 +91,7 @@
             "http://www.w3.org/2000/svg",
             "text"
           );
-          text.classList.add("text-[9px]");
+          text.classList.add("text-[9px]", "dark:fill-white");
           text.setAttribute("dx", "4");
           text.setAttribute("dy", `${top - svgTop + RECT_W_2 - 5}`);
           text.innerHTML = DAYS[j];
@@ -116,7 +116,7 @@
             "http://www.w3.org/2000/svg",
             "text"
           );
-          text.classList.add("text-[9px]");
+          text.classList.add("text-[9px]", "dark:fill-white");
           text.setAttribute("dx", `${36 + RECT_W_2 * columnIndex}`);
           text.setAttribute("dy", "10");
           text.innerHTML = MONTHS[currentIndex];
@@ -142,7 +142,7 @@
 
   <div
     id="tooltip"
-    class="absolute hidden rounded-md bg-slate-700 py-2 px-1 text-xs text-white"
+    class="absolute hidden rounded-md bg-slate-700 py-2 px-1 text-xs text-white dark:bg-slate-500"
   >
     mock data
   </div>
@@ -152,7 +152,7 @@
       width="862"
       height="126"
       xmlns="http://www.w3.org/2000/svg"
-      class="mx-auto min-w-max rounded-md border-2 border-black"
+      class="mx-auto min-w-max rounded-md border-2 border-black dark:border-white"
       id="activities-graph"
     >
       {#each weeks as week, i}
@@ -161,7 +161,7 @@
           transform="translate({i * RECT_W_2}, {START_Y})"
         >
           <rect
-            class="fill-white"
+            class="fill-white dark:fill-[#15141a]"
             width={RECT_W + 4}
             height={RECT_H * 8 + GAP * 8}
             x={START_X - 2}
@@ -170,9 +170,9 @@
           />
           {#each week as { date, month, count }, j}
             <rect
-              class="stroke-gray-400 hover:cursor-pointer hover:ring-2 {getFillColor(
+              class="stroke-gray-400 hover:cursor-pointer hover:ring-2 dark:stroke-gray-900 {getFillColor(
                 count
-              )} stroke-gray-400 {getFillColor(count)}"
+              )}"
               width={RECT_W}
               height={RECT_H}
               x={START_X}

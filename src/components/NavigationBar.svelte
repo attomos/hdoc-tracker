@@ -21,7 +21,7 @@
 </script>
 
 <nav class="nav-bar">
-  <span>hdoc-tracker</span>
+  <span class="dark:text-white">hdoc-tracker</span>
 
   <div class="col-span-2 flex justify-center">
     <div class="relative w-3/5 pl-4">
