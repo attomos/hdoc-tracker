@@ -1,6 +1,7 @@
 <script lang="ts">
   import { Search } from "@icon-park/svg";
   import { searchTerm } from "../lib/stores";
+  import ThemeToggle from "./ThemeToggle.svelte";
   const searchSvg = Search({ theme: "outline", size: "1em" });
 
   let timer: ReturnType<typeof setTimeout>;
@@ -44,7 +45,8 @@
     </div>
   </div>
 
-  <div class="flex justify-end">
+  <div class="flex items-center justify-end gap-5">
+    <ThemeToggle />
     <select name="round" id="round" class="rounded-lg">
       <option value="r1">Round 1</option>
     </select>
