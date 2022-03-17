@@ -1,19 +1,20 @@
 <script lang="ts">
   import { Link, useLocation } from "svelte-navigator";
-  import { getIcon } from "../lib/iconUtils";
+  import HomeIcon from "./HomeIcon.svelte";
+  import SettingsIcon from "./SettingsIcon.svelte";
 
   const location = useLocation();
 </script>
 
 <div class="nav-rail">
   <Link class="nav-rail-item" to="/">
-    <div>{@html getIcon("home", $location.pathname)}</div>
+    <HomeIcon active={$location.pathname === "/"} />
     <span class={$location.pathname === "/" ? "active-rail-item" : "rail-item"}
       >Home</span
     >
   </Link>
   <Link class="nav-rail-item" to="settings">
-    <div>{@html getIcon("setting-two", $location.pathname)}</div>
+    <SettingsIcon active={$location.pathname === "/settings"} />
     <span
       class={$location.pathname === "/settings"
         ? "active-rail-item"

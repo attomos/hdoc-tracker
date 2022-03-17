@@ -1,8 +1,7 @@
 <script lang="ts">
-  import { Search } from "@icon-park/svg";
   import { searchTerm } from "../lib/stores";
+  import SearchIcon from "./SearchIcon.svelte";
   import ThemeToggle from "./ThemeToggle.svelte";
-  const searchSvg = Search({ theme: "outline", size: "1em" });
 
   let timer: ReturnType<typeof setTimeout>;
 
@@ -29,7 +28,7 @@
       <span
         class="pointer-events-none absolute inset-y-0 left-6 flex items-center pl-2"
       >
-        {@html searchSvg}
+        <SearchIcon />
       </span>
       <input
         id="search-bar"
