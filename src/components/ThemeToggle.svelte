@@ -49,9 +49,6 @@
 
     const secondSun = document.querySelector(".sun:nth-child(1)");
     const secondMoon = document.querySelector(".moon:nth-child(2)");
-    // TODO ring color on dark and light theme
-    // switchElement.classList.toggle("focus-visible:ring-violet-600");
-    // switchElement.classList.toggle("focus-visible:ring-purple-400");
 
     firstSun.classList.toggle("scale-100");
     firstSun.classList.toggle("scale-0");
@@ -68,7 +65,7 @@
 </script>
 
 <button
-  class="relative inline-flex items-center rounded-full  bg-violet-200 py-1.5 px-2 text-violet-300 transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-400 focus-visible:ring-offset-2 focus-visible:ring-offset-purple-500 dark:bg-slate-700"
+  class="relative inline-flex items-center rounded-full bg-violet-200 py-1.5 px-2 text-violet-300 transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:bg-slate-700 dark:focus-visible:ring-violet-600 dark:focus-visible:ring-offset-slate-800"
   id="headlessui-switch-5"
   role="switch"
   type="button"

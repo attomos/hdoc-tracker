@@ -152,7 +152,7 @@
       width="862"
       height="126"
       xmlns="http://www.w3.org/2000/svg"
-      class="mx-auto min-w-max rounded-md border-2 border-black dark:border-white"
+      class="mx-auto min-w-max rounded-md border-2 border-gray-200 dark:border-gray-700"
       id="activities-graph"
     >
       {#each weeks as week, i}
@@ -170,7 +170,7 @@
           />
           {#each week as { date, month, count }, j}
             <rect
-              class="stroke-gray-400 hover:cursor-pointer hover:ring-2 dark:stroke-gray-900 {getFillColor(
+              class="stroke-gray-400 hover:cursor-pointer hover:ring-2 dark:stroke-gray-600 {getFillColor(
                 count
               )}"
               width={RECT_W}

@@ -25,10 +25,6 @@
     grid-area: sidebar;
   }
 
-  .nav-rail-item {
-    @apply flex flex-col items-center p-3 text-sm hover:cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600;
-  }
-
   main {
     @apply dark:text-white;
     height: calc(100vh - 59px);
@@ -36,11 +32,11 @@
   }
 
   .rail-item {
-    @apply mt-2 text-slate-500 dark:text-gray-200;
+    @apply mt-2 text-slate-500 group-hover:text-violet-500 dark:text-gray-500 dark:group-hover:text-violet-500;
   }
 
   .active-rail-item {
-    @apply rail-item text-black dark:text-white;
+    @apply rail-item text-violet-500 dark:text-violet-500;
   }
 
   .grid-item {
@@ -52,11 +48,11 @@
   }
 
   .tweet-box {
-    @apply relative mb-4 block cursor-pointer whitespace-pre-wrap rounded-lg bg-zinc-50 p-4 text-sm dark:bg-gray-700;
+    @apply relative mb-4 block cursor-pointer whitespace-pre-wrap rounded-lg bg-zinc-50 p-4 text-sm dark:bg-gray-800;
   }
 
   .selected .tweet-box {
-    @apply bg-zinc-100 ring-2 ring-violet-300 dark:bg-violet-900 dark:ring-violet-600;
+    @apply bg-zinc-100 ring-2 ring-purple-400 dark:bg-gray-900 dark:ring-violet-600;
   }
 
   .tweet-box-child {
@@ -71,9 +67,5 @@
     left: -2rem;
     width: 2px;
     background: #000;
-  }
-
-  .search-input {
-    @apply w-full rounded-lg border-none px-4 pl-10 outline-none ring-2 ring-gray-200 focus:ring-2 focus:ring-purple-400 dark:bg-[#15141a] dark:text-white dark:caret-white dark:ring-gray-700 dark:placeholder:text-gray-400 dark:focus:ring-purple-400;
   }
 }

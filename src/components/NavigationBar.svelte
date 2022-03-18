@@ -32,13 +32,13 @@
       </span>
       <input
         id="search-bar"
-        class="search-input"
+        class="w-full rounded-lg border-none px-4 pl-12 text-gray-500 outline-none ring-2 ring-gray-200 focus:ring-2 focus:ring-purple-400 dark:bg-[#15141a] dark:text-white dark:caret-white dark:ring-gray-700 dark:placeholder:text-gray-400 dark:focus:ring-violet-600"
         type="text"
         placeholder="Quick search..."
         on:keyup={debounce}
       />
       <span
-        class="absolute inset-y-0 right-6 my-2 flex items-center rounded-md bg-slate-200 p-2 text-purple-500"
+        class="absolute inset-y-0 right-6 my-2 flex items-center rounded-md bg-slate-200 p-2 text-purple-500 dark:bg-slate-700 dark:text-violet-300"
         >/</span
       >
     </div>
@@ -46,7 +46,11 @@
 
   <div class="flex items-center justify-end gap-5">
     <ThemeToggle />
-    <select name="round" id="round" class="rounded-lg">
+    <select
+      name="round"
+      id="round"
+      class="rounded-lg border-none border-gray-200 bg-gray-200 outline-none focus:outline-purple-400 focus:ring-white dark:bg-slate-700 dark:text-white dark:focus:outline-violet-600 dark:focus:ring-gray-700"
+    >
       <option value="r1">Round 1</option>
     </select>
   </div>
