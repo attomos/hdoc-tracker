@@ -71,8 +71,7 @@
       e.key === "ArrowDown" ||
       e.key === "j" ||
       e.key === "ArrowUp" ||
-      e.key === "k" ||
-      e.key === "Enter";
+      e.key === "k";
 
     if (shouldPreventDefault) {
       e.preventDefault();
@@ -83,8 +82,6 @@
       itemToFocus = findNextOption(currentItem);
     } else if (e.key === "ArrowUp" || e.key === "k") {
       itemToFocus = findPrevOption(currentItem);
-    } else if (e.key === "Enter") {
-      itemToFocus = e.target;
     }
     if (itemToFocus) {
       deselectCurrentItem(currentItem);
