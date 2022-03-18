@@ -1,30 +1,23 @@
 <script lang="ts">
-  import { Link, useLocation } from "svelte-navigator";
+  import { useLocation } from "svelte-navigator";
   import HomeIcon from "./HomeIcon.svelte";
+  import NavigationRailLink from "./NavigationRailLink.svelte";
   import SettingsIcon from "./SettingsIcon.svelte";
 
   const location = useLocation();
+  $: homeActive = $location.pathname === "/";
+  $: settingsActive = $location.pathname === "/settings";
 </script>
 
 <div class="nav-rail">
-  <Link
-    class="group flex flex-col items-center rounded-sm p-3 text-sm hover:cursor-pointer hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-0 focus-visible:outline-purple-400 dark:hover:bg-gray-800 dark:focus-visible:outline-violet-600"
-    to="/"
-  >
-    <HomeIcon active={$location.pathname === "/"} />
-    <span class={$location.pathname === "/" ? "active-rail-item" : "rail-item"}
-      >Home</span
-    >
-  </Link>
-  <Link
-    class="group flex flex-col items-center rounded-sm p-3 text-sm hover:cursor-pointer hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-0 focus-visible:outline-purple-400 dark:hover:bg-gray-800 dark:focus-visible:outline-violet-600"
-    to="settings"
-  >
-    <SettingsIcon active={$location.pathname === "/settings"} />
-    <span
-      class={$location.pathname === "/settings"
-        ? "active-rail-item"
-        : "rail-item"}>Settings</span
-    >
-  </Link>
+  <NavigationRailLink to="/">
+    <HomeIcon active={homeActive} />
+    <span class:active-rail-item={homeActive} class="rail-item">Home</span>
+  </NavigationRailLink>
+  <NavigationRailLink to="settings">
+    <SettingsIcon active={settingsActive} />
+    <span class:active-rail-item={settingsActive} class="rail-item">
+      Settings
+    </span>
+  </NavigationRailLink>
 </div>
