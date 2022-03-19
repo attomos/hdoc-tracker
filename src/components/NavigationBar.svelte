@@ -60,10 +60,11 @@
     : 'grid-cols-3'} items-center justify-between border-b border-b-gray-300 p-2 px-8 dark:border-b-gray-700"
 >
   <div class={showSmallSearchInput ? "hidden" : "flex"}>
-    <BurgerMenu
-      className="xs:hidden cursor-pointer pointer-events-auto dark:stroke-white"
-      on:click={handleClick}
-    />
+    <button on:click={handleClick} class="select-none">
+      <BurgerMenu
+        className="xs:hidden cursor-pointer pointer-events-auto dark:stroke-white"
+      />
+    </button>
 
     <span class="xs:block hidden dark:text-white">hdoc-tracker</span>
   </div>
