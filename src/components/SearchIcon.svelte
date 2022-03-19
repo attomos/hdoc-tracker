@@ -1,6 +1,10 @@
+<script lang="ts">
+  export let className = "stroke-gray-400 dark:stroke-gray-200";
+</script>
+
 <svg
   xmlns="http://www.w3.org/2000/svg"
-  class="h-6 w-6 stroke-gray-400 dark:stroke-gray-200"
+  class="h-6 w-6 {className}"
   fill="none"
   viewBox="0 0 24 24"
   stroke="currentColor"

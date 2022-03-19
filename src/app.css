@@ -15,12 +15,11 @@
   }
 
   .nav-bar {
-    @apply xs:grid-cols-4 grid min-h-[57px] grid-cols-3 items-center justify-between border-b border-b-gray-300 p-2 px-8 dark:border-b-gray-700;
     grid-area: header;
   }
 
   .nav-rail {
-    @apply xs:w-auto xs:pt-4 xs:static xs:block absolute z-50 hidden w-4/6 border-r border-r-gray-300 bg-white dark:border-r-gray-700;
+    @apply xs:w-auto xs:pt-4 xs:static xs:block absolute z-50 hidden w-4/6 border-r border-r-gray-300 bg-white dark:border-r-gray-700 dark:bg-[#15141a];
     height: 100vh;
     grid-area: sidebar;
   }
