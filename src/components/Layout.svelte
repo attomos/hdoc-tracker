@@ -11,13 +11,16 @@
     if (shouldScroll) {
       const rect = element.getBoundingClientRect();
       const ul = document.querySelector("#tweet-list");
+      const main = document.querySelector("main");
       const ulParent = ul.parentElement;
-      const ulParentRect = ulParent.getBoundingClientRect();
+      const ulParentRect = main.getBoundingClientRect();
       const ulPaddingTop = window
-        .getComputedStyle(ul, null)
+        .getComputedStyle(ulParent, null)
         .getPropertyValue("padding-top");
-      const yToScroll = rect.y - ulParentRect.y - parseFloat(ulPaddingTop);
-      ulParent.scrollBy(0, yToScroll);
+      const contextHeight = 250;
+      const yToScroll =
+        rect.y - ulParentRect.y - parseFloat(ulPaddingTop) - contextHeight;
+      main.scrollBy(0, yToScroll);
     }
   }
 
@@ -53,7 +56,7 @@
       return;
     }
 
-    const currentItem = getCurrentItem();
+    const currentItem = getSelectedItemOrFirstChild();
 
     if (e.key === "/") {
       document.getElementById("search-bar").focus();
@@ -67,20 +70,23 @@
 
     if (!currentItem) return;
 
-    const shouldPreventDefault =
-      e.key === "ArrowDown" ||
-      e.key === "j" ||
-      e.key === "ArrowUp" ||
-      e.key === "k";
+    const shouldPreventDefault = e.key === "j" || e.key === "k";
 
     if (shouldPreventDefault) {
       e.preventDefault();
     }
 
+    const selectedItem = document.querySelector(
+      "#tweet-list li[role='option'][aria-selected='true']"
+    );
+
     let itemToFocus;
-    if (e.key === "ArrowDown" || e.key === "j") {
+    if (e.key === "j" && !selectedItem) {
+      focusItem(currentItem);
+      return;
+    } else if (e.key === "j") {
       itemToFocus = findNextOption(currentItem);
-    } else if (e.key === "ArrowUp" || e.key === "k") {
+    } else if (e.key === "k") {
       itemToFocus = findPrevOption(currentItem);
     }
     if (itemToFocus) {
@@ -90,7 +96,7 @@
   }
 
   function handleTweetBoxClick(e) {
-    const currentItem = getCurrentItem();
+    const currentItem = getSelectedItemOrFirstChild();
     currentItem.setAttribute("aria-selected", "false");
     currentItem.classList.remove("selected");
     const listItem = e.target.closest("li");
@@ -99,13 +105,13 @@
 
   function handleClickAtLayout(e) {
     if (!e.target.classList.contains("tweet-box")) {
-      const currentItem = getCurrentItem();
+      const currentItem = getSelectedItemOrFirstChild();
       if (!currentItem) return;
       deselectCurrentItem(currentItem);
     }
   }
 
-  function getCurrentItem() {
+  function getSelectedItemOrFirstChild() {
     return (
       document.querySelector("#tweet-list li[aria-selected='true']") ||
       document.querySelector("#tweet-list li:first-child")
@@ -126,10 +132,15 @@
   });
 </script>
 
-<div class="app-layout" tabindex="0">
+<div class="app-layout">
+  <div
+    id="backdrop"
+    class="pointer-events-none fixed inset-0 z-20 bg-gray-500 bg-opacity-0 transition-opacity"
+    aria-hidden="true"
+  />
   <NavigationBar />
   <NavigationRail />
-  <main class="mx-auto flex w-1/2 flex-col">
+  <main class="flex flex-col overflow-y-scroll">
     <slot />
   </main>
 </div>

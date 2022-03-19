@@ -1,5 +1,6 @@
 <script lang="ts">
   import { searchTerm } from "../lib/stores";
+  import BurgerMenu from "./BurgerMenu.svelte";
   import SearchIcon from "./SearchIcon.svelte";
   import ThemeToggle from "./ThemeToggle.svelte";
 
@@ -18,12 +19,41 @@
       searchTerm.update((t) => e.target.value);
     }, DEBOUNCE_DURATION);
   };
+
+  function handleClick() {
+    const navRail = document.querySelector(".nav-rail");
+    navRail.classList.remove("hidden");
+    navRail.classList.add("block");
+
+    const backdrop = document.querySelector("#backdrop");
+    backdrop.classList.toggle("bg-opacity-0");
+    backdrop.classList.toggle("bg-opacity-75");
+  }
+
+  function handleSearchClick() {
+    console.log("search clicked");
+  }
 </script>
 
 <nav class="nav-bar">
-  <span class="dark:text-white">hdoc-tracker</span>
+  <div class="flex">
+    <BurgerMenu
+      className="xs:hidden cursor-pointer pointer-events-auto dark:stroke-white"
+      on:click={handleClick}
+    />
 
-  <div class="col-span-2 flex justify-center">
+    <span class="xs:block hidden dark:text-white">hdoc-tracker</span>
+  </div>
+
+  <span class="xs:hidden block justify-self-center dark:text-white"
+    >hdoc-tracker</span
+  >
+  <span
+    class="xs:hidden block cursor-pointer justify-self-end"
+    on:click={handleSearchClick}><SearchIcon /></span
+  >
+
+  <div class="xs:flex col-span-2 hidden justify-center">
     <div class="relative w-3/5 pl-4">
       <span
         class="pointer-events-none absolute inset-y-0 left-6 flex items-center pl-2"
@@ -44,7 +74,7 @@
     </div>
   </div>
 
-  <div class="flex items-center justify-end gap-5">
+  <div class="xs:flex hidden items-center justify-end gap-5">
     <ThemeToggle />
     <select
       name="round"

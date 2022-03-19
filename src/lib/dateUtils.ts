@@ -1,7 +1,7 @@
 import { formatInTimeZone } from "date-fns-tz";
 import {
+  add,
   endOfWeekWithOptions,
-  endOfYear,
   getMonth,
   startOfWeekWithOptions,
   startOfYear,
@@ -54,7 +54,37 @@ export function getWeeksUntilNow() {
 
   const lastSundayOfCalendar = endOfWeekWithOptions({
     weekStartsOn: 1,
-  })(endOfYear(today));
+  })(endOfWeekWithOptions({ weekStartsOn: 1 })(today));
+
+  const range = getDateRange(firstMondayOfCalendar, lastSundayOfCalendar);
+  const weeks = [];
+  let aWeek = [];
+
+  for (let day of range) {
+    aWeek.push(formatInTimeZone(day, "Asia/Bangkok", "yyyy-MM-dd"));
+    if (aWeek.length === 7) {
+      weeks.push(aWeek);
+      aWeek = [];
+    }
+  }
+
+  return weeks;
+}
+
+export function getWeeksForThisRound(tweetDates: string[]) {
+  tweetDates.sort();
+  const firstDate = new Date(tweetDates[0]) || new Date();
+  const firstMondayOfCalendar = startOfWeekWithOptions({
+    weekStartsOn: 1,
+  })(startOfYear(firstDate));
+
+  // assuming each round tooks <= 4 months
+  const fourMonthFromFirstDate = add({ months: 4 })(firstDate);
+  console.log(fourMonthFromFirstDate);
+
+  const lastSundayOfCalendar = endOfWeekWithOptions({
+    weekStartsOn: 1,
+  })(endOfWeekWithOptions({ weekStartsOn: 1 })(fourMonthFromFirstDate));
 
   const range = getDateRange(firstMondayOfCalendar, lastSundayOfCalendar);
   const weeks = [];

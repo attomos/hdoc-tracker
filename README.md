@@ -1,4 +1,4 @@
-# hdoc-tracker [10/31]
+# hdoc-tracker [11/31]
 
 ## TODO
 
@@ -24,7 +24,7 @@
 - [ ] mobile friendly
 - [x] Search functionality
 - [x] dark mode
-- [ ] adaptive SVG favicon
+- [-] adaptive SVG favicon
 - [ ] performance measurement
 - [ ] performance improvements
 - [ ] support for new rounds (backend)
