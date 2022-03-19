@@ -135,16 +135,16 @@
 <!-- {@debug weeks} -->
 
 <!-- TODO: get year from store, updated from year navbar -->
-<div class="mx-auto px-4 pt-8">
+<div class="mx-auto mt-8 w-full max-w-[600px] sm:min-w-[600px]">
   <div
     id="tooltip"
     class="absolute hidden rounded-md bg-slate-700 py-2 px-1 text-xs text-white dark:bg-slate-500"
   >
     mock data
   </div>
-  <div class="flex flex-col">
+  <div class="flex flex-col px-2">
     <svg
-      viewBox="0 0 316 120"
+      viewBox="0 0 {weeks.length * 18} 116"
       xmlns="http://www.w3.org/2000/svg"
       class="rounded-md border-2 border-gray-200 dark:border-gray-700"
       id="activities-graph"
@@ -181,7 +181,7 @@
       {/each}
     </svg>
 
-    <div class="xs:gap-x-16 mt-4 flex gap-x-8">
+    <div class="xs:gap-x-16 mx-auto mt-4 flex gap-x-8 px-2">
       <div>
         <span class="font-bold">Total days:</span>
         {daysCount}

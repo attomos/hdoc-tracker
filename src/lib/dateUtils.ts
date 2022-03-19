@@ -79,6 +79,7 @@ export function getWeeksForThisRound(tweetDates: string[]) {
   })(startOfYear(firstDate));
 
   // assuming each round tooks <= 4 months
+  // TODO: take tweets data into account, doing Math.max(tweet_max_date, firstDate+4month)
   const fourMonthFromFirstDate = add({ months: 4 })(firstDate);
   console.log(fourMonthFromFirstDate);
 
