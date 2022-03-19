@@ -17,9 +17,12 @@
       const ulPaddingTop = window
         .getComputedStyle(ulParent, null)
         .getPropertyValue("padding-top");
-      const contextHeight = 250;
+      const contextHeight = element.previousElementSibling
+        ? element.previousElementSibling.clientHeight
+        : 0;
+
       const yToScroll =
-        rect.y - ulParentRect.y - parseFloat(ulPaddingTop) - contextHeight;
+        rect.y - ulParentRect.y - parseFloat(ulPaddingTop) - contextHeight - 24;
       main.scrollBy(0, yToScroll);
     }
   }
