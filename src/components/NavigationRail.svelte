@@ -7,6 +7,7 @@
   import NavigationRailLink from "./NavigationRailLink.svelte";
   import SettingsIcon from "./SettingsIcon.svelte";
   import ThemeToggle from "./ThemeToggle.svelte";
+  import ListBox from "./ListBox.svelte";
 
   const location = useLocation();
   $: homeActive = $location.pathname === "/";
@@ -56,6 +57,7 @@
   <div class="h-1/3">
     <div class="xs:hidden flex flex-col gap-8 p-3">
       <ThemeToggle />
+      <ListBox />
     </div>
   </div>
 </div>
