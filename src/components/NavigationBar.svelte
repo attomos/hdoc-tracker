@@ -33,6 +33,9 @@
     const backdrop = document.querySelector("#backdrop");
     backdrop.classList.toggle("bg-opacity-0");
     backdrop.classList.toggle("bg-opacity-75");
+
+    const main = document.querySelector("main");
+    main.classList.add("pointer-events-none", "overflow-hidden");
   }
 
   function toggleSmallSearchInput() {
@@ -50,6 +53,9 @@
       backdrop.classList.remove("bg-opacity-75");
       backdrop.classList.remove("bg-opacity-0");
       backdrop.classList.add("bg-opacity-0");
+
+      const main = document.querySelector("main");
+      main.classList.remove("pointer-events-none", "overflow-hidden");
     });
   });
 </script>

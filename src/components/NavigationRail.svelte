@@ -14,6 +14,7 @@
   function closeNavMenu() {
     const navRail = document.querySelector(".nav-rail");
     const backdrop = document.querySelector("#backdrop");
+    const main = document.querySelector("main");
 
     if (backdrop.classList.contains("bg-opacity-75")) {
       navRail.classList.add("hidden", "xs:block");
@@ -21,6 +22,8 @@
 
       backdrop.classList.toggle("bg-opacity-0");
       backdrop.classList.toggle("bg-opacity-75");
+
+      main.classList.remove("pointer-events-none", "overflow-hidden");
     }
   }
 </script>
