@@ -1,4 +1,4 @@
-# hdoc-tracker [11/31]
+# hdoc-tracker [12/31]
 
 ## TODO
 
@@ -20,8 +20,8 @@
 - [x] routing
 - [ ] refactor UI code
 - [ ] refactor backend code
-- [ ] responsive
-- [ ] mobile friendly
+- [x] responsive
+- [x] mobile friendly
 - [x] Search functionality
 - [x] dark mode
 - [-] adaptive SVG favicon
