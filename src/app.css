@@ -24,6 +24,12 @@
     grid-area: sidebar;
   }
 
+  @media (min-width: 840px) {
+    .nav-rail {
+      height: calc(100vh - 59px);
+    }
+  }
+
   main {
     @apply dark:text-white;
     height: calc(100vh - 59px);
