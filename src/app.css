@@ -15,13 +15,12 @@
   }
 
   .nav-bar {
-    @apply grid grid-cols-4 items-center justify-between border-b border-b-gray-300 p-2 px-8 dark:border-b-gray-700;
     grid-area: header;
   }
 
   .nav-rail {
-    @apply border-r border-r-gray-300 pt-4 dark:border-r-gray-700;
-    height: calc(100vh - 59px);
+    @apply xs:w-auto xs:pt-4 xs:static xs:block absolute z-50 hidden w-4/6 border-r border-r-gray-300 bg-white dark:border-r-gray-700 dark:bg-[#15141a];
+    height: 100vh;
     grid-area: sidebar;
   }
 
@@ -32,7 +31,7 @@
   }
 
   .rail-item {
-    @apply mt-2 text-slate-500 group-hover:text-violet-500 dark:text-gray-500 dark:group-hover:text-violet-500;
+    @apply xs:my-0 xs:text-sm xs:mt-2 my-2 text-lg text-slate-500 group-hover:text-violet-500 dark:text-gray-500 dark:group-hover:text-violet-500;
   }
 
   .active-rail-item {

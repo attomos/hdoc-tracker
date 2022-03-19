@@ -1,11 +1,10 @@
 <script lang="ts">
   import type { Tweet } from "src/lib/types";
-
   import { onMount } from "svelte";
   import {
     DAYS,
     getMonthString,
-    getWeeksUntilNow,
+    getWeeksForThisRound,
     MONTHS,
   } from "../lib/dateUtils";
   import { tweets } from "../lib/stores";
@@ -28,7 +27,8 @@
 
   const [longestStreak, currentStreak] = computeStreaks(tweetsLookup);
 
-  const weeks = getWeeksUntilNow().map((week) => {
+  const tweetDates = Object.keys(tweetsLookup);
+  const weeks = getWeeksForThisRound(tweetDates).map((week) => {
     return week.map((date) => {
       return {
         date,
@@ -93,7 +93,7 @@
           );
           text.classList.add("text-[9px]", "dark:fill-white");
           text.setAttribute("dx", "4");
-          text.setAttribute("dy", `${top - svgTop + RECT_W_2 - 5}`);
+          text.setAttribute("dy", `${26 + 13 * i}`);
           text.innerHTML = DAYS[j];
           activityGraph.appendChild(text);
           j++;
@@ -135,11 +135,7 @@
 <!-- {@debug weeks} -->
 
 <!-- TODO: get year from store, updated from year navbar -->
-<div>
-  <h2 class="my-2 text-lg font-bold">
-    {tweetsCount} tweets in 2022
-  </h2>
-
+<div class="mx-auto px-4 pt-8">
   <div
     id="tooltip"
     class="absolute hidden rounded-md bg-slate-700 py-2 px-1 text-xs text-white dark:bg-slate-500"
@@ -148,11 +144,9 @@
   </div>
   <div class="flex flex-col">
     <svg
-      viewBox="0 0 862 126"
-      width="862"
-      height="126"
+      viewBox="0 0 316 120"
       xmlns="http://www.w3.org/2000/svg"
-      class="mx-auto min-w-max rounded-md border-2 border-gray-200 dark:border-gray-700"
+      class="rounded-md border-2 border-gray-200 dark:border-gray-700"
       id="activities-graph"
     >
       {#each weeks as week, i}
@@ -187,7 +181,7 @@
       {/each}
     </svg>
 
-    <div class="mx-auto mt-4 flex gap-x-16">
+    <div class="xs:gap-x-16 mt-4 flex gap-x-8">
       <div>
         <span class="font-bold">Total days:</span>
         {daysCount}

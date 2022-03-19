@@ -3,10 +3,13 @@
   import TweetBox from "./TweetBox.svelte";
 </script>
 
-<div class="mt-4 flex flex-grow flex-col overflow-auto">
+<div
+  class="mx-auto mt-4 flex max-w-[600px] flex-grow flex-col rounded-md p-2 outline-none"
+  tabindex="0"
+>
   <h2 class="my-4 text-lg font-bold">{$topLevelTweets.length} tweets</h2>
-  <div class="flex-grow overflow-auto pb-40">
-    <ul class="mx-8 w-1/2 py-2 outline-none" role="listbox" id="tweet-list">
+  <div class="flex-grow pb-40">
+    <ul class=" mx-auto w-full p-2 outline-none" role="listbox" id="tweet-list">
       {#each $topLevelTweets as tweet}
         <TweetBox {tweet} />
       {/each}

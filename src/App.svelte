@@ -10,6 +10,8 @@
     <Route path="/" primary={false}>
       <Home />
     </Route>
-    <Route path="settings" component={SettingsPage} primary={false} />
+    <Route path="settings" primary={false}>
+      <SettingsPage />
+    </Route>
   </Layout>
 </Router>
