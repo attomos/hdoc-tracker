@@ -4,7 +4,7 @@
 </script>
 
 <div
-  class="mx-auto mt-4 flex max-w-[600px] flex-grow flex-col rounded-md py-2 outline-none"
+  class="mx-auto mt-4 flex w-full max-w-[600px] flex-grow flex-col rounded-md py-2 outline-none sm:min-w-[600px]"
   tabindex="0"
 >
   <h2 class="my-4 px-4 text-lg font-bold">{$topLevelTweets.length} tweets</h2>
