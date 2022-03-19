@@ -6,6 +6,7 @@
   import HomeIcon from "./HomeIcon.svelte";
   import NavigationRailLink from "./NavigationRailLink.svelte";
   import SettingsIcon from "./SettingsIcon.svelte";
+  import ThemeToggle from "./ThemeToggle.svelte";
 
   const location = useLocation();
   $: homeActive = $location.pathname === "/";
@@ -28,25 +29,33 @@
   }
 </script>
 
-<div class="nav-rail" use:clickOutside on:clickOutside={closeNavMenu}>
-  <div
-    class="xs:hidden h-[57px] border-b border-b-gray-300 pt-4 dark:border-b-gray-700"
-  >
-    <button
-      class="xs:mx-auto  ml-8 mb-8 flex content-center"
-      on:click={closeNavMenu}
+<div class="nav-rail " use:clickOutside on:clickOutside={closeNavMenu}>
+  <div>
+    <div
+      class="xs:hidden h-[57px] border-b border-b-gray-300 pt-4 dark:border-b-gray-700"
     >
-      <CloseIcon />
-    </button>
+      <button
+        class="xs:mx-auto  ml-8 mb-8 flex content-center"
+        on:click={closeNavMenu}
+      >
+        <CloseIcon />
+      </button>
+    </div>
+    <NavigationRailLink to="/" on:click={closeNavMenu}>
+      <HomeIcon active={homeActive} />
+      <div class:active-rail-item={homeActive} class="rail-item">Home</div>
+    </NavigationRailLink>
+    <NavigationRailLink to="settings" on:click={closeNavMenu}>
+      <SettingsIcon active={settingsActive} />
+      <span class:active-rail-item={settingsActive} class="rail-item">
+        Settings
+      </span>
+    </NavigationRailLink>
   </div>
-  <NavigationRailLink to="/" on:click={closeNavMenu}>
-    <HomeIcon active={homeActive} />
-    <div class:active-rail-item={homeActive} class="rail-item">Home</div>
-  </NavigationRailLink>
-  <NavigationRailLink to="settings" on:click={closeNavMenu}>
-    <SettingsIcon active={settingsActive} />
-    <span class:active-rail-item={settingsActive} class="rail-item">
-      Settings
-    </span>
-  </NavigationRailLink>
+
+  <div class="h-1/3">
+    <div class="xs:hidden flex flex-col gap-8 p-3">
+      <ThemeToggle />
+    </div>
+  </div>
 </div>

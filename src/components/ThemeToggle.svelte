@@ -4,51 +4,53 @@
   import Moon from "./Moon.svelte";
   import Sun from "./Sun.svelte";
 
+  let themeToggle: HTMLButtonElement;
+
   onMount(() => {
     const body = document.querySelector("body");
-    const switchElement = document.getElementById("headlessui-switch-5");
-    const lastSpan = switchElement.querySelector("span:last-child");
+    const lastSpan = themeToggle.querySelector("span:last-child");
     body.classList.remove("dark");
     const theme = localStorage.getItem("theme");
     if (theme) {
       body.classList.add(theme);
     }
 
-    switchElement.setAttribute(
+    themeToggle.setAttribute(
       "aria-checked",
       theme === "dark" ? "true" : "false"
     );
     if (theme === "dark") {
-      toggle(switchElement, lastSpan);
+      toggle(themeToggle, lastSpan);
     }
   });
 
   function handleClick() {
     const body = document.querySelector("body");
-    const switchElement = document.getElementById("headlessui-switch-5");
-    const lastSpan = switchElement.querySelector("span:last-child");
-    const srOnly = switchElement.querySelector(".sr-only");
-
-    const checked = switchElement.getAttribute("aria-checked");
-    const newValue = checked === "true" ? "false" : "true";
-
-    let srText = newValue === "true" ? "Disable" : "Enable";
-    srOnly.innerHTML = `${srText} dark mode`;
-
     body.classList.toggle("dark");
 
-    switchElement.setAttribute("aria-checked", newValue);
-    localStorage.setItem("theme", newValue === "true" ? "dark" : "light");
+    Array.from(document.querySelectorAll(".theme-toggle")).forEach((tt) => {
+      const lastSpan = tt.querySelector("span:last-child");
+      const srOnly = tt.querySelector(".sr-only");
 
-    toggle(switchElement, lastSpan);
+      const checked = tt.getAttribute("aria-checked");
+      const newValue = checked === "true" ? "false" : "true";
+
+      let srText = newValue === "true" ? "Disable" : "Enable";
+      srOnly.innerHTML = `${srText} dark mode`;
+
+      tt.setAttribute("aria-checked", newValue);
+      localStorage.setItem("theme", newValue === "true" ? "dark" : "light");
+
+      toggle(tt as HTMLElement, lastSpan);
+    });
   }
 
   function toggle(switchElement: HTMLElement, lastSpan: Element) {
-    const firstSun = document.querySelector(".sun:nth-child(2)");
-    const firstMoon = document.querySelector(".moon:nth-child(3)");
+    const firstSun = switchElement.querySelector(".sun:nth-child(2)");
+    const firstMoon = switchElement.querySelector(".moon:nth-child(3)");
 
-    const secondSun = document.querySelector(".sun:nth-child(1)");
-    const secondMoon = document.querySelector(".moon:nth-child(2)");
+    const secondSun = switchElement.querySelector(".sun:nth-child(1)");
+    const secondMoon = switchElement.querySelector(".moon:nth-child(2)");
 
     firstSun.classList.toggle("scale-100");
     firstSun.classList.toggle("scale-0");
@@ -64,14 +66,15 @@
   }
 </script>
 
+<!-- id="headlessui-switch-5" -->
 <button
-  class="relative inline-flex items-center rounded-full bg-violet-200 py-1.5 px-2 text-violet-300 transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:bg-slate-700 dark:focus-visible:ring-violet-600 dark:focus-visible:ring-offset-slate-800"
-  id="headlessui-switch-5"
+  class="theme-toggle relative inline-flex max-w-min items-center rounded-full bg-violet-200 py-1.5 px-2 text-violet-300 transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:bg-slate-700 dark:focus-visible:ring-violet-600 dark:focus-visible:ring-offset-slate-800"
   role="switch"
   type="button"
   tabindex="0"
   aria-checked="false"
   on:click={handleClick}
+  bind:this={themeToggle}
 >
   <span class="sr-only">Disable<!-- --> dark mode</span>
   <Sun className="transform transition-transform scale-0 duration-300" />

@@ -28,7 +28,7 @@
   function handleClick() {
     const navRail = document.querySelector(".nav-rail");
     navRail.classList.remove("hidden");
-    navRail.classList.add("block");
+    navRail.classList.add("flex", "flex-col");
 
     const backdrop = document.querySelector("#backdrop");
     backdrop.classList.toggle("bg-opacity-0");
