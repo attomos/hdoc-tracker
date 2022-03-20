@@ -1,12 +1,19 @@
-# hdoc-tracker [12/31]
+# hdoc-tracker [13/41]
 
 ## TODO
 
 - [x] GitHub actions
 - [x] Streak count (longest and current)
 - [x] extract more entities (link to src, demo, etc.)
-- [ ] compact view
-- [ ] detailed view
+- [ ] list view
+  - [ ] timestamp
+  - [ ] extra entities (demo, src, etc.)
+  - [ ] Link to original tweet
+- [ ] thread view
+  - [ ] YouTube reply clone
+  - [ ] Link to original tweet
+- [ ] Keyboard shortcuts dialog + ? binding to display it
+- [x] improve color contrast (thanks to VisBug)
 - [ ] pytest
   - [x] at least have some tests
   - [ ] 80% coverage
@@ -25,8 +32,13 @@
 - [x] Search functionality
 - [x] dark mode
 - [-] adaptive SVG favicon
+- [ ] SVG className instead of other state prop
 - [ ] performance measurement
+  - [ ] get_tweets time taken (incremental fetch already?)
+  - [ ] Lighthouse Mobile score
+  - [ ] Lighthouse Desktop score
 - [ ] performance improvements
+- [ ] about page with Mermaid https://www.youtube.com/watch?v=6TiIrJf63Xs
 - [ ] support for new rounds (backend)
   - [ ] folder-based?
   - [ ] Filter by round
