@@ -34,7 +34,7 @@ describe("formatTwitterDate", () => {
 
 describe("getMonthString", () => {
   it("get month string correctly", () => {
-    const shortDates = ["20"];
+    // const shortDates = ["20"];
   });
 });
 

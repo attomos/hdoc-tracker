@@ -14,15 +14,16 @@
 
   const DEBOUNCE_DURATION = 100;
 
-  const debounce = (e) => {
+  const debounce = (e: KeyboardEvent) => {
+    const target = e.target as HTMLInputElement;
     if (e.key === "Escape") {
-      e.target.blur();
-      searchTerm.update((t) => e.target.value);
+      target.blur();
+      searchTerm.update((t) => target.value);
       return;
     }
     clearTimeout(timer);
     timer = setTimeout(() => {
-      searchTerm.update((t) => e.target.value);
+      searchTerm.update((t) => target.value);
     }, DEBOUNCE_DURATION);
   };
 

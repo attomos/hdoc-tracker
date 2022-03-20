@@ -1,12 +1,11 @@
 import { differenceInDays } from "date-fns/fp";
 import data from "../../scripts/tweets.json";
 import { formatTwitterDate } from "./dateUtils";
-import type { GroupedTweets } from "./types";
+import type { GroupedTweets, TweetTuple } from "./types";
 
-// TODO: fix type error here
 function getTweets(searchTerm: string) {
   if (searchTerm === "") return data;
-  const filteredTweets = Object.entries(data).filter((e) => {
+  const filteredTweets = Object.entries(data).filter((e: TweetTuple) => {
     const [, value] = e;
     const ans = value
       .filter((tweet) => tweet.conversation_id === tweet.id)

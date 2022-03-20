@@ -9,11 +9,7 @@
   } from "../lib/dateUtils";
   import { tweets } from "../lib/stores";
   import { getFillColor } from "../lib/styleUtils";
-  import {
-    computeStreaks,
-    getTweetsCount,
-    getTweetsLookupDict,
-  } from "../lib/tweetUtils";
+  import { computeStreaks, getTweetsLookupDict } from "../lib/tweetUtils";
 
   const tweetsLookup = getTweetsLookupDict($tweets);
   const daysCount = Object.keys(tweetsLookup)
@@ -23,7 +19,6 @@
       });
     })
     .flat().length;
-  const tweetsCount = getTweetsCount($tweets);
 
   const [longestStreak, currentStreak] = computeStreaks(tweetsLookup);
 
@@ -81,19 +76,25 @@
     const firstGroup = activityGraph.querySelector("g");
 
     function appendDays() {
-      const rectsInFirstGroup = firstGroup.querySelectorAll("rect[data-date]");
+      const rectsInFirstGroup =
+        firstGroup.querySelectorAll<SVGRectElement>("rect[data-date]");
       let j = 0;
-      const { top: svgTop } = activityGraph.getBoundingClientRect();
       rectsInFirstGroup.forEach((rect, i) => {
         if (i % 2 == 0) {
-          const { x, y, top } = rect.getBoundingClientRect();
           const text = document.createElementNS(
             "http://www.w3.org/2000/svg",
             "text"
           );
           text.classList.add("text-[9px]", "dark:fill-white");
           text.setAttribute("dx", "4");
-          text.setAttribute("dy", `${26 + 13 * i}`);
+          text.setAttribute(
+            "dy",
+            `${
+              rect.height.baseVal.value +
+              rect.height.baseVal.value / 2 +
+              rect.y.baseVal.value
+            }`
+          );
           text.innerHTML = DAYS[j];
           activityGraph.appendChild(text);
           j++;
@@ -132,9 +133,6 @@
   });
 </script>
 
-<!-- {@debug weeks} -->
-
-<!-- TODO: get year from store, updated from year navbar -->
 <div class="mx-auto mt-8 w-full max-w-[600px] sm:min-w-[600px]">
   <div
     id="tooltip"

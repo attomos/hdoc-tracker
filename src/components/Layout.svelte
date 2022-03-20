@@ -1,4 +1,4 @@
-<script context="module">
+<script context="module" lang="ts">
   import { onMount } from "svelte";
 
   function focusItem(element, shouldScroll = true) {
@@ -27,7 +27,7 @@
     }
   }
 
-  function findNextOption(currentOption) {
+  function findNextOption(currentOption: HTMLLIElement): HTMLLIElement {
     const ul = document.querySelector("#tweet-list");
     const listItems = Array.from(ul.querySelectorAll("li"));
     const currentIndex = listItems.indexOf(currentOption);
@@ -38,7 +38,7 @@
     return nextItem;
   }
 
-  function findPrevOption(currentOption) {
+  function findPrevOption(currentOption: HTMLLIElement): HTMLLIElement {
     const ul = document.querySelector("#tweet-list");
     const listItems = Array.from(ul.querySelectorAll("li"));
     const currentIndex = listItems.indexOf(currentOption);
@@ -49,7 +49,7 @@
     return nextItem;
   }
 
-  function deselectCurrentItem(currentItem) {
+  function deselectCurrentItem(currentItem: HTMLLIElement) {
     currentItem.setAttribute("aria-selected", "false");
     currentItem.classList.remove("selected");
   }
@@ -83,7 +83,7 @@
       "#tweet-list li[role='option'][aria-selected='true']"
     );
 
-    let itemToFocus;
+    let itemToFocus: HTMLLIElement;
     if (e.key === "j" && !selectedItem) {
       focusItem(currentItem);
       return;
@@ -106,15 +106,18 @@
     focusItem(listItem, false);
   }
 
-  function handleClickAtLayout(e) {
-    if (!e.target.classList.contains("tweet-box")) {
+  function handleClickAtLayout(e: MouseEvent) {
+    if (
+      e.target instanceof Element &&
+      !e.target.classList.contains("tweet-box")
+    ) {
       const currentItem = getSelectedItemOrFirstChild();
       if (!currentItem) return;
       deselectCurrentItem(currentItem);
     }
   }
 
-  function getSelectedItemOrFirstChild() {
+  function getSelectedItemOrFirstChild(): HTMLLIElement {
     return (
       document.querySelector("#tweet-list li[aria-selected='true']") ||
       document.querySelector("#tweet-list li:first-child")

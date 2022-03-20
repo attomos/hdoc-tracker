@@ -88,8 +88,8 @@ export function getWeeksForThisRound(tweetDates: string[]) {
   })(endOfWeekWithOptions({ weekStartsOn: 1 })(fourMonthFromFirstDate));
 
   const range = getDateRange(firstMondayOfCalendar, lastSundayOfCalendar);
-  const weeks = [];
-  let aWeek = [];
+  const weeks: string[][] = [];
+  let aWeek: string[] = [];
 
   for (let day of range) {
     aWeek.push(formatInTimeZone(day, "Asia/Bangkok", "yyyy-MM-dd"));

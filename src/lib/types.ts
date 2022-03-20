@@ -7,6 +7,8 @@ export type Tweet = {
   id: string;
 };
 
+export type TweetTuple = [string, Tweet[]];
+
 export type GroupedTweets = {
   [key: string]: Tweet[];
 };
@@ -16,9 +18,12 @@ export type TweetResponse = {
 };
 
 export type Entities = {
-  hashtags?: Hashtag[] | null;
-  urls?: TweetUrl[] | null;
-  day_list?: HdocDay[] | null;
+  hashtags?: Hashtag[];
+  urls?: TweetUrl[];
+  day_list?: HdocDay[];
+  modern_day_list?: ModernHdocDay[];
+  src_list?: Src[];
+  demo_list?: Demo[];
 };
 
 export type Hashtag = {
@@ -35,10 +40,27 @@ export type TweetUrl = {
   display_url: string;
 };
 
-export type HdocDay = {
+export type CustomEntityBase = {
   start: number;
   end: number;
+};
+
+export type HdocDay = CustomEntityBase & {
   day: string;
+};
+
+export type ModernHdocDay = CustomEntityBase & {
+  day: string;
+};
+
+export type Src = CustomEntityBase & {
+  src: string;
+  fixed: boolean;
+};
+
+export type Demo = CustomEntityBase & {
+  demo: string;
+  fixed: boolean;
 };
 
 export type PublicMetrics = {
