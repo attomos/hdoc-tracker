@@ -5,8 +5,8 @@
 <svg
   xmlns="http://www.w3.org/2000/svg"
   class="h-6 w-6 {active
-    ? 'stroke-violet-500 dark:stroke-violet-500'
-    : 'stroke-gray-400 group-hover:stroke-violet-500 dark:stroke-gray-500 dark:group-hover:stroke-violet-500'}"
+    ? 'stroke-violet-800 dark:stroke-violet-400'
+    : 'stroke-gray-400 group-hover:stroke-violet-800 dark:stroke-gray-500 dark:group-hover:stroke-violet-400'}"
   fill="none"
   viewBox="0 0 24 24"
   stroke="currentColor"

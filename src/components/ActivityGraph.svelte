@@ -136,7 +136,7 @@
 <div class="mx-auto mt-8 w-full max-w-[600px] sm:min-w-[600px]">
   <div
     id="tooltip"
-    class="absolute hidden rounded-md bg-slate-700 py-2 px-1 text-xs text-white dark:bg-slate-500"
+    class="absolute hidden rounded-md bg-slate-700 py-2 px-1 text-xs text-white"
   >
     mock data
   </div>

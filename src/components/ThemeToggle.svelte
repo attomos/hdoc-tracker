@@ -66,7 +66,6 @@
   }
 </script>
 
-<!-- id="headlessui-switch-5" -->
 <button
   class="theme-toggle relative inline-flex max-w-min items-center rounded-full bg-violet-200 py-1.5 px-2 text-violet-300 transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:bg-slate-700 dark:focus-visible:ring-violet-600 dark:focus-visible:ring-offset-slate-800"
   role="switch"
@@ -79,13 +78,13 @@
   <span class="sr-only">Disable<!-- --> dark mode</span>
   <Sun className="transform transition-transform scale-0 duration-300" />
   <Moon
-    className="ml-3.5 transform transition-transform scale-100 duration-500 text-purple-500"
+    className="ml-3.5 transform transition-transform scale-100 duration-500 text-purple-700"
   />
   <span
     class="absolute top-0.5 left-0.5 flex h-8 w-8 transform items-center justify-center rounded-full bg-white transition duration-500"
   >
     <Sun
-      className="flex-none transition duration-500 transform text-purple-500 opacity-100 scale-100"
+      className="flex-none transition duration-500 transform text-purple-800 opacity-100 scale-100"
     />
     <Moon
       className="flex-none -ml-6 transition duration-500 transform text-violet-500 opacity-0 scale-100"

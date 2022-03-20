@@ -107,13 +107,13 @@
       </span>
       <input
         id="search-bar"
-        class="w-full rounded-lg border-none px-4 pl-12 text-gray-500 outline-none ring-2 ring-gray-200 focus:ring-2 focus:ring-purple-400 dark:bg-[#15141a] dark:text-white dark:caret-white dark:ring-gray-700 dark:placeholder:text-gray-400 dark:focus:ring-violet-600"
+        class="w-full rounded-lg border-none px-4 pl-12 text-gray-500 outline-none ring-2 ring-gray-200 focus:ring-2 focus:ring-purple-400 dark:bg-black dark:text-white dark:caret-white dark:ring-gray-700 dark:placeholder:text-gray-400 dark:focus:ring-violet-600"
         type="text"
         placeholder="Quick search..."
         on:keyup={debounce}
       />
       <span
-        class="absolute inset-y-0 right-6 my-2 flex items-center rounded-md bg-slate-200 p-2 text-purple-500 dark:bg-slate-700 dark:text-violet-300"
+        class="absolute inset-y-0 right-6 my-2 flex items-center rounded-md bg-slate-200 p-2 text-purple-700 dark:bg-slate-700 dark:text-violet-200"
         >/</span
       >
     </div>

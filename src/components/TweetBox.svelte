@@ -8,7 +8,7 @@
   $: if (tweet.entities.day_list?.length) {
     const { start, end } = tweet.entities.day_list[0];
     tweetHtmlText =
-      `<mark class="bg-violet-200 text-violet-700 dark:text-violet-700 dark:bg-violet-300  p-1 rounded-sm pointer-events-none" data-testid="mark">${tweetHtmlText.substring(
+      `<mark class="pointer-events-none rounded-sm bg-violet-200 p-1 text-violet-900 dark:bg-violet-200 dark:text-violet-900" data-testid="mark">${tweetHtmlText.substring(
         start,
         end
       )}</mark>` + tweetHtmlText.substring(end);

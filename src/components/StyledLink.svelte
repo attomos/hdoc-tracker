@@ -4,7 +4,7 @@
 </script>
 
 <a
-  class="font-semibold text-purple-400 underline dark:text-violet-500"
+  class="px-1 font-semibold text-violet-800 underline dark:text-violet-400"
   {href}
   {target}
 >

@@ -4,7 +4,7 @@
 
 @layer components {
   .app-layout {
-    @apply grid h-screen outline-none dark:bg-[#15141a];
+    @apply grid h-screen outline-none dark:bg-black;
 
     grid-template-columns: auto 1fr;
     grid-template-rows: auto 1fr auto;
@@ -19,7 +19,7 @@
   }
 
   .nav-rail {
-    @apply xs:w-auto xs:pt-4 xs:static xs:block absolute z-50 hidden w-4/6 border-r border-r-gray-300 bg-white dark:border-r-gray-700 dark:bg-[#15141a];
+    @apply xs:w-auto xs:pt-4 xs:static xs:block absolute z-50 hidden w-4/6 border-r border-r-gray-300 bg-white dark:border-r-gray-700 dark:bg-black;
     height: 100vh;
     grid-area: sidebar;
   }
@@ -37,11 +37,11 @@
   }
 
   .rail-item {
-    @apply xs:my-0 xs:text-sm xs:mt-2 my-2 text-lg text-slate-500 group-hover:text-violet-500 dark:text-gray-500 dark:group-hover:text-violet-500;
+    @apply xs:my-0 xs:text-sm xs:mt-2 my-2 text-lg text-slate-500 group-hover:text-violet-800 dark:text-gray-500 dark:group-hover:text-violet-300;
   }
 
   .active-rail-item {
-    @apply rail-item text-violet-500 dark:text-violet-500;
+    @apply rail-item text-violet-800 dark:text-violet-300;
   }
 
   .grid-item {
@@ -53,11 +53,11 @@
   }
 
   .tweet-box {
-    @apply relative mb-4 block cursor-pointer whitespace-pre-wrap rounded-lg bg-zinc-50 p-4 text-sm dark:bg-gray-800;
+    @apply relative mb-4 block cursor-pointer whitespace-pre-wrap rounded-lg bg-zinc-100 p-4 text-sm dark:bg-gray-800;
   }
 
   .selected .tweet-box {
-    @apply bg-zinc-100 ring-2 ring-purple-400 dark:bg-gray-900 dark:ring-violet-600;
+    @apply bg-zinc-200 ring-2 ring-purple-400 dark:bg-gray-900 dark:ring-violet-600;
   }
 
   .tweet-box-child {
