@@ -37,7 +37,7 @@
       class="xs:hidden h-[57px] border-b border-b-gray-300 pt-4 dark:border-b-gray-700"
     >
       <button
-        class="xs:mx-auto  ml-8 mb-8 flex content-center"
+        class="xs:mx-auto ml-8 mb-8 flex content-center rounded-md outline-none focus-visible:ring-2 focus-visible:ring-purple-400 dark:focus-visible:ring-violet-600"
         on:click={closeNavMenu}
       >
         <CloseIcon />

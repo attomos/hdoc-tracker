@@ -11,6 +11,7 @@
   let timer: ReturnType<typeof setTimeout>;
 
   let showSmallSearchInput = false;
+  let burgerMenuTabindex = -1;
 
   const DEBOUNCE_DURATION = 100;
 
@@ -46,7 +47,10 @@
 
   onMount(() => {
     const mql = window.matchMedia("(min-width: 850px)");
-    mql.addEventListener("change", () => {
+    burgerMenuTabindex = mql.matches ? -1 : 0;
+    mql.addEventListener("change", (e) => {
+      burgerMenuTabindex = e.matches ? -1 : 0;
+      console.log(burgerMenuTabindex);
       showSmallSearchInput = false;
 
       const navRail = document.querySelector(".nav-rail");
@@ -68,7 +72,11 @@
     : 'grid-cols-3'} items-center justify-between border-b border-b-gray-300 p-2 px-8 dark:border-b-gray-700"
 >
   <div class={showSmallSearchInput ? "hidden" : "flex"}>
-    <button on:click={handleClick} class="select-none">
+    <button
+      on:click={handleClick}
+      class="select-none rounded-md outline-none focus-visible:ring-2 focus-visible:ring-purple-400 dark:focus-visible:ring-violet-600"
+      tabindex={burgerMenuTabindex}
+    >
       <BurgerMenu
         className="xs:hidden cursor-pointer pointer-events-auto dark:stroke-white"
       />
@@ -119,12 +127,11 @@
     </div>
   </div>
 
-  <span
-    class="xs:hidden block cursor-pointer justify-self-end"
+  <button
+    class="xs:hidden block cursor-pointer justify-self-end rounded-md outline-none focus-visible:ring-2 focus-visible:ring-purple-400 dark:focus-visible:ring-violet-600"
     class:hidden={showSmallSearchInput}
-    tabindex="0"
     on:click={toggleSmallSearchInput}
-    ><SearchIcon className="dark:stroke-white" /></span
+    ><SearchIcon className="dark:stroke-white" /></button
   >
 
   <div class="xs:flex hidden items-center justify-end gap-5">
