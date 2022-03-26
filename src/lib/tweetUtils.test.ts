@@ -3,7 +3,8 @@ import { computeStreaks } from "./tweetUtils";
 describe("computeStreaks", () => {
   it("should compute streaks correctly for 0 day (no data)", () => {
     const tweetsLookup = {};
-    const streaks = computeStreaks(tweetsLookup);
+    const todayDate = "2022-01-01";
+    const streaks = computeStreaks(tweetsLookup, todayDate);
     expect(streaks).toEqual([{}, {}]);
   });
 
@@ -11,7 +12,8 @@ describe("computeStreaks", () => {
     const tweetsLookup = {
       "2022-01-01": [],
     };
-    const streaks = computeStreaks(tweetsLookup);
+    const todayDate = "2022-01-01";
+    const streaks = computeStreaks(tweetsLookup, todayDate);
     expect(streaks).toEqual([
       {
         start: 0,
@@ -32,7 +34,8 @@ describe("computeStreaks", () => {
       "2022-01-02": [],
       "2022-01-04": [],
     };
-    const streaks = computeStreaks(tweetsLookup);
+    const todayDate = "2022-01-04";
+    const streaks = computeStreaks(tweetsLookup, todayDate);
     expect(streaks).toEqual([
       {
         start: 0,
@@ -53,7 +56,8 @@ describe("computeStreaks", () => {
       "2022-01-03": [],
       "2022-01-04": [],
     };
-    const streaks = computeStreaks(tweetsLookup);
+    const todayDate = "2022-01-04";
+    const streaks = computeStreaks(tweetsLookup, todayDate);
     expect(streaks).toEqual([
       {
         start: 1,
@@ -74,7 +78,8 @@ describe("computeStreaks", () => {
       "2022-01-03": [],
       "2022-01-05": [],
     };
-    const streaks = computeStreaks(tweetsLookup);
+    const todayDate = "2022-01-05";
+    const streaks = computeStreaks(tweetsLookup, todayDate);
     expect(streaks).toEqual([
       {
         start: 2,
@@ -101,7 +106,8 @@ describe("computeStreaks", () => {
       "2022-01-10": [],
       "2022-01-11": [],
     };
-    const streaks = computeStreaks(tweetsLookup);
+    const todayDate = "2022-01-11";
+    const streaks = computeStreaks(tweetsLookup, todayDate);
     expect(streaks).toEqual([
       {
         start: 6,
@@ -113,6 +119,24 @@ describe("computeStreaks", () => {
         end: 8,
         count: 3,
       },
+    ]);
+  });
+
+  it("should compute streaks correctly for 3 days for longest and 0 days for current", () => {
+    const tweetsLookup = {
+      "2022-01-01": [],
+      "2022-01-02": [],
+      "2022-01-03": [],
+    };
+    const todayDate = "2022-01-05";
+    const streaks = computeStreaks(tweetsLookup, todayDate);
+    expect(streaks).toEqual([
+      {
+        start: 0,
+        end: 2,
+        count: 3,
+      },
+      {},
     ]);
   });
 });

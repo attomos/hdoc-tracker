@@ -41,7 +41,7 @@ function getTweetsCount(tweets: GroupedTweets) {
   return groupCount.reduce((a, b) => a + b, 0);
 }
 
-function computeStreaks(tweetsLookup: any) {
+function computeStreaks(tweetsLookup: any, todayDate: string) {
   const days = Object.keys(tweetsLookup);
   days.sort();
 
@@ -83,10 +83,6 @@ function computeStreaks(tweetsLookup: any) {
     }
   }
 
-  if (streaks.length === 1) {
-    return [streaks[0], streaks[0]];
-  }
-
   let longestStreak = -1;
   let longestStreakIdx = 0;
   for (let i = 0; i < streaks.length; i++) {
@@ -95,6 +91,14 @@ function computeStreaks(tweetsLookup: any) {
       longestStreak = streak.count;
       longestStreakIdx = i;
     }
+  }
+
+  if (days.at(-1) !== todayDate) {
+    return [streaks[longestStreakIdx], {}];
+  }
+
+  if (streaks.length === 1) {
+    return [streaks[0], streaks[0]];
   }
 
   return [streaks[longestStreakIdx], streaks.at(-1)];

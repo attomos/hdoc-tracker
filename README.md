@@ -1,4 +1,4 @@
-# hdoc-tracker [13/41]
+# hdoc-tracker [14/43]
 
 ## TODO
 
@@ -48,6 +48,7 @@
 ## bugs
 
 - [x] time zone bug in `formatTwitterDate` function
+- [x] no streaks, but display the most recent streak instead
 
 ## useful resources
 

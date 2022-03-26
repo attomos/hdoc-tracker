@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { formatInTimeZone } from "date-fns-tz";
+
   import type { Tweet } from "src/lib/types";
   import { onMount } from "svelte";
   import {
@@ -20,7 +22,13 @@
     })
     .flat().length;
 
-  const [longestStreak, currentStreak] = computeStreaks(tweetsLookup);
+  const day = new Date();
+  const todayDate = formatInTimeZone(day, "Asia/Bangkok", "yyyy-MM-dd");
+
+  const [longestStreak, currentStreak] = computeStreaks(
+    tweetsLookup,
+    todayDate
+  );
 
   const tweetDates = Object.keys(tweetsLookup);
   const weeks = getWeeksForThisRound(tweetDates).map((week) => {
@@ -186,11 +194,11 @@
       </div>
       <div>
         <span class="font-bold">Longest streak:</span>
-        {longestStreak.count}
+        {longestStreak.count ?? 0}
       </div>
       <div>
         <span class="font-bold">Current streak:</span>
-        {currentStreak.count}
+        {currentStreak.count ?? 0}
       </div>
     </div>
   </div>
