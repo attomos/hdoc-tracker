@@ -9,6 +9,13 @@ $ pyenv install 3.10.2
 $ pyenv virtualenv 3.10.2 hdoc
 ```
 
+## Running locally
+
+```bash
+$ pip install -e .
+$ python hdoc_tracker/get_tweets.py
+```
+
 ## Dependencies
 
 ```bash
