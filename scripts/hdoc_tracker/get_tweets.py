@@ -39,7 +39,7 @@ def get_tweets() -> Dict:
     # TODO: use since_id
     # TODO: remove hard-coded start_time
     payload = {
-        "tweet.fields": "conversation_id,created_at,entities,public_metrics",
+        "tweet.fields": "conversation_id,created_at,entities,public_metrics,author_id",
         "max_results": 100,
         "exclude": "retweets",
         "start_time": "2022-01-01T00:00:00Z",

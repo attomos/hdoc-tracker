@@ -53,7 +53,7 @@
   }
 
   .tweet-box {
-    @apply relative mb-4 block cursor-pointer whitespace-pre-wrap rounded-lg bg-zinc-100 p-4 text-sm dark:bg-gray-800;
+    @apply relative mb-4 flex cursor-pointer flex-col rounded-lg bg-zinc-100 p-4 text-sm dark:bg-gray-800;
   }
 
   .selected .tweet-box {

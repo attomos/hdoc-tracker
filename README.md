@@ -1,4 +1,4 @@
-# hdoc-tracker [14/43]
+# hdoc-tracker [16/43]
 
 ## TODO
 
@@ -6,9 +6,9 @@
 - [x] Streak count (longest and current)
 - [x] extract more entities (link to src, demo, etc.)
 - [ ] list view
-  - [ ] timestamp
+  - [x] timestamp
   - [ ] extra entities (demo, src, etc.)
-  - [ ] Link to original tweet
+  - [x] Link to original tweet
 - [ ] thread view
   - [ ] YouTube reply clone
   - [ ] Link to original tweet

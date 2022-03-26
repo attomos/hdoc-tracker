@@ -46,6 +46,19 @@ export function formatTwitterDate(twitterDate: string) {
   return formatInTimeZone(new Date(twitterDate), "Asia/Bangkok", "yyyy-MM-dd");
 }
 
+export function formatTwitterDateToShortFormat(
+  twitterDate: string,
+  todayDate: Date
+) {
+  // UTC => MMM dd or MMM dd, yyyy depends on the todayDate
+  const date = new Date(twitterDate);
+  let dateFormat = "MMM dd, yyyy";
+  if (todayDate.getFullYear() === date.getFullYear()) {
+    dateFormat = "MMM dd";
+  }
+  return formatInTimeZone(new Date(twitterDate), "Asia/Bangkok", dateFormat);
+}
+
 export function getWeeksUntilNow() {
   const today = new Date();
   const firstMondayOfCalendar = startOfWeekWithOptions({

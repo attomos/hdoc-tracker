@@ -98,7 +98,11 @@
     }
   }
 
-  function handleTweetBoxClick(e) {
+  function handleTweetBoxClick(e: MouseEvent) {
+    if (!(e.target instanceof Element)) return;
+    if (e.target.matches("a")) {
+      return;
+    }
     const currentItem = getSelectedItemOrFirstChild();
     currentItem.setAttribute("aria-selected", "false");
     currentItem.classList.remove("selected");
@@ -107,10 +111,7 @@
   }
 
   function handleClickAtLayout(e: MouseEvent) {
-    if (
-      e.target instanceof Element &&
-      !e.target.classList.contains("tweet-box")
-    ) {
+    if (e.target instanceof Element && !e.target.closest(".tweet-box")) {
       const currentItem = getSelectedItemOrFirstChild();
       if (!currentItem) return;
       deselectCurrentItem(currentItem);
