@@ -28,7 +28,7 @@
   <div class="flex gap-2">
     <div class="font-bold">
       <a
-        class="rounded-sm outline-none hover:underline focus-visible:ring-1 focus-visible:ring-purple-400 dark:focus-visible:ring-violet-600"
+        class="rounded-sm outline-none hover:underline focus-visible:underline"
         href={authorUrl}
         target="_blank">{name}</a
       >
@@ -40,7 +40,7 @@
   <div class="px-1 text-gray-500 dark:text-gray-300">·</div>
   <div title="long date here">
     <a
-      class="rounded-sm outline-none hover:underline focus-visible:ring-1 focus-visible:ring-purple-400 dark:focus-visible:ring-violet-600"
+      class="rounded-sm outline-none hover:underline focus-visible:underline"
       href={tweetUrl}
       target="_blank"
     >
