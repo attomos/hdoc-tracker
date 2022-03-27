@@ -15,5 +15,7 @@ module.exports = {
     "src/lib/*.ts",
     "!src/routes/*.svelte",
     "!src/App.svelte",
+    "!src/components/ActivityGraph.svelte",
+    "!src/icons/*.svelte",
   ],
 };

@@ -4,6 +4,7 @@ export type Tweet = {
   created_at: string;
   public_metrics: PublicMetrics;
   conversation_id: string;
+  author_id: string;
   id: string;
 };
 
@@ -20,6 +21,7 @@ export type TweetResponse = {
 export type Entities = {
   hashtags?: Hashtag[];
   urls?: TweetUrl[];
+  annotations?: TweetAnnotation[];
   day_list?: HdocDay[];
   modern_day_list?: ModernHdocDay[];
   src_list?: Src[];
@@ -38,6 +40,14 @@ export type TweetUrl = {
   url: string;
   expanded_url: string;
   display_url: string;
+};
+
+export type TweetAnnotation = {
+  start: number;
+  end: number;
+  probability: number;
+  type: string;
+  normalized_text: string;
 };
 
 export type CustomEntityBase = {
