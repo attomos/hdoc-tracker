@@ -2,10 +2,13 @@ import { differenceInDays } from "date-fns/fp";
 import data from "../../scripts/tweets.json";
 import { formatTwitterDate } from "./dateUtils";
 import type {
+  Demo,
   ExpandedEntities,
   GroupedTweets,
+  Src,
   Tweet,
   TweetTuple,
+  TweetUrl,
 } from "./types";
 
 function getTweets(searchTerm: string) {
@@ -23,55 +26,38 @@ function getTweets(searchTerm: string) {
   return Object.fromEntries(filteredTweets);
 }
 
+function getTweetEntity<T>(
+  tweets: GroupedTweets,
+  tweetId: string,
+  entity: string
+): T[] {
+  if (!tweets[tweetId]) return [];
+  return (
+    tweets[tweetId].map((reply) => reply.entities[entity] ?? []).flat() || []
+  );
+}
+
 export function getExpandedEntities(
   tweet: Tweet,
   tweets: GroupedTweets
 ): ExpandedEntities {
-  let demo = {
-    href: "",
-    fixed: false,
+  const allUrls = getTweetEntity<TweetUrl>(tweets, tweet.id, "urls");
+  const demoList = getTweetEntity<Demo>(tweets, tweet.id, "demo_list");
+  const srcList = getTweetEntity<Src>(tweets, tweet.id, "src_list");
+  const latestDemo = demoList?.at(-1);
+  const latestSrc = srcList?.at(-1);
+  const expandedDemo = allUrls.find((url) => url.url === latestDemo?.demo);
+  const expandedSrc = allUrls.find((url) => url.url === latestSrc?.src);
+
+  const demo = {
+    href: expandedDemo?.expanded_url ?? "",
+    fixed: latestDemo?.fixed ?? false,
   };
-  let src = {
-    href: "",
-    fixed: false,
+  const src = {
+    href: expandedSrc?.expanded_url ?? "",
+    fixed: latestSrc?.fixed ?? false,
   };
 
-  if (tweet.entities.demo_list?.length) {
-    let demoUrl = tweet.entities.demo_list[0].demo;
-    let urls = tweet.entities.urls;
-    let fixed = demo.fixed;
-
-    // handle fixed urls
-    if (tweet.id in tweets) {
-      const replies = tweets[tweet.id];
-      replies.forEach((reply) => {
-        if (
-          reply.entities.demo_list?.length &&
-          reply.entities.demo_list[0].fixed
-        ) {
-          demoUrl = reply.entities.demo_list[0].demo;
-          fixed = true;
-        }
-      });
-
-      replies.forEach((reply) => {
-        urls = urls.concat(reply.entities.urls ?? []);
-      });
-    }
-
-    demo = {
-      href: urls.find((url) => url.url === demoUrl)?.expanded_url,
-      fixed,
-    };
-  }
-  if (tweet.entities.src_list?.length) {
-    const srcUrl = tweet.entities.src_list[0].src;
-    src = {
-      ...src,
-      href: tweet.entities.urls?.find((url) => url.url === srcUrl)
-        ?.expanded_url,
-    };
-  }
   return {
     demo,
     src,

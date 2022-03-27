@@ -32,6 +32,69 @@ const mockTweets: GroupedTweets = {
       author_id: "2699175613",
     },
   ],
+  "5555": [
+    {
+      entities: {},
+      conversation_id: "5555",
+      id: "5555",
+      created_at: "2022-02-19T12:15:37.000Z",
+      text: "this is for testing yo #100DaysOfCode",
+      public_metrics: {
+        retweet_count: 7,
+        reply_count: 2,
+        like_count: 2,
+        quote_count: 0,
+      },
+      author_id: "2699175613",
+    },
+    {
+      entities: {
+        urls: [
+          {
+            start: 5,
+            end: 21,
+            url: "https://t.co/src",
+            expanded_url: "https://github.com/attomos/test",
+            display_url: "github.com/attomos/test",
+          },
+          {
+            start: 43,
+            end: 59,
+            url: "https://t.co/app",
+            expanded_url: "https://test-attomos.vercel.app",
+            display_url: "test-attomos.vercel.app",
+          },
+        ],
+        src_list: [
+          {
+            start: 5,
+            end: 21,
+            src: "https://t.co/src",
+            fixed: false,
+          },
+        ],
+        demo_list: [
+          {
+            start: 43,
+            end: 59,
+            demo: "https://t.co/app",
+            fixed: false,
+          },
+        ],
+      },
+      conversation_id: "5555",
+      id: "5556",
+      created_at: "2022-02-19T12:16:01.000Z",
+      text: "src: https://t.co/src #100DaysOfCode demo: https://t.co/app",
+      public_metrics: {
+        retweet_count: 7,
+        reply_count: 2,
+        like_count: 2,
+        quote_count: 0,
+      },
+      author_id: "2699175613",
+    },
+  ],
   "1498337671441424384": [
     {
       entities: {
@@ -467,7 +530,7 @@ describe("tweetUtils", () => {
       });
     });
 
-    it("should return correctly when the tweet has only the source", () => {
+    it("should return correctly when the tweet has only the src", () => {
       const tweet = mockTweets["1483483848403202052"][0];
       const expandedEntities = getExpandedEntities(tweet, mockTweets);
       expect(expandedEntities).toEqual({
@@ -482,7 +545,7 @@ describe("tweetUtils", () => {
       });
     });
 
-    it("should return correctly when top level tweet has both demo and source", () => {
+    it("should return correctly when top level tweet has both demo and src", () => {
       const tweet = mockTweets["1479514795829174274"][0];
       const expandedEntities = getExpandedEntities(tweet, mockTweets);
       expect(expandedEntities).toEqual({
@@ -492,6 +555,21 @@ describe("tweetUtils", () => {
         },
         src: {
           href: "https://github.com/attomos/100-days-of-code/tree/ec0689d204451587ba78f13915afa17f860cb7f3/days/day5",
+          fixed: false,
+        },
+      });
+    });
+
+    it("should return correctly when demo and src are in replies only", () => {
+      const tweet = mockTweets["5555"][0];
+      const expandedEntities = getExpandedEntities(tweet, mockTweets);
+      expect(expandedEntities).toEqual({
+        demo: {
+          href: "https://test-attomos.vercel.app",
+          fixed: false,
+        },
+        src: {
+          href: "https://github.com/attomos/test",
           fixed: false,
         },
       });
