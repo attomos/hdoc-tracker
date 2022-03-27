@@ -1,8 +1,8 @@
 <script lang="ts">
+  import { tweets } from "../lib/stores";
   import { getExpandedEntities } from "../lib/tweetUtils";
   import type { ExpandedEntities, Tweet } from "../lib/types";
   import EntityLink from "./EntityLink.svelte";
-  import { tweets } from "../lib/stores";
 
   export let tweet: Tweet;
 
@@ -12,13 +12,13 @@
   }
 </script>
 
-<div class="border-t-[0.1px] border-t-gray-200 pt-2">
+<div class="border-t border-t-gray-200 pt-2 dark:border-t-gray-500">
   <div class="flex justify-start gap-4">
     <div>
-      <EntityLink href={expandedEntities.expandedDemoUrl}>demo</EntityLink>
+      <EntityLink expandedEntity={expandedEntities.demo}>demo</EntityLink>
     </div>
     <div>
-      <EntityLink href={expandedEntities.expandedSrcUrl}>source</EntityLink>
+      <EntityLink expandedEntity={expandedEntities.src}>source</EntityLink>
     </div>
     <!-- <div>
       <a class="text-purple-800 hover:underline" href="replies">replies</a>

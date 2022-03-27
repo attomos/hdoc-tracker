@@ -27,13 +27,19 @@ export function getExpandedEntities(
   tweet: Tweet,
   tweets: GroupedTweets
 ): ExpandedEntities {
-  let expandedDemoUrl = "";
-  let expandedSrcUrl = "";
+  let demo = {
+    href: "",
+    fixed: false,
+  };
+  let src = {
+    href: "",
+    fixed: false,
+  };
 
   if (tweet.entities.demo_list?.length) {
     let demoUrl = tweet.entities.demo_list[0].demo;
-
     let urls = tweet.entities.urls;
+    let fixed = demo.fixed;
 
     // handle fixed urls
     if (tweet.id in tweets) {
@@ -44,6 +50,7 @@ export function getExpandedEntities(
           reply.entities.demo_list[0].fixed
         ) {
           demoUrl = reply.entities.demo_list[0].demo;
+          fixed = true;
         }
       });
 
@@ -52,17 +59,22 @@ export function getExpandedEntities(
       });
     }
 
-    expandedDemoUrl = urls.find((url) => url.url === demoUrl)?.expanded_url;
+    demo = {
+      href: urls.find((url) => url.url === demoUrl)?.expanded_url,
+      fixed,
+    };
   }
   if (tweet.entities.src_list?.length) {
     const srcUrl = tweet.entities.src_list[0].src;
-    expandedSrcUrl = tweet.entities.urls?.find(
-      (url) => url.url === srcUrl
-    )?.expanded_url;
+    src = {
+      ...src,
+      href: tweet.entities.urls?.find((url) => url.url === srcUrl)
+        ?.expanded_url,
+    };
   }
   return {
-    expandedDemoUrl,
-    expandedSrcUrl,
+    demo,
+    src,
   };
 }
 

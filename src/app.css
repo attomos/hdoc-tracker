@@ -60,6 +60,10 @@
     @apply bg-zinc-200 ring-2 ring-purple-400 dark:bg-gray-900 dark:ring-violet-600;
   }
 
+  .selected .tweet-box div {
+    @apply border-t-gray-300 dark:border-t-gray-500;
+  }
+
   .tweet-box-child {
     @apply ml-12;
   }

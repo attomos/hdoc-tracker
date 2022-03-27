@@ -70,7 +70,12 @@ export type PublicMetrics = {
   quote_count: number;
 };
 
+export type ExpandedEntity = {
+  href: string;
+  fixed: boolean;
+};
+
 export type ExpandedEntities = {
-  expandedDemoUrl: string;
-  expandedSrcUrl: string;
+  demo: ExpandedEntity;
+  src: ExpandedEntity;
 };
