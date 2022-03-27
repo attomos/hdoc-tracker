@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "check": "svelte-check --tsconfig ./tsconfig.json",
+    "svelte-check": "svelte-check --tsconfig ./tsconfig.json",
     "lint": "prettier src --check",
     "format": "prettier src --write",
     "test": "jest --watch",
