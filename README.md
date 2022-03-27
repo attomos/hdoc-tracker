@@ -1,4 +1,4 @@
-# hdoc-tracker [18/43]
+# hdoc-tracker [18/48]
 
 ## TODO
 
@@ -44,6 +44,11 @@
   - [ ] Filter by round
   - [ ] need an API for new rounds (or for the sake of learning 😏)
 - [ ] support for new rounds (UI)
+- [ ] more entity support
+  - [ ] npm
+  - [ ] pypi
+  - [ ] rust package
+  - [ ] go package
 
 ## bugs
 
