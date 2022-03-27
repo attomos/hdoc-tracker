@@ -15,8 +15,8 @@
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^1.0.0-next.30",
-    "@swc/core": "^1.2.145",
-    "@swc/jest": "^0.2.18",
+    "@swc/core": "^1.2.160",
+    "@swc/jest": "^0.2.20",
     "@tailwindcss/forms": "^0.4.0",
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/svelte": "^3.0.3",
