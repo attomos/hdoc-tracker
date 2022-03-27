@@ -43,6 +43,7 @@
       class="rounded-sm outline-none hover:underline focus-visible:underline"
       href={tweetUrl}
       target="_blank"
+      data-testid="timestamp"
     >
       {formattedDate}
     </a>

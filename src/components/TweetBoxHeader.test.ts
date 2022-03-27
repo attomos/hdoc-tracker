@@ -3,10 +3,16 @@
  */
 import "@testing-library/jest-dom";
 import { render } from "@testing-library/svelte";
-import TweetBox from "./TweetBox.svelte";
+import { todayDate } from "../lib/stores";
+import TweetBoxHeader from "./TweetBoxHeader.svelte";
 
-describe("TweetBox", () => {
+afterEach(() => {
+  todayDate.set(new Date());
+});
+
+describe("TweetBoxHeader", () => {
   it("should renders correctly", () => {
+    todayDate.set(new Date("2022-12-01"));
     const tweet = {
       text: "day 1 of #100DaysOfCode\ngood morning",
       entities: {
@@ -28,21 +34,25 @@ describe("TweetBox", () => {
       conversation_id: "1",
       id: "1",
     };
-    const { getByTestId, getByRole } = render(TweetBox, { tweet });
+    const { getByTestId, getByText } = render(TweetBoxHeader, {
+      tweet,
+    });
 
-    const option = getByRole("option");
-    const mark = getByTestId("mark");
+    const profile = getByText("Atom Chaipreecha");
+    const username = getByText("@attomos");
+    const timestamp = getByTestId("timestamp");
 
-    expect(mark).toBeInTheDocument();
-
-    expect(option).toHaveTextContent("day 1 of #100DaysOfCode good morning");
+    expect(profile).toBeVisible();
+    expect(username).toBeVisible();
+    expect(timestamp.textContent).toEqual("Mar 21");
   });
 
-  it("should renders without a mark for old entities data", () => {
+  it("should renders timestamp correctly", () => {
+    todayDate.set(new Date("2023-12-01"));
     const tweet = {
       text: "day 1 of #100DaysOfCode\ngood morning",
       entities: {
-        days: [
+        day_list: [
           {
             start: 0,
             end: 5,
@@ -60,13 +70,16 @@ describe("TweetBox", () => {
       conversation_id: "1",
       id: "1",
     };
-    const { queryByTestId, getByRole } = render(TweetBox, { tweet });
+    const { getByTestId, getByText } = render(TweetBoxHeader, {
+      tweet,
+    });
 
-    const option = getByRole("option");
-    const mark = queryByTestId("mark");
+    const profile = getByText("Atom Chaipreecha");
+    const username = getByText("@attomos");
+    const timestamp = getByTestId("timestamp");
 
-    expect(mark).not.toBeInTheDocument();
-
-    expect(option).toHaveTextContent("day 1 of #100DaysOfCode good morning");
+    expect(profile).toBeVisible();
+    expect(username).toBeVisible();
+    expect(timestamp.textContent).toEqual("Mar 21, 2022");
   });
 });

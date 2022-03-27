@@ -1,9 +1,9 @@
-import { derived, readable, writable } from "svelte/store";
+import { derived, writable } from "svelte/store";
 import { getTweets } from "./tweetUtils";
 
 export const searchTerm = writable("");
 
-export const todayDate = readable(new Date());
+export const todayDate = writable(new Date());
 
 export const tweets = derived(searchTerm, ($searchTerm) =>
   getTweets($searchTerm)
