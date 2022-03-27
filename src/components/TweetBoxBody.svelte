@@ -14,6 +14,6 @@
   }
 </script>
 
-<div class="whitespace-pre-wrap pt-2">
+<div class="whitespace-pre-wrap py-2">
   {@html tweetHtmlText}
 </div>

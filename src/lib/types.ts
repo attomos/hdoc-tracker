@@ -69,3 +69,8 @@ export type PublicMetrics = {
   like_count: number;
   quote_count: number;
 };
+
+export type ExpandedEntities = {
+  expandedDemoUrl: string;
+  expandedSrcUrl: string;
+};

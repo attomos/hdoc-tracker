@@ -1,7 +1,12 @@
 import { differenceInDays } from "date-fns/fp";
 import data from "../../scripts/tweets.json";
 import { formatTwitterDate } from "./dateUtils";
-import type { GroupedTweets, TweetTuple } from "./types";
+import type {
+  ExpandedEntities,
+  GroupedTweets,
+  Tweet,
+  TweetTuple,
+} from "./types";
 
 function getTweets(searchTerm: string) {
   if (searchTerm === "") return data;
@@ -16,6 +21,49 @@ function getTweets(searchTerm: string) {
   });
 
   return Object.fromEntries(filteredTweets);
+}
+
+export function getExpandedEntities(
+  tweet: Tweet,
+  tweets: GroupedTweets
+): ExpandedEntities {
+  let expandedDemoUrl = "";
+  let expandedSrcUrl = "";
+
+  if (tweet.entities.demo_list?.length) {
+    let demoUrl = tweet.entities.demo_list[0].demo;
+
+    let urls = tweet.entities.urls;
+
+    // handle fixed urls
+    if (tweet.id in tweets) {
+      const replies = tweets[tweet.id];
+      replies.forEach((reply) => {
+        if (
+          reply.entities.demo_list?.length &&
+          reply.entities.demo_list[0].fixed
+        ) {
+          demoUrl = reply.entities.demo_list[0].demo;
+        }
+      });
+
+      replies.forEach((reply) => {
+        urls = urls.concat(reply.entities.urls ?? []);
+      });
+    }
+
+    expandedDemoUrl = urls.find((url) => url.url === demoUrl)?.expanded_url;
+  }
+  if (tweet.entities.src_list?.length) {
+    const srcUrl = tweet.entities.src_list[0].src;
+    expandedSrcUrl = tweet.entities.urls?.find(
+      (url) => url.url === srcUrl
+    )?.expanded_url;
+  }
+  return {
+    expandedDemoUrl,
+    expandedSrcUrl,
+  };
 }
 
 function getTweetsLookupDict(tweets: GroupedTweets) {

@@ -1,13 +1,13 @@
-# hdoc-tracker [16/43]
+# hdoc-tracker [18/43]
 
 ## TODO
 
 - [x] GitHub actions
 - [x] Streak count (longest and current)
 - [x] extract more entities (link to src, demo, etc.)
-- [ ] list view
+- [x] list view
   - [x] timestamp
-  - [ ] extra entities (demo, src, etc.)
+  - [x] extra entities (demo, src, etc.)
   - [x] Link to original tweet
 - [ ] thread view
   - [ ] YouTube reply clone
