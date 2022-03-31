@@ -1,5 +1,4 @@
 import { differenceInDays } from "date-fns/fp";
-import data from "../../scripts/tweets.json";
 import { formatTwitterDate } from "./dateUtils";
 import type {
   Demo,
@@ -11,12 +10,12 @@ import type {
   TweetUrl,
 } from "./types";
 
-function getTweets(searchTerm: string) {
-  if (searchTerm === "") return data;
-  const filteredTweets = Object.entries(data).filter((e: TweetTuple) => {
+function getTweets(tweets: GroupedTweets, searchTerm: string) {
+  if (searchTerm === "") return tweets;
+  const filteredTweets = Object.entries(tweets).filter((e: TweetTuple) => {
     const [, value] = e;
     const ans = value
-      .filter((tweet) => tweet.conversation_id === tweet.id)
+      // .filter((tweet) => tweet.conversation_id === tweet.id)
       .some(({ text }: { text: string }) =>
         text.toLowerCase().includes(searchTerm.toLowerCase())
       );

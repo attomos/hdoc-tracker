@@ -1,4 +1,4 @@
-import { computeStreaks, getExpandedEntities } from "./tweetUtils";
+import { computeStreaks, getExpandedEntities, getTweets } from "./tweetUtils";
 import type { GroupedTweets } from "./types";
 
 const mockTweets: GroupedTweets = {
@@ -343,6 +343,80 @@ const mockTweets: GroupedTweets = {
 };
 
 describe("tweetUtils", () => {
+  describe("getTweets", () => {
+    it("should return correctly when the search term is found in top-level tweet", () => {
+      const result = getTweets(mockTweets, "nothing");
+      expect(result).toEqual({
+        "1234": [
+          {
+            entities: {},
+            conversation_id: "1234",
+            id: "1234",
+            created_at: "2022-02-19T12:15:37.000Z",
+            text: "nothing",
+            public_metrics: {
+              retweet_count: 7,
+              reply_count: 2,
+              like_count: 2,
+              quote_count: 0,
+            },
+            author_id: "2699175613",
+          },
+          {
+            entities: {},
+            conversation_id: "1234",
+            id: "1235",
+            created_at: "2022-02-19T12:16:01.000Z",
+            text: "just a comment",
+            public_metrics: {
+              retweet_count: 7,
+              reply_count: 2,
+              like_count: 2,
+              quote_count: 0,
+            },
+            author_id: "2699175613",
+          },
+        ],
+      });
+    });
+
+    it("should return correctly when the search term is found in replies", () => {
+      const result = getTweets(mockTweets, "just a comment");
+      expect(result).toEqual({
+        "1234": [
+          {
+            entities: {},
+            conversation_id: "1234",
+            id: "1234",
+            created_at: "2022-02-19T12:15:37.000Z",
+            text: "nothing",
+            public_metrics: {
+              retweet_count: 7,
+              reply_count: 2,
+              like_count: 2,
+              quote_count: 0,
+            },
+            author_id: "2699175613",
+          },
+          {
+            entities: {},
+            conversation_id: "1234",
+            id: "1235",
+            created_at: "2022-02-19T12:16:01.000Z",
+            text: "just a comment",
+            public_metrics: {
+              retweet_count: 7,
+              reply_count: 2,
+              like_count: 2,
+              quote_count: 0,
+            },
+            author_id: "2699175613",
+          },
+        ],
+      });
+    });
+  });
+
   describe("computeStreaks", () => {
     it("should compute streaks correctly for 0 day (no data)", () => {
       const tweetsLookup = {};
