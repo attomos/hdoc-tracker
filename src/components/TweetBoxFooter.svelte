@@ -1,23 +1,23 @@
 <script lang="ts">
+  import { createEventDispatcher } from "svelte";
+
   import { tweets } from "../lib/stores";
   import { getExpandedEntities } from "../lib/tweetUtils";
   import type { ExpandedEntities, Tweet } from "../lib/types";
   import EntityLink from "./EntityLink.svelte";
-  import TweetBox from "./TweetBox.svelte";
 
   export let tweet: Tweet;
   export let replies: Tweet[];
 
-  let hideReply = true;
+  const dispatch = createEventDispatcher();
+
+  function handleClick() {
+    dispatch("openReply");
+  }
 
   let expandedEntities: ExpandedEntities;
   $: {
     expandedEntities = getExpandedEntities(tweet, $tweets);
-  }
-
-  function handleRepliesClick(e: MouseEvent) {
-    hideReply = !hideReply;
-    e.stopPropagation();
   }
 </script>
 
@@ -34,18 +34,12 @@
     {#if replies.length > 0}
       <div>
         <button
-          class="text-purple-800 hover:underline"
-          on:click={handleRepliesClick}
+          class="text-purple-800 outline-none hover:underline focus-visible:underline dark:text-violet-300"
+          on:click={handleClick}
         >
           View reply ({replies.length})
         </button>
       </div>
     {/if}
   </div>
-</div>
-
-<div class:hidden={hideReply}>
-  {#each replies as reply}
-    <TweetBox tweet={reply} replies={[]} hideFooter={true} />
-  {/each}
 </div>

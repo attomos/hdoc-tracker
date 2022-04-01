@@ -24,7 +24,13 @@
     <TweetBoxHeader {tweet} />
     <TweetBoxBody {tweet} />
     {#if !hideFooter}
-      <TweetBoxFooter {tweet} {replies} />
+      <TweetBoxFooter {tweet} {replies} on:openReply={handleRepliesClick} />
     {/if}
   </div>
 </li>
+
+<div class:hidden={hideReply} class="mt-4">
+  {#each replies as reply}
+    <svelte:self tweet={reply} replies={[]} hideFooter={true} />
+  {/each}
+</div>
