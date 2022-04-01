@@ -1,4 +1,4 @@
-# hdoc-tracker [18/48]
+# hdoc-tracker [20/47]
 
 ## TODO
 
@@ -9,9 +9,8 @@
   - [x] timestamp
   - [x] extra entities (demo, src, etc.)
   - [x] Link to original tweet
-- [ ] thread view
-  - [ ] YouTube reply clone
-  - [ ] Link to original tweet
+- [x] thread view
+  - [x] YouTube reply clone
 - [ ] Keyboard shortcuts dialog + ? binding to display it
 - [x] improve color contrast (thanks to VisBug)
 - [ ] pytest
