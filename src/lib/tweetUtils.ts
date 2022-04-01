@@ -14,11 +14,9 @@ function getTweets(tweets: GroupedTweets, searchTerm: string) {
   if (searchTerm === "") return tweets;
   const filteredTweets = Object.entries(tweets).filter((e: TweetTuple) => {
     const [, value] = e;
-    const ans = value
-      // .filter((tweet) => tweet.conversation_id === tweet.id)
-      .some(({ text }: { text: string }) =>
-        text.toLowerCase().includes(searchTerm.toLowerCase())
-      );
+    const ans = value.some(({ text }: { text: string }) =>
+      text.toLowerCase().includes(searchTerm.toLowerCase())
+    );
     return ans;
   });
 
