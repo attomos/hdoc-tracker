@@ -19,7 +19,7 @@
   }
 
   .nav-rail {
-    @apply xs:w-auto xs:pt-4 xs:static xs:block absolute z-50 hidden w-4/6 border-r border-r-gray-300 bg-white dark:border-r-gray-700 dark:bg-black;
+    @apply absolute z-50 hidden w-4/6 border-r border-r-gray-300 bg-white dark:border-r-gray-700 dark:bg-black xs:static xs:block xs:w-auto xs:pt-4;
     height: 100vh;
     grid-area: sidebar;
   }
@@ -37,7 +37,7 @@
   }
 
   .rail-item {
-    @apply xs:my-0 xs:text-sm xs:mt-2 my-2 text-lg text-slate-500 group-hover:text-violet-800 dark:text-gray-500 dark:group-hover:text-violet-300;
+    @apply my-2 text-lg text-slate-500 group-hover:text-violet-800 dark:text-gray-500 dark:group-hover:text-violet-300 xs:my-0 xs:mt-2 xs:text-sm;
   }
 
   .active-rail-item {
@@ -65,7 +65,7 @@
   }
 
   .tweet-box-child {
-    @apply ml-12;
+    @apply ml-8;
   }
 
   .tweet-box-child::before {
@@ -73,8 +73,12 @@
     position: absolute;
     top: 0.25rem;
     bottom: 0.25rem;
-    left: -2rem;
+    left: -1.5rem;
     width: 2px;
-    background: #000;
+    @apply bg-gray-200 dark:bg-gray-500;
+  }
+
+  .selected .tweet-box-child::before {
+    @apply bg-gray-300 dark:bg-gray-500;
   }
 }

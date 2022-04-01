@@ -6,6 +6,14 @@
   import TweetBoxFooter from "./TweetBoxFooter.svelte";
 
   export let tweet: Tweet;
+  export let replies: Tweet[];
+  export let hideFooter = false;
+
+  let hideReply = true;
+  function handleRepliesClick(e: CustomEvent) {
+    hideReply = !hideReply;
+    e.stopPropagation();
+  }
 
   const extraClass =
     tweet.conversation_id === tweet.id ? "" : "tweet-box-child";
@@ -15,6 +23,14 @@
   <div class="tweet-box {extraClass}" tabindex="0">
     <TweetBoxHeader {tweet} />
     <TweetBoxBody {tweet} />
-    <TweetBoxFooter {tweet} />
+    {#if !hideFooter}
+      <TweetBoxFooter {tweet} {replies} on:openReply={handleRepliesClick} />
+    {/if}
   </div>
 </li>
+
+<div class:hidden={hideReply} class="mt-4">
+  {#each replies as reply}
+    <svelte:self tweet={reply} replies={[]} hideFooter={true} />
+  {/each}
+</div>

@@ -28,13 +28,13 @@ describe("TweetBox", () => {
       conversation_id: "1",
       id: "1",
     };
-    const { getByTestId, getByRole } = render(TweetBox, { tweet });
+    const replies = [];
+    const { getByTestId, getByRole } = render(TweetBox, { tweet, replies });
 
     const option = getByRole("option");
     const mark = getByTestId("mark");
 
     expect(mark).toBeInTheDocument();
-
     expect(option).toHaveTextContent("day 1 of #100DaysOfCode good morning");
   });
 
@@ -60,13 +60,14 @@ describe("TweetBox", () => {
       conversation_id: "1",
       id: "1",
     };
-    const { queryByTestId, getByRole } = render(TweetBox, { tweet });
+
+    const replies = [];
+    const { queryByTestId, getByRole } = render(TweetBox, { tweet, replies });
 
     const option = getByRole("option");
     const mark = queryByTestId("mark");
 
     expect(mark).not.toBeInTheDocument();
-
     expect(option).toHaveTextContent("day 1 of #100DaysOfCode good morning");
   });
 });
