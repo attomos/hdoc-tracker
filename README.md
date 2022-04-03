@@ -1,4 +1,4 @@
-# hdoc-tracker [20/47]
+# hdoc-tracker [21/47]
 
 ## TODO
 
@@ -11,7 +11,7 @@
   - [x] Link to original tweet
 - [x] thread view
   - [x] YouTube reply clone
-- [ ] Keyboard shortcuts dialog + ? binding to display it
+- [x] Keyboard shortcuts dialog + ? binding to display it
 - [x] improve color contrast (thanks to VisBug)
 - [ ] pytest
   - [x] at least have some tests
