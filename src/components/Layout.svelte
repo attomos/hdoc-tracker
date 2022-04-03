@@ -1,6 +1,8 @@
 <script context="module" lang="ts">
   import { onMount } from "svelte";
 
+  let dialogRef;
+
   function focusItem(element, shouldScroll = true) {
     if (!element.getAttribute("role")) {
       return focusItem(element.parentElement, false);
@@ -71,6 +73,20 @@
       return;
     }
 
+    if (e.key === "?") {
+      if (dialogRef.open) {
+        dialogRef.close();
+      } else {
+        dialogRef.showModal();
+      }
+      e.preventDefault();
+      return;
+    }
+
+    if (dialogRef.open) {
+      return;
+    }
+
     if (!currentItem) return;
 
     const shouldPreventDefault = e.key === "j" || e.key === "k";
@@ -136,6 +152,14 @@
   onMount(() => {
     document.addEventListener("click", handleClickAtLayout);
     document.addEventListener("keydown", handleKeyDown);
+    const dialog: any = document.querySelector("dialog"); // use any for now, until this is fixed https://github.com/microsoft/TypeScript/issues/48267
+
+    dialog.addEventListener("click", function onClick(e: MouseEvent) {
+      if (e.target === dialog) {
+        dialog.DOCUMENT_FRAGMENT_NODE;
+        dialog.close();
+      }
+    });
   });
 </script>
 
@@ -150,4 +174,54 @@
   <main class="flex flex-col overflow-y-scroll">
     <slot />
   </main>
+
+  <div
+    class="xs:grid fixed bottom-8 right-16 hidden h-8 w-8 cursor-pointer select-none place-content-center rounded-full text-2xl ring ring-gray-200 hover:ring-purple-400 dark:text-white dark:ring-gray-700 dark:hover:ring-violet-600"
+    on:click={dialogRef.showModal()}
+  >
+    ?
+  </div>
 </div>
+
+<dialog
+  class="rounded-lg ring ring-purple-400 dark:bg-black dark:text-white dark:ring-violet-600"
+  bind:this={dialogRef}
+>
+  <div class="px-8 py-2">
+    <h2
+      class="mb-8 border-b-2 border-b-purple-400 pb-4 text-4xl dark:border-b-violet-600"
+    >
+      Keyboard shortcuts
+    </h2>
+    <div class="flex flex-col gap-3">
+      <div>
+        <kbd
+          class="mr-2 rounded-sm bg-violet-200 p-1 text-violet-900 dark:bg-violet-200 dark:text-violet-900"
+          >j</kbd
+        >
+        <span>Select next tweet</span>
+      </div>
+      <div>
+        <kbd
+          class="mr-2 rounded-sm bg-violet-200 p-1 text-violet-900 dark:bg-violet-200 dark:text-violet-900"
+          >k</kbd
+        >
+        <span>Select previous tweet</span>
+      </div>
+      <div>
+        <kbd
+          class="mr-2 rounded-sm bg-violet-200 p-1 text-violet-900 dark:bg-violet-200 dark:text-violet-900"
+          >/</kbd
+        >
+        <span>Focus searchbar</span>
+      </div>
+      <div>
+        <kbd
+          class="mr-2 rounded-sm bg-violet-200 p-1 text-violet-900 dark:bg-violet-200 dark:text-violet-900"
+          >?</kbd
+        >
+        <span>Trigger keyboard shortcuts dialog</span>
+      </div>
+    </div>
+  </div>
+</dialog>
