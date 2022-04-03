@@ -148,6 +148,7 @@
   import "../app.css";
   import NavigationBar from "./NavigationBar.svelte";
   import NavigationRail from "./NavigationRail.svelte";
+  import StyledKbd from "./StyledKbd.svelte";
 
   onMount(() => {
     document.addEventListener("click", handleClickAtLayout);
@@ -176,7 +177,7 @@
   </main>
 
   <div
-    class="xs:grid fixed bottom-8 right-16 hidden h-8 w-8 cursor-pointer select-none place-content-center rounded-full text-2xl ring ring-gray-200 hover:ring-purple-400 dark:text-white dark:ring-gray-700 dark:hover:ring-violet-600"
+    class="xs:grid fixed bottom-8 right-16 hidden h-8 w-8 cursor-pointer select-none place-content-center rounded-full bg-white text-2xl ring ring-gray-200 drop-shadow-md hover:ring-purple-400 dark:bg-black dark:text-white dark:ring-gray-700 dark:hover:ring-violet-600"
     on:click={dialogRef.showModal()}
   >
     ?
@@ -195,32 +196,20 @@
     </h2>
     <div class="flex flex-col gap-3">
       <div>
-        <kbd
-          class="mr-2 rounded-sm bg-violet-200 p-1 text-violet-900 dark:bg-violet-200 dark:text-violet-900"
-          >j</kbd
-        >
+        <StyledKbd>j</StyledKbd>
         <span>Select next tweet</span>
       </div>
       <div>
-        <kbd
-          class="mr-2 rounded-sm bg-violet-200 p-1 text-violet-900 dark:bg-violet-200 dark:text-violet-900"
-          >k</kbd
-        >
+        <StyledKbd>k</StyledKbd>
         <span>Select previous tweet</span>
       </div>
       <div>
-        <kbd
-          class="mr-2 rounded-sm bg-violet-200 p-1 text-violet-900 dark:bg-violet-200 dark:text-violet-900"
-          >/</kbd
-        >
+        <StyledKbd>/</StyledKbd>
         <span>Focus searchbar</span>
       </div>
       <div>
-        <kbd
-          class="mr-2 rounded-sm bg-violet-200 p-1 text-violet-900 dark:bg-violet-200 dark:text-violet-900"
-          >?</kbd
-        >
-        <span>Trigger keyboard shortcuts dialog</span>
+        <StyledKbd>?</StyledKbd>
+        <span>Toggle keyboard shortcuts dialog</span>
       </div>
     </div>
   </div>
