@@ -1,0 +1,14 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "main": "main.js",
+  "author": "Nattaphoom Chaipreecha",
+  "license": "MIT",
+  "scripts": {
+    "upstash": "node main.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "ioredis": "^5.0.3"
+  }
+}
