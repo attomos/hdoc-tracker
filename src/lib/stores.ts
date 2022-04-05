@@ -1,14 +1,31 @@
 import { derived, writable } from "svelte/store";
 import { getTweets } from "./tweetUtils";
-import data from "../../scripts/tweets.json";
-import type { Tweet } from "./types";
+// import data from "../../scripts/tweets.json";
+import type { GroupedTweets, Tweet } from "./types";
 
 export const searchTerm = writable("");
 
+export const loading = writable(true);
+const data = writable<GroupedTweets>({});
+
+const url = "https://hdoc-tracker.attomos.workers.dev";
+
+async function fetchTweets() {
+  const response = await fetch(url);
+  const result = await response.json();
+
+  // setTimeout(() => {
+  //   data.set(JSON.parse(result.result));
+  //   loading.set(false);
+  // }, 1000);
+}
+
+fetchTweets();
+
 export const todayDate = writable(new Date());
 
-export const tweets = derived(searchTerm, ($searchTerm) =>
-  getTweets(data, $searchTerm)
+export const tweets = derived([data, searchTerm], ([$data, $searchTerm]) =>
+  getTweets($data, $searchTerm)
 );
 
 export const topLevelTweets = derived(tweets, ($tweets) =>

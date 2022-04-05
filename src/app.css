@@ -19,7 +19,7 @@
   }
 
   .nav-rail {
-    @apply absolute z-50 hidden w-4/6 border-r border-r-gray-300 bg-white dark:border-r-gray-700 dark:bg-black xs:static xs:block xs:w-auto xs:pt-4;
+    @apply xs:static xs:block xs:w-auto xs:pt-4 absolute z-50 hidden w-4/6 border-r border-r-gray-300 bg-white dark:border-r-gray-700 dark:bg-black;
     height: 100vh;
     grid-area: sidebar;
   }
@@ -37,7 +37,7 @@
   }
 
   .rail-item {
-    @apply my-2 text-lg text-slate-500 group-hover:text-violet-800 dark:text-gray-500 dark:group-hover:text-violet-300 xs:my-0 xs:mt-2 xs:text-sm;
+    @apply xs:my-0 xs:mt-2 xs:text-sm my-2 text-lg text-slate-500 group-hover:text-violet-800 dark:text-gray-500 dark:group-hover:text-violet-300;
   }
 
   .active-rail-item {
@@ -80,5 +80,10 @@
 
   .selected .tweet-box-child::before {
     @apply bg-gray-300 dark:bg-gray-500;
+  }
+
+  .loading {
+    min-block-size: 100vh;
+    @apply grid place-content-center;
   }
 }
