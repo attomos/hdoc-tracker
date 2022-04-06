@@ -14,10 +14,11 @@ async function fetchTweets() {
   const response = await fetch(url);
   const result = await response.json();
 
-  // setTimeout(() => {
-  //   data.set(JSON.parse(result.result));
-  //   loading.set(false);
-  // }, 1000);
+  // Cloudflare Workers is too fast, need to add some delay here...
+  setTimeout(() => {
+    data.set(JSON.parse(result.result));
+    loading.set(false);
+  }, 1000);
 }
 
 fetchTweets();

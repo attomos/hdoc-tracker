@@ -3,10 +3,11 @@
 
   import ActivityGraph from "../components/ActivityGraph.svelte";
   import Tweets from "../components/Tweets.svelte";
+  import Loading from "../components/Loading.svelte";
 </script>
 
 {#if $loading}
-  <div class="loading">loading...</div>
+  <Loading />
 {:else}
   <ActivityGraph />
   <Tweets />
