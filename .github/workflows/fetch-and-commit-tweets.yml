@@ -5,6 +5,8 @@ name: Python application
 
 on:
   push:
+    paths-ignore:
+    - 'scripts/tweets.json'
     branches: [ main ]
   schedule:
     - cron:  '35 16 * * *'
