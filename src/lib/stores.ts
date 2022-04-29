@@ -1,27 +1,32 @@
-import { derived, writable } from "svelte/store";
+import { derived, writable, get } from "svelte/store";
 import { getTweets } from "./tweetUtils";
-// import data from "../../scripts/tweets.json";
 import type { GroupedTweets, Tweet } from "./types";
 
 export const searchTerm = writable("");
+export const currentRound = writable("1");
 
 export const loading = writable(true);
 const data = writable<GroupedTweets>({});
 
-const url = "https://hdoc-tracker.attomos.workers.dev";
+const url = derived(
+  currentRound,
+  ($currentRound) =>
+    `https://hdoc-tracker.attomos.workers.dev?round=${$currentRound}`
+);
 
 async function fetchTweets() {
-  const response = await fetch(url);
+  loading.set(true);
+  const response = await fetch(get(url));
   const result = await response.json();
 
   // Cloudflare Workers is too fast, need to add some delay here...
   setTimeout(() => {
     data.set(JSON.parse(result.result));
     loading.set(false);
-  }, 1000);
+  }, 300);
 }
 
-fetchTweets();
+url.subscribe(() => fetchTweets());
 
 export const todayDate = writable(new Date());
 
