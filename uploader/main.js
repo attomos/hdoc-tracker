@@ -1,20 +1,13 @@
-require("dotenv").config();
-const Redis = require("ioredis");
-const tweetJson = require("../scripts/tweets.json");
+import dotenv from "dotenv";
+import { Redis } from "@upstash/redis";
+import fs from "fs";
 
-const { REDIS_PASSWORD, REDIS_HOST, REDIS_PORT } = process.env;
+dotenv.config();
 
-let client = new Redis(
-  `redis://:${REDIS_PASSWORD}@${REDIS_HOST}:${REDIS_PORT}`
-);
-client.set("round1", JSON.stringify(tweetJson));
+const redis = Redis.fromEnv();
 
-// client.get("round1", (err, result) => {
-//   if (err) {
-//     console.error(err);
-//   } else {
-//     console.log(result);
-//   }
-// })
-
-client.quit();
+(async function run() {
+  const data = fs.readFileSync("../scripts/tweets.json", "utf-8");
+  const res = redis.set("round1", data);
+  console.log(res);
+})();
