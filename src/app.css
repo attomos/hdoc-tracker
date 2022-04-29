@@ -41,7 +41,7 @@
   }
 
   .active-rail-item {
-    @apply rail-item text-violet-800 dark:text-violet-300;
+    @apply rail-item text-violet-800 dark:text-violet-600;
   }
 
   .grid-item {
@@ -80,5 +80,10 @@
 
   .selected .tweet-box-child::before {
     @apply bg-gray-300 dark:bg-gray-500;
+  }
+
+  .loading {
+    min-block-size: 100%;
+    @apply grid place-content-center;
   }
 }

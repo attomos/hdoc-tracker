@@ -89,3 +89,8 @@ export type ExpandedEntities = {
   demo: ExpandedEntity;
   src: ExpandedEntity;
 };
+
+export type ListBoxItem = {
+  value: string;
+  text: string;
+};

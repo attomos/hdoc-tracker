@@ -13,6 +13,18 @@
   let showSmallSearchInput = false;
   let burgerMenuTabindex = -1;
 
+  // TODO: hard coded for now
+  const rounds = [
+    {
+      value: "1",
+      text: "Round 1",
+    },
+    {
+      value: "2",
+      text: "Round 2",
+    },
+  ];
+
   const DEBOUNCE_DURATION = 100;
 
   const debounce = (e: KeyboardEvent) => {
@@ -67,7 +79,7 @@
 </script>
 
 <nav
-  class="nav-bar grid min-h-[57px] xs:grid-cols-4 {showSmallSearchInput
+  class="nav-bar xs:grid-cols-4 grid min-h-[57px] {showSmallSearchInput
     ? 'grid-cols-1'
     : 'grid-cols-3'} items-center justify-between border-b border-b-gray-300 p-2 px-8 dark:border-b-gray-700"
 >
@@ -82,10 +94,10 @@
       />
     </button>
 
-    <span class="hidden dark:text-white xs:block">
+    <span class="xs:block hidden dark:text-white">
       <a class="decoration-slate-300 hover:underline" href="/">hdoc-tracker</a>
     </span>
-    <span class="hidden dark:text-white xs:block">
+    <span class="xs:block hidden dark:text-white">
       &nbsp;by <a
         class="decoration-slate-300 hover:underline"
         href="https://twitter.com/attomos"
@@ -97,13 +109,13 @@
   <span
     class="justify-self-center dark:text-white {showSmallSearchInput
       ? 'hidden'
-      : 'block xs:hidden'} ">hdoc-tracker</span
+      : 'xs:hidden block'} ">hdoc-tracker</span
   >
 
   <div
     class=" col-span-2  justify-center {showSmallSearchInput
-      ? 'flex xs:flex'
-      : 'hidden xs:flex'}"
+      ? 'xs:flex flex'
+      : 'xs:flex hidden'}"
   >
     <div class="relative {showSmallSearchInput ? 'w-full' : 'w-3/5 pl-4'}">
       <span
@@ -137,14 +149,14 @@
   </div>
 
   <button
-    class="block cursor-pointer justify-self-end rounded-md outline-none focus-visible:ring-2 focus-visible:ring-purple-400 dark:focus-visible:ring-violet-600 xs:hidden"
+    class="xs:hidden block cursor-pointer justify-self-end rounded-md outline-none focus-visible:ring-2 focus-visible:ring-purple-400 dark:focus-visible:ring-violet-600"
     class:hidden={showSmallSearchInput}
     on:click={toggleSmallSearchInput}
     ><SearchIcon className="dark:stroke-white" /></button
   >
 
-  <div class="hidden items-center justify-end gap-5 xs:flex">
+  <div class="xs:flex hidden items-center justify-end gap-5">
     <ThemeToggle />
-    <ListBox />
+    <ListBox data={rounds} />
   </div>
 </nav>
