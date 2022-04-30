@@ -34,27 +34,29 @@
 <div class="nav-rail " use:clickOutside on:clickOutside={closeNavMenu}>
   <div>
     <div
-      class="xs:hidden h-[57px] border-b border-b-gray-300 pt-4 dark:border-b-gray-700"
+      class="h-[57px] border-b border-b-gray-300 pt-4 dark:border-b-gray-700 xs:hidden"
     >
       <button
-        class="xs:mx-auto ml-8 mb-8 flex content-center rounded-md outline-none focus-visible:ring-2 focus-visible:ring-purple-400 dark:focus-visible:ring-violet-600"
+        class="ml-8 mb-8 flex content-center rounded-md outline-none focus-visible:ring-2 focus-visible:ring-purple-400 dark:focus-visible:ring-violet-600 xs:mx-auto"
         on:click={closeNavMenu}
       >
         <CloseIcon />
       </button>
     </div>
     <NavigationRailLink to="/" on:click={closeNavMenu}>
-      <HomeIcon active={homeActive} />
+      <HomeIcon className={homeActive ? "active-rail-icon" : "rail-icon"} />
       <div class:active-rail-item={homeActive} class="rail-item">Home</div>
     </NavigationRailLink>
     <NavigationRailLink to="about" on:click={closeNavMenu}>
-      <AboutIcon active={aboutActive} />
+      <AboutIcon className={aboutActive ? "active-rail-icon" : "rail-icon"} />
       <span class:active-rail-item={aboutActive} class="rail-item">
         About
       </span>
     </NavigationRailLink>
     <NavigationRailLink to="settings" on:click={closeNavMenu}>
-      <SettingsIcon active={settingsActive} />
+      <SettingsIcon
+        className={settingsActive ? "active-rail-icon" : "rail-icon"}
+      />
       <span class:active-rail-item={settingsActive} class="rail-item">
         Settings
       </span>
@@ -62,7 +64,7 @@
   </div>
 
   <div class="h-1/3">
-    <div class="xs:hidden flex flex-col gap-8 p-3">
+    <div class="flex flex-col gap-8 p-3 xs:hidden">
       <ThemeToggle />
       <ListBox />
     </div>

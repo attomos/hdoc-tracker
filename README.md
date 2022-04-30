@@ -1,4 +1,4 @@
-# hdoc-tracker [21/47]
+# hdoc-tracker [25/47]
 
 ## TODO
 
@@ -31,7 +31,7 @@
 - [x] Search functionality
 - [x] dark mode
 - [-] adaptive SVG favicon
-- [ ] SVG className instead of other state prop
+- [x] SVG className instead of other state prop
 - [ ] performance measurement
   - [ ] get_tweets time taken (incremental fetch already?)
   - [ ] Lighthouse Mobile score
@@ -39,9 +39,9 @@
 - [ ] performance improvements
 - [ ] about page with Mermaid https://www.youtube.com/watch?v=6TiIrJf63Xs
 - [ ] support for new rounds (backend)
-  - [ ] folder-based?
-  - [ ] Filter by round
-  - [ ] need an API for new rounds (or for the sake of learning 😏)
+  - [x] folder-based? nope
+  - [x] Filter by round
+  - [x] need an API for new rounds (or for the sake of learning 😏)
 - [ ] support for new rounds (UI)
 - [ ] more entity support
   - [ ] npm

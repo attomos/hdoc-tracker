@@ -24,6 +24,14 @@
     grid-area: sidebar;
   }
 
+  .active-rail-icon {
+    @apply stroke-violet-800 dark:stroke-violet-400;
+  }
+
+  .rail-icon {
+    @apply stroke-gray-400 group-hover:stroke-violet-800 dark:stroke-gray-500 dark:group-hover:stroke-violet-400;
+  }
+
   @media (min-width: 840px) {
     .nav-rail {
       height: calc(100vh - 59px);
