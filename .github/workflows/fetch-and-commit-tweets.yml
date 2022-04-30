@@ -11,6 +11,8 @@ on:
 jobs:
   fetch-and-commit-tweets:
     runs-on: ubuntu-latest
+    env:
+      workdir: ./scripts
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python 3.10
@@ -18,18 +20,18 @@ jobs:
       with:
         python-version: "3.10"
     - name: Install dependencies
-      working-directory: ./scripts
+      working-directory: ${{ env.workdir }}
       run: |
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
         if [ -f requirements-dev.txt ]; then pip install -r requirements-dev.txt; fi
         pip install -e .
     - name: Test with pytest
-      working-directory: ./scripts
+      working-directory: ${{ env.workdir }}
       run: |
         pytest --cov=hdoc_tracker --cov-report html tests
     - name: Fetch new tweets and push changes to GitHub
-      working-directory: ./scripts
+      working-directory: ${{ env.workdir }}
       run: |
         python hdoc_tracker/get_tweets.py
         python hdoc_tracker/commit_new_tweets.py
@@ -40,6 +42,8 @@ jobs:
   upload-tweets-to-upstash:
     needs: fetch-and-commit-tweets
     runs-on: ubuntu-latest
+    env:
+      workdir: ./uploader
     steps:
     - uses: actions/checkout@v2
     - name: Set up node 16
@@ -47,11 +51,11 @@ jobs:
       with:
         node-version: '16.x'
     - name: Install dependencies
-      working-directory: ./uploader
+      working-directory: ${{ env.workdir }}
       run: |
         yarn
     - name: upload data to upstash
-      working-directory: ./uploader
+      working-directory: ${{ env.workdir }}
       run: |
         yarn upstash
       env:
