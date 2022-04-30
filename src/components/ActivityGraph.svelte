@@ -13,7 +13,29 @@
   import { getFillColor } from "../lib/styleUtils";
   import { computeStreaks, getTweetsLookupDict } from "../lib/tweetUtils";
 
-  const tweetsLookup = getTweetsLookupDict($tweets);
+  let tweetsLookup;
+  let tweetDates: string[];
+  let weeks;
+
+  tweets.subscribe(() => {
+    tweetsLookup = getTweetsLookupDict($tweets);
+
+    tweetDates = Object.keys(tweetsLookup);
+    const weeksForThisRound = getWeeksForThisRound(tweetDates);
+
+    if (weeksForThisRound.length > 0) {
+      weeks = weeksForThisRound.map((week) => {
+        return week.map((date) => {
+          return {
+            date,
+            count: tweetsLookup[date]?.length || 0,
+            month: getMonthString(date),
+          };
+        });
+      });
+    }
+  });
+
   const daysCount = Object.keys(tweetsLookup)
     .map((key) => {
       return tweetsLookup[key].filter((tweet: Tweet) => {
@@ -29,17 +51,6 @@
     tweetsLookup,
     todayDate
   );
-
-  const tweetDates = Object.keys(tweetsLookup);
-  const weeks = getWeeksForThisRound(tweetDates).map((week) => {
-    return week.map((date) => {
-      return {
-        date,
-        count: tweetsLookup[date]?.length || 0,
-        month: getMonthString(date),
-      };
-    });
-  });
 
   const GAP = 3;
   const RECT_W = 10;
@@ -187,7 +198,7 @@
       {/each}
     </svg>
 
-    <div class="xs:gap-x-16 mx-auto mt-4 flex gap-x-8 px-2">
+    <div class="mx-auto mt-4 flex gap-x-8 px-2 xs:gap-x-16">
       <div>
         <span class="font-bold">Total days:</span>
         {daysCount}

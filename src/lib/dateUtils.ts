@@ -91,10 +91,9 @@ export function getWeeksForThisRound(tweetDates: string[]) {
     weekStartsOn: 1,
   })(startOfYear(firstDate));
 
-  // assuming each round tooks <= 4 months
+  // assuming each round took <= 4 months
   // TODO: take tweets data into account, doing Math.max(tweet_max_date, firstDate+4month)
   const fourMonthFromFirstDate = add({ months: 4 })(firstDate);
-  console.log(fourMonthFromFirstDate);
 
   const lastSundayOfCalendar = endOfWeekWithOptions({
     weekStartsOn: 1,
