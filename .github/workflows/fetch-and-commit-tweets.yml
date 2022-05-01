@@ -6,7 +6,7 @@ on:
     - 'scripts/tweets.json'
     branches: [ main ]
   schedule:
-    - cron: '35 16 * * *'
+    - cron: '35 16,17 * * *'
 
 jobs:
   fetch-commit-and-upload-tweets:
