@@ -1,4 +1,4 @@
-# hdoc-tracker [25/47]
+# hdoc-tracker [25/50]
 
 ## TODO
 
@@ -43,6 +43,9 @@
   - [x] Filter by round
   - [x] need an API for new rounds (or for the sake of learning 😏)
 - [ ] support for new rounds (UI)
+- [ ] new data storage design
+  - [ ] where to keep the backend state (everything in upstash?)
+  - [ ] data backup (S3 or some storage service)
 - [ ] more entity support
   - [ ] npm
   - [ ] pypi
