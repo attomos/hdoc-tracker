@@ -1,15 +1,21 @@
-from collections import OrderedDict
+import json
+from math import floor
 import re
-from typing import Dict, List, Match
+from collections import OrderedDict
+from pathlib import Path
+from typing import Any, Dict, List, Match
 from typing import OrderedDict as OD
 
 from hdoc_tracker.patterns import (
     DEMO_PATTERN,
     HDOC_PATTERN,
     MODERN_HDOC_PATTERN,
-    PatternConfig,
     SRC_PATTERN,
+    PatternConfig,
 )
+
+
+STATS_PATH = Path("./stats.json")
 
 
 def build_entities(pc: PatternConfig, m: Match):
@@ -69,3 +75,21 @@ def group_tweets(tweets) -> OD:
     for key in sorted(grouped_tweets.keys(), reverse=True):
         grouped_tweets.move_to_end(key)
     return grouped_tweets
+
+
+def load_stats():
+    if STATS_PATH.exists():
+        return json.loads(STATS_PATH.read_text())
+
+    return {}
+
+
+def update_stats(new_stats: str):
+    STATS_PATH.write_text(new_stats)
+
+
+def get_recent_index(arr: List[Any]):
+    idx = floor(len(arr) * 0.7)
+    if idx < len(arr):
+        return idx
+    return -1

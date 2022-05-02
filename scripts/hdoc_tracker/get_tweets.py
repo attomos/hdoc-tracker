@@ -1,15 +1,26 @@
 import json
 import os
 from pathlib import Path
-from typing import Dict, List
+from timeit import default_timer as timer
+from typing import Dict, List, Tuple
 
-from dotenv import load_dotenv
 import requests
+from dotenv import load_dotenv
+from prettytable import PrettyTable, MARKDOWN
 
-from hdoc_tracker.utils import add_extra_entities_to_tweets, group_tweets
+
+from hdoc_tracker.utils import (
+    add_extra_entities_to_tweets,
+    get_recent_index,
+    group_tweets,
+    load_stats,
+    update_stats,
+)
 
 load_dotenv()
 BEARER_TOKEN = os.getenv("BEARER_TOKEN", "")
+
+DEFAULT_START_TIME = "2022-01-01T00:00:00Z"
 
 
 def make_request(url, headers, payload, hashtags_filter: List[str] = []) -> Dict:
@@ -35,15 +46,21 @@ def make_request(url, headers, payload, hashtags_filter: List[str] = []) -> Dict
     return json_response
 
 
-def get_tweets() -> Dict:
-    # TODO: use since_id
-    # TODO: remove hard-coded start_time
+def get_tweets(previous_stats: Dict) -> Tuple[Dict, Dict]:
+    stats = {"total_tweets_count": 0}
+    total_tweets_count = 0
+
     payload = {
         "tweet.fields": "conversation_id,created_at,entities,public_metrics,author_id",
         "max_results": 100,
         "exclude": "retweets",
-        "start_time": "2022-01-01T00:00:00Z",
     }
+
+    if "since_id" in previous_stats:
+        payload["since_id"] = previous_stats["since_id"]
+
+    if "start_time" in previous_stats:
+        payload["start_time"] = previous_stats["start_time"]
 
     headers = {
         "Authorization": f"Bearer {BEARER_TOKEN}",
@@ -60,6 +77,7 @@ def get_tweets() -> Dict:
     data: Dict[str, List] = {"data": []}
     data["data"] += response["data"]
     print(len(response["data"]))
+    total_tweets_count += len(response["data"])
     next_token = response.get("meta", {}).get("next_token", "")
     while next_token:
         payload["pagination_token"] = next_token
@@ -68,17 +86,36 @@ def get_tweets() -> Dict:
         response = make_request(url, headers, payload, HASHTAGS_FILTER)
         data["data"] += response["data"]
         print(len(response["data"]))
+        total_tweets_count += len(response["data"])
         next_token = response.get("meta", {}).get("next_token", "")
 
-    return data
+    stats["total_tweets_count"] = total_tweets_count
+    return data, stats
 
 
 def main():
-    tweets = get_tweets()
+    start = timer()
+    previous_stats = {"start_time": DEFAULT_START_TIME, **load_stats()}
+    tweets, new_stats = get_tweets(previous_stats)
     tweets = add_extra_entities_to_tweets(tweets)
     grouped_tweets = group_tweets(tweets)
     out_path = Path("tweets.json")
     out_path.write_text(json.dumps(grouped_tweets))
+    end = timer()
+    new_stats["time_taken"] = end - start
+    conversation_ids = sorted(
+        [tweet.get("conversation_id") for tweet in tweets.get("data", [])]
+    )
+    recent_index = get_recent_index(conversation_ids)
+    recent_conversation_id = conversation_ids[recent_index]
+    new_stats["since_id"] = recent_conversation_id
+    pt = PrettyTable()
+    pt.set_style(MARKDOWN)
+    pt.field_names = ["field", "data"]
+    for k, v in new_stats.items():
+        pt.add_row([k, v])
+    print(pt)
+    update_stats(json.dumps(new_stats))
 
 
 if __name__ == "__main__":

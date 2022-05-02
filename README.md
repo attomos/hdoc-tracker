@@ -67,6 +67,8 @@
   - https://github.com/facebook/jest/issues/2234#issuecomment-731451275
 - crop PNG
   - https://www.iloveimg.com/crop-image/crop-png
+- PyGithub update multiple files
+  - https://github.com/PyGithub/PyGithub/issues/1628#issuecomment-671173979
 
 ## layout resource, inspirations
 
@@ -75,15 +77,15 @@
 
 ## design
 
-### data to keep in stats file
+### data to keep in stats file (sample)
 
 | field                  | data                                |
 | ---------------------- | ----------------------------------- |
 | since_id               | 1234567 (loaded from metadata file) |
-| round                  | N/A                                 |
-| elapsed time           | 81.3%                               |
 | total tweets count     | 300                                 |
-| tweets count per round | 120                                 |
+| tweets count (round 1) | 120                                 |
+| tweets count (round 2) | 180                                 |
+| elapsed time (seconds) | 3.33                                |
 
 ### daily run (fetch only recent tweets, controlled by since_id)
 

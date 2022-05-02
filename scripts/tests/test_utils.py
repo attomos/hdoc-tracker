@@ -7,6 +7,7 @@ from hdoc_tracker.patterns import (
 from hdoc_tracker.utils import (
     add_extra_entities_to_tweets,
     get_extra_entities,
+    get_recent_index,
     group_tweets,
 )
 
@@ -376,3 +377,25 @@ def test_group_tweets_with_conversation_and_wrong_order():
             }
         ],
     }
+
+
+def test_get_recent_index():
+    arr = []
+    idx = get_recent_index(arr)
+    assert idx == -1
+
+    arr = [1]
+    idx = get_recent_index(arr)
+    assert idx == 0
+
+    arr = [1, 2]
+    idx = get_recent_index(arr)
+    assert idx == 1
+
+    arr = [1, 2, 3]
+    idx = get_recent_index(arr)
+    assert idx == 2
+
+    arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    idx = get_recent_index(arr)
+    assert idx == 7
