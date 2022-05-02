@@ -1,4 +1,4 @@
-# hdoc-tracker [25/50]
+# hdoc-tracker [25/54]
 
 ## TODO
 
@@ -43,6 +43,9 @@
   - [x] Filter by round
   - [x] need an API for new rounds (or for the sake of learning 😏)
 - [ ] support for new rounds (UI)
+- [ ] put more context in automatic commits
+  - [ ] time taken
+  - [ ] pretty stats table (probably better add a comment in each automatic tweet)
 - [ ] new data storage design
   - [ ] where to keep the backend state (everything in upstash?)
   - [ ] data backup (S3 or some storage service)
@@ -56,6 +59,7 @@
 
 - [x] time zone bug in `formatTwitterDate` function
 - [x] no streaks, but display the most recent streak instead
+- [ ] compare_tweets bug (counting number of tweets has some issues, e.g., what about replies tweets)
 
 ## useful resources
 
@@ -68,3 +72,36 @@
 
 - grid layout with side navigation rails
   - https://developer.chrome.com/
+
+## design
+
+### data to keep in stats file
+
+| field                  | data                                |
+| ---------------------- | ----------------------------------- |
+| since_id               | 1234567 (loaded from metadata file) |
+| round                  | N/A                                 |
+| elapsed time           | 81.3%                               |
+| total tweets count     | 300                                 |
+| tweets count per round | 120                                 |
+
+### daily run (fetch only recent tweets, controlled by since_id)
+
+```mermaid
+graph TD
+    S0[Daily run] --> A1
+    S1[manual or weekly run] -->|pass start_time parameter| A
+    A1(Determine where should the script start fetching tweets) --> D1{stats file exists}
+    D1 -->|does not exist| F1(run script without since_id)
+    D1 -->|exists| F2(run script with since_id)
+    F1 --> A
+    F2 --> A
+    subgraph get_tweets.py
+    A(Fetch tweets from Twitter API) --> B(Extract metadata)
+    B --> B2(group tweets by #100DaysOfCode round)
+    B2 --> B3(group tweets by conversion_id)
+    B3 --> B4(write the results to files)
+    end
+    B4 --> U1(push changes to GitHub)
+    U1 --> U2(upload data to Upstash)
+```
