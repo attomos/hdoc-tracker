@@ -32,7 +32,13 @@ def build_entities(pc: PatternConfig, m: Match):
     if pc.optional_flag and pc.optional_flag_position:
         flag = bool(m.group(pc.optional_flag_position))
         entities[pc.optional_flag] = flag
-    return {f"{pc.key.value}_list": [entities]}
+    if pc.details:
+        for detail_key, detail_type, detail_index in pc.details:
+            if detail_type == "int":
+                entities[detail_key] = int(m.group(detail_index))
+            else:
+                entities[detail_key] = m.group(detail_index)
+    return {f"{key}_list": [entities]}
 
 
 def get_extra_entities(pc: PatternConfig, text: str):
@@ -61,7 +67,7 @@ def add_extra_entities_to_tweets(tweets) -> Dict:
     return tweets
 
 
-def group_tweets(tweets) -> OD:
+def group_tweets_by_conversation_id(tweets) -> OD:
     grouped_tweets: OD[int, List] = OrderedDict(
         {t["conversation_id"]: [] for t in tweets["data"]}
     )
@@ -93,3 +99,9 @@ def get_recent_index(arr: List[Any]):
     if idx < len(arr):
         return idx
     return -1
+
+
+if __name__ == "__main__":
+    text = "R2D1 #100DaysOfCode"
+    modern_hdoc_day = get_extra_entities(MODERN_HDOC_PATTERN, text)
+    print(modern_hdoc_day)
