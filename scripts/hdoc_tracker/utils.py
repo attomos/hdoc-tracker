@@ -1,7 +1,7 @@
 import json
 from math import floor
 import re
-from collections import OrderedDict
+from collections import OrderedDict, defaultdict
 from pathlib import Path
 from typing import Any, Dict, List, Match
 from typing import OrderedDict as OD
@@ -81,6 +81,17 @@ def group_tweets_by_conversation_id(tweets) -> OD:
     for key in sorted(grouped_tweets.keys(), reverse=True):
         grouped_tweets.move_to_end(key)
     return grouped_tweets
+
+
+def group_tweets_by_round(conversations: Dict[str, List[Any]]):
+    dd = defaultdict(list)
+    for conversation, tweets in conversations.items():
+        if len(tweets) > 0:
+            day_list = tweets[0].get("entities", {}).get("day_list", [])
+            if len(day_list) != 0:
+                round_value = day_list[0].get("round_value", 1)
+                dd[f"round{round_value}"].append(conversation)
+    return dd
 
 
 def load_stats():

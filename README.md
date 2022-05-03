@@ -100,8 +100,8 @@ graph TD
     F2 --> A
     subgraph get_tweets.py
     A(Fetch tweets from Twitter API) --> B(Extract metadata)
-    B --> B2(group tweets by #100DaysOfCode round)
-    B2 --> B3(for each round, group tweets by conversion_id)
+    B --> B2(group tweets by conversation_id)
+    B2 --> B3(group tweets by round)
     B3 --> B4(write the results to files)
     end
     B4 --> U1(push changes to GitHub)

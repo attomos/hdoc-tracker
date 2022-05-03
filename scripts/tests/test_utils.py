@@ -9,6 +9,7 @@ from hdoc_tracker.utils import (
     get_extra_entities,
     get_recent_index,
     group_tweets_by_conversation_id,
+    group_tweets_by_round,
 )
 
 
@@ -572,6 +573,76 @@ def test_group_tweets_with_mixed_rounds():
             },
         ],
     }
+
+
+def test_group_tweets_by_round():
+    tweets = {
+        "data": [
+            {
+                "id": 4,
+                "conversation_id": 3,
+                "text": "#100DaysOfCode\nadd more details to this R2D1",
+            },
+            {
+                "id": 3,
+                "conversation_id": 3,
+                "text": "R2D1 #100DaysOfCode\nlearn web security basics\nsrc: https://github.com/attomos/web-security-101\ndemo: https://websec-attomos.vercel.app",
+                "entities": {
+                    "hashtags": [
+                        {
+                            "start": 5,
+                            "end": 19,
+                            "tag": "100DaysOfCode",
+                        }
+                    ],
+                    "day_list": [
+                        {
+                            "day": "R2D1",
+                            "start": 0,
+                            "end": 4,
+                            "round_value": 2,
+                            "day_value": 1,
+                        }
+                    ],
+                    "src_list": [
+                        {
+                            "src": "https://github.com/attomos/web-security-101",
+                            "start": 51,
+                            "fixed": False,
+                            "end": 94,
+                        }
+                    ],
+                    "demo_list": [
+                        {
+                            "demo": "https://websec-attomos.vercel.app",
+                            "start": 101,
+                            "fixed": False,
+                            "end": 134,
+                        }
+                    ],
+                },
+            },
+            {
+                "id": 2,
+                "conversation_id": 1,
+                "text": "#100DaysOfCode\n add more details on day 100 :wink:",
+            },
+            {
+                "id": 1,
+                "conversation_id": 1,
+                "text": "day 100 of #100DaysOfCode blah blah",
+                "entities": {"day_list": [{"day": "day 100", "start": 0, "end": 7}]},
+            },
+        ]
+    }
+    gt0 = group_tweets_by_conversation_id(tweets)
+    gt1 = group_tweets_by_round(gt0)
+    assert gt1 == {"round2": [3], "round1": [1]}
+    # TODO: to be continued
+    # print(gt0)
+    # for round, conversation_ids in gt1.items():
+    #     print(round)
+    #     print({k: v for k, v in gt0.items() if k in conversation_ids})
 
 
 def test_get_recent_index():
