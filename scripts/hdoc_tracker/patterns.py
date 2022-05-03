@@ -1,7 +1,7 @@
 import re
 from dataclasses import dataclass
 from enum import Enum
-from typing import Pattern
+from typing import List, Pattern, Tuple
 
 
 class PatternKey(Enum):
@@ -19,6 +19,7 @@ class PatternConfig:
     target_group_position: int
     optional_flag: (str | None) = None
     optional_flag_position: (int | None) = None
+    details: (List[Tuple[str, str, int]] | None) = None
 
 
 HDOC_PATTERN = PatternConfig(
@@ -29,9 +30,10 @@ HDOC_PATTERN = PatternConfig(
 )
 MODERN_HDOC_PATTERN = PatternConfig(
     key=PatternKey.modern_day,
-    pattern=re.compile(r"((R\d{1,})(D\d{1,3})) #100DaysOfCode"),
-    expected_groups_len=3,
+    pattern=re.compile(r"((R(\d{1,}))(D(\d{1,3}))) #100DaysOfCode"),
+    expected_groups_len=5,
     target_group_position=1,
+    details=[("round_value", "int", 3), ("day_value", "int", 5)],
 )
 DEMO_PATTERN = PatternConfig(
     key=PatternKey.demo,

@@ -12,7 +12,7 @@ from prettytable import PrettyTable, MARKDOWN
 from hdoc_tracker.utils import (
     add_extra_entities_to_tweets,
     get_recent_index,
-    group_tweets,
+    group_tweets_by_conversation_id,
     load_stats,
     update_stats,
 )
@@ -20,6 +20,9 @@ from hdoc_tracker.utils import (
 load_dotenv()
 BEARER_TOKEN = os.getenv("BEARER_TOKEN", "")
 
+# my first round of #100DaysOfCode, probably YAGNI because since_id
+# but cannot underestimate people with 300k++ tweets in case I want to support
+# another user as well
 DEFAULT_START_TIME = "2022-01-01T00:00:00Z"
 
 
@@ -98,7 +101,7 @@ def main():
     previous_stats = {"start_time": DEFAULT_START_TIME, **load_stats()}
     tweets, new_stats = get_tweets(previous_stats)
     tweets = add_extra_entities_to_tweets(tweets)
-    grouped_tweets = group_tweets(tweets)
+    grouped_tweets = group_tweets_by_conversation_id(tweets)
     out_path = Path("tweets.json")
     out_path.write_text(json.dumps(grouped_tweets))
     end = timer()

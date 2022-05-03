@@ -8,7 +8,7 @@ from hdoc_tracker.utils import (
     add_extra_entities_to_tweets,
     get_extra_entities,
     get_recent_index,
-    group_tweets,
+    group_tweets_by_conversation_id,
 )
 
 
@@ -92,13 +92,41 @@ def test_original_hdoc_entites():
 def test_modern_hdoc_entites():
     pattern = MODERN_HDOC_PATTERN
     entities = get_extra_entities(pattern, "R1D1 #100DaysOfCode")
-    assert entities == {"modern_day_list": [{"day": "R1D1", "start": 0, "end": 4}]}
+    assert entities == {
+        "day_list": [
+            {"day": "R1D1", "start": 0, "end": 4, "round_value": 1, "day_value": 1}
+        ]
+    }
     entities = get_extra_entities(pattern, "R2D10 #100DaysOfCode")
-    assert entities == {"modern_day_list": [{"day": "R2D10", "start": 0, "end": 5}]}
+    assert entities == {
+        "day_list": [
+            {"day": "R2D10", "start": 0, "end": 5, "round_value": 2, "day_value": 10}
+        ]
+    }
     entities = get_extra_entities(pattern, "R20D100 #100DaysOfCode")
-    assert entities == {"modern_day_list": [{"day": "R20D100", "start": 0, "end": 7}]}
+    assert entities == {
+        "day_list": [
+            {
+                "day": "R20D100",
+                "start": 0,
+                "end": 7,
+                "round_value": 20,
+                "day_value": 100,
+            }
+        ]
+    }
     entities = get_extra_entities(pattern, "R200D100 #100DaysOfCode")
-    assert entities == {"modern_day_list": [{"day": "R200D100", "start": 0, "end": 8}]}
+    assert entities == {
+        "day_list": [
+            {
+                "day": "R200D100",
+                "start": 0,
+                "end": 8,
+                "round_value": 200,
+                "day_value": 100,
+            }
+        ]
+    }
     entities = get_extra_entities(pattern, "d1 of #100DaysOfCode")
     assert not entities
     entities = get_extra_entities(pattern, "day 1 of #100DaysOfCode")
@@ -169,7 +197,15 @@ def test_add_extra_entities_to_tweets():
                 "text": "R2D1 #100DaysOfCode\nlearn web security basics\nsrc: https://github.com/attomos/web-security-101\ndemo: https://websec-attomos.vercel.app",
                 "entities": {
                     "hashtags": [{"start": 5, "end": 19, "tag": "100DaysOfCode"}],
-                    "modern_day_list": [{"day": "R2D1", "start": 0, "end": 4}],
+                    "day_list": [
+                        {
+                            "day": "R2D1",
+                            "start": 0,
+                            "end": 4,
+                            "round_value": 2,
+                            "day_value": 1,
+                        }
+                    ],
                     "src_list": [
                         {
                             "src": "https://github.com/attomos/web-security-101",
@@ -201,7 +237,7 @@ def test_group_tweets_with_no_conversation():
                 "text": "R2D2 #100DaysOfCode\nContinue learning websec ;)",
                 "entities": {
                     "hashtags": [{"start": 5, "end": 19, "tag": "100DaysOfCode"}],
-                    "modern_day_list": [{"day": "R2D2", "start": 0, "end": 4}],
+                    "day_list": [{"day": "R2D2", "start": 0, "end": 4}],
                 },
             },
             {
@@ -210,7 +246,7 @@ def test_group_tweets_with_no_conversation():
                 "text": "R2D1 #100DaysOfCode\nlearn web security basics\nsrc: https://github.com/attomos/web-security-101\ndemo: https://websec-attomos.vercel.app",
                 "entities": {
                     "hashtags": [{"start": 5, "end": 19, "tag": "100DaysOfCode"}],
-                    "modern_day_list": [{"day": "R2D1", "start": 0, "end": 4}],
+                    "day_list": [{"day": "R2D1", "start": 0, "end": 4}],
                     "src_list": [
                         {
                             "src": "https://github.com/attomos/web-security-101",
@@ -231,7 +267,47 @@ def test_group_tweets_with_no_conversation():
             },
         ]
     }
-    grouped_tweets = group_tweets(tweets)
+    grouped_tweets = group_tweets_by_conversation_id(tweets)
+    assert grouped_tweets == {
+        2: [
+            {
+                "id": 2,
+                "conversation_id": 2,
+                "text": "R2D2 #100DaysOfCode\nContinue learning websec ;)",
+                "entities": {
+                    "hashtags": [{"start": 5, "end": 19, "tag": "100DaysOfCode"}],
+                    "day_list": [{"day": "R2D2", "start": 0, "end": 4}],
+                },
+            }
+        ],
+        1: [
+            {
+                "id": 1,
+                "conversation_id": 1,
+                "text": "R2D1 #100DaysOfCode\nlearn web security basics\nsrc: https://github.com/attomos/web-security-101\ndemo: https://websec-attomos.vercel.app",
+                "entities": {
+                    "hashtags": [{"start": 5, "end": 19, "tag": "100DaysOfCode"}],
+                    "day_list": [{"day": "R2D1", "start": 0, "end": 4}],
+                    "src_list": [
+                        {
+                            "src": "https://github.com/attomos/web-security-101",
+                            "start": 51,
+                            "fixed": False,
+                            "end": 94,
+                        }
+                    ],
+                    "demo_list": [
+                        {
+                            "demo": "https://websec-attomos.vercel.app",
+                            "start": 101,
+                            "fixed": False,
+                            "end": 134,
+                        }
+                    ],
+                },
+            },
+        ],
+    }
 
 
 def test_group_tweets_with_conversation():
@@ -249,7 +325,7 @@ def test_group_tweets_with_conversation():
                 "text": "R2D1 #100DaysOfCode\nlearn web security basics\nsrc: https://github.com/attomos/web-security-101\ndemo: https://websec-attomos.vercel.app",
                 "entities": {
                     "hashtags": [{"start": 5, "end": 19, "tag": "100DaysOfCode"}],
-                    "modern_day_list": [{"day": "R2D1", "start": 0, "end": 4}],
+                    "day_list": [{"day": "R2D1", "start": 0, "end": 4}],
                     "src_list": [
                         {
                             "src": "https://github.com/attomos/web-security-101",
@@ -270,7 +346,7 @@ def test_group_tweets_with_conversation():
             },
         ]
     }
-    grouped_tweets = group_tweets(tweets)
+    grouped_tweets = group_tweets_by_conversation_id(tweets)
     assert grouped_tweets == {
         2: [
             {
@@ -287,7 +363,7 @@ def test_group_tweets_with_conversation():
                 "text": "R2D1 #100DaysOfCode\nlearn web security basics\nsrc: https://github.com/attomos/web-security-101\ndemo: https://websec-attomos.vercel.app",
                 "entities": {
                     "hashtags": [{"start": 5, "end": 19, "tag": "100DaysOfCode"}],
-                    "modern_day_list": [{"day": "R2D1", "start": 0, "end": 4}],
+                    "day_list": [{"day": "R2D1", "start": 0, "end": 4}],
                     "src_list": [
                         {
                             "src": "https://github.com/attomos/web-security-101",
@@ -319,7 +395,15 @@ def test_group_tweets_with_conversation_and_wrong_order():
                 "text": "R2D1 #100DaysOfCode\nlearn web security basics\nsrc: https://github.com/attomos/web-security-101\ndemo: https://websec-attomos.vercel.app",
                 "entities": {
                     "hashtags": [{"start": 5, "end": 19, "tag": "100DaysOfCode"}],
-                    "modern_day_list": [{"day": "R2D1", "start": 0, "end": 4}],
+                    "day_list": [
+                        {
+                            "day": "R2D1",
+                            "start": 0,
+                            "end": 4,
+                            "round_value": 2,
+                            "day_value": 1,
+                        }
+                    ],
                     "src_list": [
                         {
                             "src": "https://github.com/attomos/web-security-101",
@@ -346,8 +430,7 @@ def test_group_tweets_with_conversation_and_wrong_order():
             },
         ]
     }
-    grouped_tweets = group_tweets(tweets)
-    print(grouped_tweets)
+    grouped_tweets = group_tweets_by_conversation_id(tweets)
     assert grouped_tweets == {
         1: [
             {
@@ -356,7 +439,15 @@ def test_group_tweets_with_conversation_and_wrong_order():
                 "text": "R2D1 #100DaysOfCode\nlearn web security basics\nsrc: https://github.com/attomos/web-security-101\ndemo: https://websec-attomos.vercel.app",
                 "entities": {
                     "hashtags": [{"start": 5, "end": 19, "tag": "100DaysOfCode"}],
-                    "modern_day_list": [{"day": "R2D1", "start": 0, "end": 4}],
+                    "day_list": [
+                        {
+                            "day": "R2D1",
+                            "start": 0,
+                            "end": 4,
+                            "round_value": 2,
+                            "day_value": 1,
+                        }
+                    ],
                     "src_list": [
                         {
                             "src": "https://github.com/attomos/web-security-101",
@@ -375,6 +466,110 @@ def test_group_tweets_with_conversation_and_wrong_order():
                     ],
                 },
             }
+        ],
+    }
+
+
+def test_group_tweets_with_mixed_rounds():
+    tweets = {
+        "data": [
+            {
+                "id": 2,
+                "conversation_id": 2,
+                "text": "R2D1 #100DaysOfCode\nlearn web security basics\nsrc: https://github.com/attomos/web-security-101\ndemo: https://websec-attomos.vercel.app",
+                "entities": {
+                    "hashtags": [
+                        {
+                            "start": 5,
+                            "end": 19,
+                            "tag": "100DaysOfCode",
+                        }
+                    ],
+                    "day_list": [
+                        {
+                            "day": "R2D1",
+                            "start": 0,
+                            "end": 4,
+                            "round_value": 2,
+                            "day_value": 1,
+                        }
+                    ],
+                    "src_list": [
+                        {
+                            "src": "https://github.com/attomos/web-security-101",
+                            "start": 51,
+                            "fixed": False,
+                            "end": 94,
+                        }
+                    ],
+                    "demo_list": [
+                        {
+                            "demo": "https://websec-attomos.vercel.app",
+                            "start": 101,
+                            "fixed": False,
+                            "end": 134,
+                        }
+                    ],
+                },
+            },
+            {
+                "id": 1,
+                "conversation_id": 1,
+                "text": "day 100 of #100DaysOfCode blah blah",
+                "entities": {"day_list": [{"day": "day 100", "start": 0, "end": 7}]},
+            },
+        ]
+    }
+    grouped_tweets = group_tweets_by_conversation_id(tweets)
+    assert grouped_tweets == {
+        2: [
+            {
+                "id": 2,
+                "conversation_id": 2,
+                "text": "R2D1 #100DaysOfCode\nlearn web security basics\nsrc: https://github.com/attomos/web-security-101\ndemo: https://websec-attomos.vercel.app",
+                "entities": {
+                    "hashtags": [
+                        {
+                            "start": 5,
+                            "end": 19,
+                            "tag": "100DaysOfCode",
+                        }
+                    ],
+                    "day_list": [
+                        {
+                            "day": "R2D1",
+                            "start": 0,
+                            "end": 4,
+                            "round_value": 2,
+                            "day_value": 1,
+                        }
+                    ],
+                    "src_list": [
+                        {
+                            "src": "https://github.com/attomos/web-security-101",
+                            "start": 51,
+                            "fixed": False,
+                            "end": 94,
+                        }
+                    ],
+                    "demo_list": [
+                        {
+                            "demo": "https://websec-attomos.vercel.app",
+                            "start": 101,
+                            "fixed": False,
+                            "end": 134,
+                        }
+                    ],
+                },
+            }
+        ],
+        1: [
+            {
+                "id": 1,
+                "conversation_id": 1,
+                "text": "day 100 of #100DaysOfCode blah blah",
+                "entities": {"day_list": [{"day": "day 100", "start": 0, "end": 7}]},
+            },
         ],
     }
 
