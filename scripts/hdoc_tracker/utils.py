@@ -1,7 +1,7 @@
 import json
 from math import floor
 import re
-from collections import OrderedDict
+from collections import OrderedDict, defaultdict
 from pathlib import Path
 from typing import Any, Dict, List, Match
 from typing import OrderedDict as OD
@@ -32,7 +32,13 @@ def build_entities(pc: PatternConfig, m: Match):
     if pc.optional_flag and pc.optional_flag_position:
         flag = bool(m.group(pc.optional_flag_position))
         entities[pc.optional_flag] = flag
-    return {f"{pc.key.value}_list": [entities]}
+    if pc.details:
+        for detail_key, detail_type, detail_index in pc.details:
+            if detail_type == "int":
+                entities[detail_key] = int(m.group(detail_index))
+            else:
+                entities[detail_key] = m.group(detail_index)
+    return {f"{key}_list": [entities]}
 
 
 def get_extra_entities(pc: PatternConfig, text: str):
@@ -61,7 +67,7 @@ def add_extra_entities_to_tweets(tweets) -> Dict:
     return tweets
 
 
-def group_tweets(tweets) -> OD:
+def group_tweets_by_conversation_id(tweets) -> OD:
     grouped_tweets: OD[int, List] = OrderedDict(
         {t["conversation_id"]: [] for t in tweets["data"]}
     )
@@ -75,6 +81,17 @@ def group_tweets(tweets) -> OD:
     for key in sorted(grouped_tweets.keys(), reverse=True):
         grouped_tweets.move_to_end(key)
     return grouped_tweets
+
+
+def group_tweets_by_round(conversations: Dict[str, List[Any]]):
+    dd = defaultdict(list)
+    for conversation, tweets in conversations.items():
+        if len(tweets) > 0:
+            day_list = tweets[0].get("entities", {}).get("day_list", [])
+            if len(day_list) != 0:
+                round_value = day_list[0].get("round_value", 1)
+                dd[f"round{round_value}"].append(conversation)
+    return dd
 
 
 def load_stats():
@@ -93,3 +110,9 @@ def get_recent_index(arr: List[Any]):
     if idx < len(arr):
         return idx
     return -1
+
+
+if __name__ == "__main__":
+    text = "R2D1 #100DaysOfCode"
+    modern_hdoc_day = get_extra_entities(MODERN_HDOC_PATTERN, text)
+    print(modern_hdoc_day)
