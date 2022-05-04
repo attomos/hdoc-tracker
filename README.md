@@ -1,4 +1,4 @@
-# hdoc-tracker [26/57]
+# hdoc-tracker [26/61]
 
 ## TODO
 
@@ -43,9 +43,13 @@
   - [x] Filter by round
   - [x] need an API for new rounds (or for the sake of learning 😏)
 - [ ] support for new rounds (UI)
+  - [ ] round selector (that ListBox)
+  - [ ] ListBox could use some CSS and custom div
+  - [ ] routing
 - [ ] data fetching
   - [x] merge tweets
   - [ ] merge tweets unit test
+  - [ ] create a single commit for multiple JSON files update
 - [ ] put more context in automatic commits
   - [ ] time taken
   - [ ] pretty stats table (probably better add a comment in each automatic tweet)
