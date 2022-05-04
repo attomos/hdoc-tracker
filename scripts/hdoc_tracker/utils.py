@@ -95,19 +95,31 @@ def group_tweets_by_round(
     return dd
 
 
-def merge_and_write_tweets(round_name: str, new_data: Dict):
-    path = Path(f"{round_name}.json")
-    new_data_str = json.dumps(new_data)
+def merge_tweets(path: Path, new_data: Dict) -> Dict:
     if path.exists():
         tweets_json = json.loads(path.read_text())
         for key in new_data.keys():
-            tweets_json[key] = new_data[key]
+            updated_tweets = []
+            old_tweets = tweets_json[key]
+            new_tweets = new_data[key]
+            merged_tweets = old_tweets + new_tweets
+            lookup_dict = {}
+            for tweet in merged_tweets:
+                id = tweet.get("id")
+                if id not in lookup_dict:
+                    lookup_dict[id] = tweet
+            all_tweet_ids = [tweet.get("id") for tweet in merged_tweets]
+            sorted_ids = sorted(set(all_tweet_ids))
+            for id in sorted_ids:
+                if id in lookup_dict:
+                    updated_tweets.append(lookup_dict[id])
+            tweets_json[key] = updated_tweets
         od = OrderedDict(tweets_json)
         for key in sorted(od.keys(), reverse=True):
             od.move_to_end(key)
-        path.write_text(json.dumps(od))
+        return od
     else:
-        path.write_text(new_data_str)
+        return new_data
 
 
 def compare_tweets(old_tweets_text, new_tweets_text):

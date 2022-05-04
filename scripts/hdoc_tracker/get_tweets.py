@@ -15,7 +15,7 @@ from hdoc_tracker.utils import (
     group_tweets_by_conversation_id,
     group_tweets_by_round,
     load_stats,
-    merge_and_write_tweets,
+    merge_tweets,
     update_stats,
 )
 
@@ -36,7 +36,7 @@ def make_request(url, headers, payload, hashtags_filter: List[str] = []) -> Dict
 
     json_response = response.json()
     if hashtags_filter:
-        data = json_response["data"]
+        data = json_response.get("data", [])
         filtered_tweets = []
         for tweet in data:
             tags = set(
@@ -107,12 +107,17 @@ def main():
     rounds = group_tweets_by_round(grouped_tweets)
 
     for round, conversation_ids in rounds.items():
-        print(round)
         print(conversation_ids)
         updated_tweets = {
             k: v for k, v in grouped_tweets.items() if k in conversation_ids
         }
-        merge_and_write_tweets(round, updated_tweets)
+        path = Path(f"{round}.json")
+        merged_tweets = merge_tweets(path, updated_tweets)
+        new_stats[f"{round} conversation count"] = len(merged_tweets.keys())
+        t0 = [tweets for _, tweets in merged_tweets.items()]
+        flatten = [item for sublist in t0 for item in sublist]
+        new_stats[f"{round} tweets count"] = len(flatten)
+        path.write_text(json.dumps(merged_tweets))
 
     end = timer()
     new_stats["time_taken"] = end - start
@@ -120,11 +125,17 @@ def main():
         [tweet.get("conversation_id") for tweet in tweets.get("data", [])]
     )
     recent_index = get_recent_index(conversation_ids)
-    recent_conversation_id = conversation_ids[recent_index]
-    new_stats["since_id"] = recent_conversation_id
+    try:
+        recent_conversation_id = conversation_ids[recent_index]
+        new_stats["since_id"] = recent_conversation_id
+    except IndexError as e:
+        print(e)
+        print("possibly up-to-date, no need to update since_id")
     pt = PrettyTable()
     pt.set_style(MARKDOWN)
     pt.field_names = ["field", "data"]
+    if "since_id" in previous_stats:
+        pt.add_row(["previous since_id", previous_stats["since_id"]])
     for k, v in new_stats.items():
         pt.add_row([k, v])
     print(pt)
