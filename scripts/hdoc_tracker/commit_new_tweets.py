@@ -1,27 +1,14 @@
-import json
 import os
 from pathlib import Path
 
 from dotenv import load_dotenv
 from github import ContentFile, Github
 
+from hdoc_tracker.utils import compare_tweets
+
 load_dotenv()
 
 ACCESS_TOKEN = os.getenv("ACCESS_TOKEN")
-
-
-def compare_tweets(old_tweets_text, new_tweets_text):
-    old_json = json.loads(old_tweets_text)
-    new_json = json.loads(new_tweets_text)
-
-    old_count = 0
-    new_count = 0
-    for k, v in old_json.items():
-        old_count += len(v)
-
-    for k, v in new_json.items():
-        new_count += len(v)
-    return old_count == new_count
 
 
 def update_tweets_and_commit(repo_id: str):
