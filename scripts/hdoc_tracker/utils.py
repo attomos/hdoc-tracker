@@ -3,7 +3,7 @@ from math import floor
 import re
 from collections import OrderedDict, defaultdict
 from pathlib import Path
-from typing import Any, Dict, List, Match
+from typing import Any, Dict, List, Match, DefaultDict
 from typing import OrderedDict as OD
 
 from hdoc_tracker.patterns import (
@@ -83,15 +83,45 @@ def group_tweets_by_conversation_id(tweets) -> OD:
     return grouped_tweets
 
 
-def group_tweets_by_round(conversations: Dict[str, List[Any]]):
-    dd = defaultdict(list)
+def group_tweets_by_round(
+    conversations: Dict[str, List[Any]]
+) -> DefaultDict[str, List[str]]:
+    dd: DefaultDict[str, List[str]] = defaultdict(list)
     for conversation, tweets in conversations.items():
         if len(tweets) > 0:
-            day_list = tweets[0].get("entities", {}).get("day_list", [])
-            if len(day_list) != 0:
-                round_value = day_list[0].get("round_value", 1)
-                dd[f"round{round_value}"].append(conversation)
+            day_list = tweets[0].get("entities", {}).get("day_list", [{}])
+            round_value = day_list[0].get("round_value", 1)
+            dd[f"round{round_value}"].append(conversation)
     return dd
+
+
+def merge_and_write_tweets(round_name: str, new_data: Dict):
+    path = Path(f"{round_name}.json")
+    new_data_str = json.dumps(new_data)
+    if path.exists():
+        tweets_json = json.loads(path.read_text())
+        for key in new_data.keys():
+            tweets_json[key] = new_data[key]
+        od = OrderedDict(tweets_json)
+        for key in sorted(od.keys(), reverse=True):
+            od.move_to_end(key)
+        path.write_text(json.dumps(od))
+    else:
+        path.write_text(new_data_str)
+
+
+def compare_tweets(old_tweets_text, new_tweets_text):
+    old_json = json.loads(old_tweets_text)
+    new_json = json.loads(new_tweets_text)
+
+    old_count = 0
+    new_count = 0
+    for k, v in old_json.items():
+        old_count += len(v)
+
+    for k, v in new_json.items():
+        new_count += len(v)
+    return old_count == new_count
 
 
 def load_stats():

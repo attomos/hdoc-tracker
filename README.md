@@ -1,4 +1,4 @@
-# hdoc-tracker [25/54]
+# hdoc-tracker [26/57]
 
 ## TODO
 
@@ -43,6 +43,9 @@
   - [x] Filter by round
   - [x] need an API for new rounds (or for the sake of learning 😏)
 - [ ] support for new rounds (UI)
+- [ ] data fetching
+  - [x] merge tweets
+  - [ ] merge tweets unit test
 - [ ] put more context in automatic commits
   - [ ] time taken
   - [ ] pretty stats table (probably better add a comment in each automatic tweet)

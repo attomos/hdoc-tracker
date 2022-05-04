@@ -13,7 +13,9 @@ from hdoc_tracker.utils import (
     add_extra_entities_to_tweets,
     get_recent_index,
     group_tweets_by_conversation_id,
+    group_tweets_by_round,
     load_stats,
+    merge_and_write_tweets,
     update_stats,
 )
 
@@ -102,8 +104,16 @@ def main():
     tweets, new_stats = get_tweets(previous_stats)
     tweets = add_extra_entities_to_tweets(tweets)
     grouped_tweets = group_tweets_by_conversation_id(tweets)
-    out_path = Path("tweets.json")
-    out_path.write_text(json.dumps(grouped_tweets))
+    rounds = group_tweets_by_round(grouped_tweets)
+
+    for round, conversation_ids in rounds.items():
+        print(round)
+        print(conversation_ids)
+        updated_tweets = {
+            k: v for k, v in grouped_tweets.items() if k in conversation_ids
+        }
+        merge_and_write_tweets(round, updated_tweets)
+
     end = timer()
     new_stats["time_taken"] = end - start
     conversation_ids = sorted(
