@@ -1,4 +1,4 @@
-# hdoc-tracker [26/61]
+# hdoc-tracker [27/61]
 
 ## TODO
 
@@ -48,7 +48,7 @@
   - [ ] routing
 - [ ] data fetching
   - [x] merge tweets
-  - [ ] merge tweets unit test
+  - [x] merge tweets unit test
   - [ ] create a single commit for multiple JSON files update
 - [ ] put more context in automatic commits
   - [ ] time taken
