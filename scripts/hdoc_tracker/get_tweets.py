@@ -112,7 +112,11 @@ def main():
             k: v for k, v in grouped_tweets.items() if k in conversation_ids
         }
         path = Path(f"{round}.json")
-        merged_tweets = merge_tweets(path, updated_tweets)
+        if path.exists():
+            tweets_json = json.loads(path.read_text())
+            merged_tweets = merge_tweets(tweets_json, updated_tweets)
+        else:
+            merged_tweets = updated_tweets
         new_stats[f"{round} conversation count"] = len(merged_tweets.keys())
         t0 = [tweets for _, tweets in merged_tweets.items()]
         flatten = [item for sublist in t0 for item in sublist]

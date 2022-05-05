@@ -95,31 +95,27 @@ def group_tweets_by_round(
     return dd
 
 
-def merge_tweets(path: Path, new_data: Dict) -> Dict:
-    if path.exists():
-        tweets_json = json.loads(path.read_text())
-        for key in new_data.keys():
-            updated_tweets = []
-            old_tweets = tweets_json[key]
-            new_tweets = new_data[key]
-            merged_tweets = old_tweets + new_tweets
-            lookup_dict = {}
-            for tweet in merged_tweets:
-                id = tweet.get("id")
-                if id not in lookup_dict:
-                    lookup_dict[id] = tweet
-            all_tweet_ids = [tweet.get("id") for tweet in merged_tweets]
-            sorted_ids = sorted(set(all_tweet_ids))
-            for id in sorted_ids:
-                if id in lookup_dict:
-                    updated_tweets.append(lookup_dict[id])
-            tweets_json[key] = updated_tweets
-        od = OrderedDict(tweets_json)
-        for key in sorted(od.keys(), reverse=True):
-            od.move_to_end(key)
-        return od
-    else:
-        return new_data
+def merge_tweets(tweets_json: Dict, new_data: Dict) -> Dict:
+    for key in new_data.keys():
+        updated_tweets = []
+        old_tweets = tweets_json.get(key, [])
+        new_tweets = new_data[key]
+        merged_tweets = old_tweets + new_tweets
+        lookup_dict = {}
+        for tweet in merged_tweets:
+            id = tweet.get("id")
+            if id not in lookup_dict:
+                lookup_dict[id] = tweet
+        all_tweet_ids = [tweet.get("id") for tweet in merged_tweets]
+        sorted_ids = sorted(set(all_tweet_ids))
+        for id in sorted_ids:
+            if id in lookup_dict:
+                updated_tweets.append(lookup_dict[id])
+        tweets_json[key] = updated_tweets
+    od = OrderedDict(tweets_json)
+    for key in sorted(od.keys(), reverse=True):
+        od.move_to_end(key)
+    return od
 
 
 def compare_tweets(old_tweets_text, new_tweets_text):
