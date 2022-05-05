@@ -10,6 +10,7 @@ from hdoc_tracker.utils import (
     get_recent_index,
     group_tweets_by_conversation_id,
     group_tweets_by_round,
+    merge_tweets,
 )
 
 
@@ -643,6 +644,169 @@ def test_group_tweets_by_round():
     # for round, conversation_ids in gt1.items():
     #     print(round)
     #     print({k: v for k, v in gt0.items() if k in conversation_ids})
+
+
+def test_merge_tweets():
+    # easy merge
+    old_tweets = {
+        "1": [{"id": "1", "conversation_id": "1", "text": "R2D1 #100DaysOfCode 1/100"}]
+    }
+    new_tweets = {
+        "2": [{"id": "2", "conversation_id": "2", "text": "R2D2 #100DaysOfCode 2/100"}]
+    }
+    merged_tweets = merge_tweets(old_tweets, new_tweets)
+    assert merged_tweets == {
+        "1": [{"id": "1", "conversation_id": "1", "text": "R2D1 #100DaysOfCode 1/100"}],
+        "2": [{"id": "2", "conversation_id": "2", "text": "R2D2 #100DaysOfCode 2/100"}],
+    }
+
+    # still easy, but has replies in each conversation
+    old_tweets = {
+        "1": [
+            {"id": "1", "conversation_id": "1", "text": "R2D1 #100DaysOfCode 1/100"},
+            {
+                "id": "2",
+                "conversation_id": "1",
+                "text": "comment for R2D1 #100DaysOfCode",
+            },
+        ]
+    }
+    new_tweets = {
+        "3": [
+            {"id": "3", "conversation_id": "3", "text": "R2D2 #100DaysOfCode 2/100"},
+            {
+                "id": "4",
+                "conversation_id": "3",
+                "text": "comment for R2D2 #100DaysOfCode",
+            },
+        ]
+    }
+    merged_tweets = merge_tweets(old_tweets, new_tweets)
+    assert merged_tweets == {
+        "1": [
+            {"id": "1", "conversation_id": "1", "text": "R2D1 #100DaysOfCode 1/100"},
+            {
+                "id": "2",
+                "conversation_id": "1",
+                "text": "comment for R2D1 #100DaysOfCode",
+            },
+        ],
+        "3": [
+            {"id": "3", "conversation_id": "3", "text": "R2D2 #100DaysOfCode 2/100"},
+            {
+                "id": "4",
+                "conversation_id": "3",
+                "text": "comment for R2D2 #100DaysOfCode",
+            },
+        ],
+    }
+
+    # one conversation_id, but new_tweets has more replies
+    old_tweets = {
+        "1": [
+            {"id": "1", "conversation_id": "1", "text": "R2D1 #100DaysOfCode 1/100"},
+            {
+                "id": "2",
+                "conversation_id": "1",
+                "text": "comment for R2D1 #100DaysOfCode",
+            },
+        ]
+    }
+    new_tweets = {
+        "1": [
+            {
+                "id": "2",
+                "conversation_id": "1",
+                "text": "comment for R2D1 #100DaysOfCode",
+            },
+            {
+                "id": "3",
+                "conversation_id": "1",
+                "text": "another comment for R2D1 #100DaysOfCode",
+            },
+        ]
+    }
+    merged_tweets = merge_tweets(old_tweets, new_tweets)
+    assert merged_tweets == {
+        "1": [
+            {"id": "1", "conversation_id": "1", "text": "R2D1 #100DaysOfCode 1/100"},
+            {
+                "id": "2",
+                "conversation_id": "1",
+                "text": "comment for R2D1 #100DaysOfCode",
+            },
+            {
+                "id": "3",
+                "conversation_id": "1",
+                "text": "another comment for R2D1 #100DaysOfCode",
+            },
+        ],
+    }
+
+    # mixed conversation_id and new_tweets are not in the correct order
+    old_tweets = {
+        "1": [
+            {"id": "1", "conversation_id": "1", "text": "R2D1 #100DaysOfCode 1/100"},
+            {
+                "id": "2",
+                "conversation_id": "1",
+                "text": "comment for R2D1 #100DaysOfCode",
+            },
+        ],
+        "4": [
+            {"id": "4", "conversation_id": "4", "text": "R2D2 #100DaysOfCode"},
+            {
+                "id": "5",
+                "conversation_id": "4",
+                "text": "comment 1 of R2D2 #100DaysOfCode",
+            },
+        ],
+    }
+    new_tweets = {
+        "1": [
+            {
+                "id": "7",
+                "conversation_id": "1",
+                "text": "more comment for R2D1 #100DaysOfCode",
+            },
+        ],
+        "4": [
+            {
+                "id": "6",
+                "conversation_id": "4",
+                "text": "comment 2 of R2D2 #100DaysOfCode",
+            },
+        ],
+    }
+    merged_tweets = merge_tweets(old_tweets, new_tweets)
+    assert merged_tweets == {
+        "1": [
+            {"id": "1", "conversation_id": "1", "text": "R2D1 #100DaysOfCode 1/100"},
+            {
+                "id": "2",
+                "conversation_id": "1",
+                "text": "comment for R2D1 #100DaysOfCode",
+            },
+            {
+                "id": "7",
+                "conversation_id": "1",
+                "text": "more comment for R2D1 #100DaysOfCode",
+            },
+        ],
+        "4": [
+            {"id": "4", "conversation_id": "4", "text": "R2D2 #100DaysOfCode"},
+            {
+                "id": "5",
+                "conversation_id": "4",
+                "text": "comment 1 of R2D2 #100DaysOfCode",
+            },
+            {
+                "id": "6",
+                "conversation_id": "4",
+                "text": "comment 2 of R2D2 #100DaysOfCode",
+            },
+        ],
+    }
 
 
 def test_get_recent_index():
