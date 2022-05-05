@@ -135,6 +135,7 @@ def main():
     except IndexError as e:
         print(e)
         print("possibly up-to-date, no need to update since_id")
+        new_stats["since_id"] = previous_stats["since_id"]
     pt = PrettyTable()
     pt.set_style(MARKDOWN)
     pt.field_names = ["field", "data"]
