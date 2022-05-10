@@ -3,7 +3,8 @@ name: hdoc data pipeline
 on:
   push:
     paths-ignore:
-    - 'scripts/tweets.json'
+    - 'scripts/round*.json'
+    - 'scripts/stats.json'
     branches: [ main ]
   schedule:
     - cron: '35 16,17 * * *'

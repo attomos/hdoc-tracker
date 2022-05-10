@@ -5,6 +5,8 @@ from collections import OrderedDict, defaultdict
 from pathlib import Path
 from typing import Any, Dict, List, Match, DefaultDict
 from typing import OrderedDict as OD
+from deepdiff import DeepDiff
+
 
 from hdoc_tracker.patterns import (
     DEMO_PATTERN,
@@ -130,6 +132,13 @@ def compare_tweets(old_tweets_text, new_tweets_text):
     for k, v in new_json.items():
         new_count += len(v)
     return old_count == new_count
+
+
+def compare_json_string(old_json_str: str, new_json_str: str):
+    old_json = json.loads(old_json_str)
+    new_json = json.loads(new_json_str)
+    diff = DeepDiff(old_json, new_json, ignore_order=True)
+    return len(diff.keys()) != 0
 
 
 def load_stats():
