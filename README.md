@@ -1,4 +1,4 @@
-# hdoc-tracker [27/61]
+# hdoc-tracker [28/62]
 
 ## TODO
 
@@ -66,7 +66,8 @@
 
 - [x] time zone bug in `formatTwitterDate` function
 - [x] no streaks, but display the most recent streak instead
-- [ ] compare_tweets bug (counting number of tweets has some issues, e.g., what about replies tweets)
+- [x] compare_tweets bug (counting number of tweets has some issues, e.g., what about replies tweets)
+- [ ] plus4months bug, activity graph should continue as long as it has new data or reach day 100
 
 ## useful resources
 
