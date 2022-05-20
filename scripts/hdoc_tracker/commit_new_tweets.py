@@ -83,9 +83,7 @@ def commit_data_files(repo_id: str):
     base_tree = repo.get_git_tree(sha=head_sha)
     tree = repo.create_git_tree(git_tree_elements, base_tree)
     parent = repo.get_git_commit(sha=head_sha)
-    commit = repo.create_git_commit(
-        "try to add multiple files in one commit", tree, [parent]
-    )
+    commit = repo.create_git_commit("chore: update data (automated)", tree, [parent])
     ref = repo.get_git_ref(f"heads/{branch}")
     ref.edit(sha=commit.sha)
 
