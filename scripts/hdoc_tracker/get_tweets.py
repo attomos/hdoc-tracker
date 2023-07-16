@@ -6,8 +6,7 @@ from typing import Dict, List, Tuple
 
 import requests
 from dotenv import load_dotenv
-from prettytable import PrettyTable, MARKDOWN
-
+from prettytable import MARKDOWN, PrettyTable
 
 from hdoc_tracker.utils import (
     add_extra_entities_to_tweets,

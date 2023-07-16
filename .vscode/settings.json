@@ -1,8 +1,7 @@
 {
-  "python.linting.flake8Args": [
-    "--config",
-    "scripts/.flake8"
-  ],
+  "terminal.integrated.env.osx": {
+    "PYTHONPATH": "${workspaceFolder}/scripts"
+  },
   "python.testing.pytestArgs": [
     "scripts",
     "--cov=scripts/hdoc_tracker",
@@ -11,5 +10,5 @@
     "tests"
   ],
   "python.testing.unittestEnabled": false,
-  "python.testing.pytestEnabled": true,
+  "python.testing.pytestEnabled": true
 }
