@@ -1,0 +1,1417 @@
+[
+  {
+    "id": "110690760113523563",
+    "created_at": "2023-07-10T16:35:59.773Z",
+    "in_reply_to_id": null,
+    "in_reply_to_account_id": null,
+    "sensitive": false,
+    "spoiler_text": "",
+    "visibility": "public",
+    "language": "en",
+    "uri": "https://mastodon.social/users/attomos/statuses/110690760113523563",
+    "url": "https://mastodon.social/@attomos/110690760113523563",
+    "replies_count": 0,
+    "reblogs_count": 0,
+    "favourites_count": 0,
+    "edited_at": null,
+    "content": "\u003cp\u003e\u003ca href=\"https://mastodon.social/tags/100DaysOfCode\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003e100DaysOfCode\u003c/span\u003e\u003c/a\u003e R2D12\u003c/p\u003e\u003cp\u003eWatched \u0026quot;Premature Optimization\u0026quot; video from CodeAesthetic. Oh man, I want to support this guy\u0026#39;s Patreon.\u003c/p\u003e\u003cp\u003eThe content and the video editing was so great. 👍\u003c/p\u003e\u003cp\u003eYou can check it out here \u003ca href=\"https://www.youtube.com/watch?v=tKbV6BpH-C8\" target=\"_blank\" rel=\"nofollow noopener noreferrer\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://www.\u003c/span\u003e\u003cspan class=\"ellipsis\"\u003eyoutube.com/watch?v=tKbV6BpH-C\u003c/span\u003e\u003cspan class=\"invisible\"\u003e8\u003c/span\u003e\u003c/a\u003e\u003c/p\u003e\u003cp\u003eAlso revisit home-row mods for my keymaps.\u003cbr /\u003eThis time, I followed bingocaller 60% keymaps for navigation layers. Worked well since I\u0026#39;m an ex-vim user. 😏\u003c/p\u003e\u003cp\u003eAlso the second nav layer reminds me of my OLKB days. 🥺\u003c/p\u003e\u003cp\u003e\u003ca href=\"https://keymapdb.com/keymaps/bingocaller/\" target=\"_blank\" rel=\"nofollow noopener noreferrer\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"ellipsis\"\u003ekeymapdb.com/keymaps/bingocall\u003c/span\u003e\u003cspan class=\"invisible\"\u003eer/\u003c/span\u003e\u003c/a\u003e\u003c/p\u003e",
+    "reblog": null,
+    "application": {
+      "name": "Web",
+      "website": null
+    },
+    "account": {
+      "id": "110597468247904411",
+      "username": "attomos",
+      "acct": "attomos",
+      "display_name": "Atom",
+      "locked": false,
+      "bot": false,
+      "discoverable": false,
+      "group": false,
+      "created_at": "2023-06-24T00:00:00.000Z",
+      "note": "\u003cp\u003eThis is a place where I share progress of my \u003ca href=\"https://mastodon.social/tags/100DaysOfCode\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003e100DaysOfCode\u003c/span\u003e\u003c/a\u003e and side projects.\u003c/p\u003e",
+      "url": "https://mastodon.social/@attomos",
+      "avatar": "https://mastodon.social/avatars/original/missing.png",
+      "avatar_static": "https://mastodon.social/avatars/original/missing.png",
+      "header": "https://mastodon.social/headers/original/missing.png",
+      "header_static": "https://mastodon.social/headers/original/missing.png",
+      "followers_count": 0,
+      "following_count": 1,
+      "statuses_count": 17,
+      "last_status_at": "2023-07-10",
+      "noindex": false,
+      "emojis": [],
+      "roles": [],
+      "fields": [
+        {
+          "name": "pronouns",
+          "value": "he/him",
+          "verified_at": null
+        }
+      ]
+    },
+    "media_attachments": [],
+    "mentions": [],
+    "tags": [
+      {
+        "name": "100daysofcode",
+        "url": "https://mastodon.social/tags/100daysofcode"
+      }
+    ],
+    "emojis": [],
+    "card": {
+      "url": "https://www.youtube.com/watch?v=tKbV6BpH-C8",
+      "title": "Premature Optimization",
+      "description": "",
+      "language": null,
+      "type": "video",
+      "author_name": "CodeAesthetic",
+      "author_url": "https://www.youtube.com/@CodeAesthetic",
+      "provider_name": "YouTube",
+      "provider_url": "https://www.youtube.com/",
+      "html": "\u003ciframe width=\"200\" height=\"113\" src=\"https://www.youtube.com/embed/tKbV6BpH-C8?feature=oembed\" frameborder=\"0\" allowfullscreen=\"\" sandbox=\"allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms\"\u003e\u003c/iframe\u003e",
+      "width": 200,
+      "height": 113,
+      "image": "https://files.mastodon.social/cache/preview_cards/images/054/346/273/original/30c4424644ba59f0.jpg",
+      "embed_url": "",
+      "blurhash": "UA8W?VoL4.bHMdoLo}WV0KWV%MoL?^WVMxoL"
+    },
+    "poll": null
+  },
+  {
+    "id": "110683072401496366",
+    "created_at": "2023-07-09T08:00:54.569Z",
+    "in_reply_to_id": null,
+    "in_reply_to_account_id": null,
+    "sensitive": false,
+    "spoiler_text": "",
+    "visibility": "public",
+    "language": "en",
+    "uri": "https://mastodon.social/users/attomos/statuses/110683072401496366",
+    "url": "https://mastodon.social/@attomos/110683072401496366",
+    "replies_count": 0,
+    "reblogs_count": 0,
+    "favourites_count": 0,
+    "edited_at": "2023-07-10T03:14:38.792Z",
+    "content": "\u003cp\u003e\u003ca href=\"https://mastodon.social/tags/100DaysOfCode\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003e100DaysOfCode\u003c/span\u003e\u003c/a\u003e R2D11\u003c/p\u003e\u003cp\u003eWorked on cleaning up the keymaps repo.\u003c/p\u003e\u003cp\u003e- Some renaming and better comments\u003cbr /\u003e- Fix a bug when cp -r creates extra folder if the target folder already exists\u003cbr /\u003e- Major improvement on local build process\u003c/p\u003e\u003cp\u003e\u003ca href=\"https://mastodon.social/tags/TIL\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003eTIL\u003c/span\u003e\u003c/a\u003e that `qmk flash` also builds the firmware before flashing. Even better, I can just use `qmk flash --clean` to get the clean build.\u003c/p\u003e\u003cp\u003eI was doing `build` command before `qmk flash` which do the build twice. It was not optimal, but it\u0026#39;s fixed now.\u003c/p\u003e\u003cp\u003eTime to move on! 😅\u003c/p\u003e",
+    "reblog": null,
+    "application": {
+      "name": "Web",
+      "website": null
+    },
+    "account": {
+      "id": "110597468247904411",
+      "username": "attomos",
+      "acct": "attomos",
+      "display_name": "Atom",
+      "locked": false,
+      "bot": false,
+      "discoverable": false,
+      "group": false,
+      "created_at": "2023-06-24T00:00:00.000Z",
+      "note": "\u003cp\u003eThis is a place where I share progress of my \u003ca href=\"https://mastodon.social/tags/100DaysOfCode\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003e100DaysOfCode\u003c/span\u003e\u003c/a\u003e and side projects.\u003c/p\u003e",
+      "url": "https://mastodon.social/@attomos",
+      "avatar": "https://mastodon.social/avatars/original/missing.png",
+      "avatar_static": "https://mastodon.social/avatars/original/missing.png",
+      "header": "https://mastodon.social/headers/original/missing.png",
+      "header_static": "https://mastodon.social/headers/original/missing.png",
+      "followers_count": 0,
+      "following_count": 1,
+      "statuses_count": 17,
+      "last_status_at": "2023-07-10",
+      "noindex": false,
+      "emojis": [],
+      "roles": [],
+      "fields": [
+        {
+          "name": "pronouns",
+          "value": "he/him",
+          "verified_at": null
+        }
+      ]
+    },
+    "media_attachments": [],
+    "mentions": [],
+    "tags": [
+      {
+        "name": "100daysofcode",
+        "url": "https://mastodon.social/tags/100daysofcode"
+      },
+      {
+        "name": "til",
+        "url": "https://mastodon.social/tags/til"
+      }
+    ],
+    "emojis": [],
+    "card": null,
+    "poll": null
+  },
+  {
+    "id": "110679116418620719",
+    "created_at": "2023-07-08T15:14:51.060Z",
+    "in_reply_to_id": null,
+    "in_reply_to_account_id": null,
+    "sensitive": false,
+    "spoiler_text": "",
+    "visibility": "public",
+    "language": "en",
+    "uri": "https://mastodon.social/users/attomos/statuses/110679116418620719",
+    "url": "https://mastodon.social/@attomos/110679116418620719",
+    "replies_count": 0,
+    "reblogs_count": 0,
+    "favourites_count": 0,
+    "edited_at": null,
+    "content": "\u003cp\u003e\u003ca href=\"https://mastodon.social/tags/100DaysOfCode\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003e100DaysOfCode\u003c/span\u003e\u003c/a\u003e R2D10\u003c/p\u003e\u003cp\u003eSimplified the build process both locally and on Github actions.\u003cbr /\u003eNow I can use the same `just` recipes to build in any environment.\u003c/p\u003e\u003cp\u003eI\u0026#39;m not going to continue working on automatic build pipeline since it will be wasteful on the Billable time. Better keep that for something else.\u003c/p\u003e\u003cp\u003eTomorrow, I plan to work on refactoring the keymaps repository and then transition to web application projects.\u003c/p\u003e",
+    "reblog": null,
+    "application": {
+      "name": "Web",
+      "website": null
+    },
+    "account": {
+      "id": "110597468247904411",
+      "username": "attomos",
+      "acct": "attomos",
+      "display_name": "Atom",
+      "locked": false,
+      "bot": false,
+      "discoverable": false,
+      "group": false,
+      "created_at": "2023-06-24T00:00:00.000Z",
+      "note": "\u003cp\u003eThis is a place where I share progress of my \u003ca href=\"https://mastodon.social/tags/100DaysOfCode\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003e100DaysOfCode\u003c/span\u003e\u003c/a\u003e and side projects.\u003c/p\u003e",
+      "url": "https://mastodon.social/@attomos",
+      "avatar": "https://mastodon.social/avatars/original/missing.png",
+      "avatar_static": "https://mastodon.social/avatars/original/missing.png",
+      "header": "https://mastodon.social/headers/original/missing.png",
+      "header_static": "https://mastodon.social/headers/original/missing.png",
+      "followers_count": 0,
+      "following_count": 1,
+      "statuses_count": 17,
+      "last_status_at": "2023-07-10",
+      "noindex": false,
+      "emojis": [],
+      "roles": [],
+      "fields": [
+        {
+          "name": "pronouns",
+          "value": "he/him",
+          "verified_at": null
+        }
+      ]
+    },
+    "media_attachments": [],
+    "mentions": [],
+    "tags": [
+      {
+        "name": "100daysofcode",
+        "url": "https://mastodon.social/tags/100daysofcode"
+      }
+    ],
+    "emojis": [],
+    "card": null,
+    "poll": null
+  },
+  {
+    "id": "110651003140269610",
+    "created_at": "2023-07-03T16:05:16.510Z",
+    "in_reply_to_id": null,
+    "in_reply_to_account_id": null,
+    "sensitive": false,
+    "spoiler_text": "",
+    "visibility": "public",
+    "language": "en",
+    "uri": "https://mastodon.social/users/attomos/statuses/110651003140269610",
+    "url": "https://mastodon.social/@attomos/110651003140269610",
+    "replies_count": 0,
+    "reblogs_count": 0,
+    "favourites_count": 1,
+    "edited_at": null,
+    "content": "\u003cp\u003e\u003ca href=\"https://mastodon.social/tags/100DaysOfCode\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003e100DaysOfCode\u003c/span\u003e\u003c/a\u003e R2D9\u003c/p\u003e\u003cp\u003eDidn\u0026#39;t work on the build pipeline today.\u003c/p\u003e\u003cp\u003eInstead I was implementing my ideal gaming layer for 60% keyboards by utilizing key overrides feature in QMK.\u003c/p\u003e\u003cp\u003eI use `ko_make_with_layers` to enable key override on certain layer only.\u003cbr /\u003eNeed some recap on bitmask operations today. 😂\u003c/p\u003e\u003cp\u003eIt was fun and \u003ca href=\"https://mastodon.social/tags/TIL\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003eTIL\u003c/span\u003e\u003c/a\u003e that I need to explicitly put KC keys and possibly modifier keys in the target layer otherwise the `ko_make_with_layers` won\u0026#39;t work.\u003c/p\u003e",
+    "reblog": null,
+    "application": {
+      "name": "Web",
+      "website": null
+    },
+    "account": {
+      "id": "110597468247904411",
+      "username": "attomos",
+      "acct": "attomos",
+      "display_name": "Atom",
+      "locked": false,
+      "bot": false,
+      "discoverable": false,
+      "group": false,
+      "created_at": "2023-06-24T00:00:00.000Z",
+      "note": "\u003cp\u003eThis is a place where I share progress of my \u003ca href=\"https://mastodon.social/tags/100DaysOfCode\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003e100DaysOfCode\u003c/span\u003e\u003c/a\u003e and side projects.\u003c/p\u003e",
+      "url": "https://mastodon.social/@attomos",
+      "avatar": "https://mastodon.social/avatars/original/missing.png",
+      "avatar_static": "https://mastodon.social/avatars/original/missing.png",
+      "header": "https://mastodon.social/headers/original/missing.png",
+      "header_static": "https://mastodon.social/headers/original/missing.png",
+      "followers_count": 0,
+      "following_count": 1,
+      "statuses_count": 17,
+      "last_status_at": "2023-07-10",
+      "noindex": false,
+      "emojis": [],
+      "roles": [],
+      "fields": [
+        {
+          "name": "pronouns",
+          "value": "he/him",
+          "verified_at": null
+        }
+      ]
+    },
+    "media_attachments": [],
+    "mentions": [],
+    "tags": [
+      {
+        "name": "100daysofcode",
+        "url": "https://mastodon.social/tags/100daysofcode"
+      },
+      {
+        "name": "til",
+        "url": "https://mastodon.social/tags/til"
+      }
+    ],
+    "emojis": [],
+    "card": null,
+    "poll": null
+  },
+  {
+    "id": "110645264142688064",
+    "created_at": "2023-07-02T15:45:46.274Z",
+    "in_reply_to_id": "110645214095805661",
+    "in_reply_to_account_id": "110597468247904411",
+    "sensitive": false,
+    "spoiler_text": "",
+    "visibility": "public",
+    "language": "en",
+    "uri": "https://mastodon.social/users/attomos/statuses/110645264142688064",
+    "url": "https://mastodon.social/@attomos/110645264142688064",
+    "replies_count": 0,
+    "reblogs_count": 0,
+    "favourites_count": 0,
+    "edited_at": null,
+    "content": "\u003cp\u003eFor now, it\u0026#39;s time to rebase and squash commits in this branch 😉\u003c/p\u003e",
+    "reblog": null,
+    "application": {
+      "name": "Web",
+      "website": null
+    },
+    "account": {
+      "id": "110597468247904411",
+      "username": "attomos",
+      "acct": "attomos",
+      "display_name": "Atom",
+      "locked": false,
+      "bot": false,
+      "discoverable": false,
+      "group": false,
+      "created_at": "2023-06-24T00:00:00.000Z",
+      "note": "\u003cp\u003eThis is a place where I share progress of my \u003ca href=\"https://mastodon.social/tags/100DaysOfCode\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003e100DaysOfCode\u003c/span\u003e\u003c/a\u003e and side projects.\u003c/p\u003e",
+      "url": "https://mastodon.social/@attomos",
+      "avatar": "https://mastodon.social/avatars/original/missing.png",
+      "avatar_static": "https://mastodon.social/avatars/original/missing.png",
+      "header": "https://mastodon.social/headers/original/missing.png",
+      "header_static": "https://mastodon.social/headers/original/missing.png",
+      "followers_count": 0,
+      "following_count": 1,
+      "statuses_count": 17,
+      "last_status_at": "2023-07-10",
+      "noindex": false,
+      "emojis": [],
+      "roles": [],
+      "fields": [
+        {
+          "name": "pronouns",
+          "value": "he/him",
+          "verified_at": null
+        }
+      ]
+    },
+    "media_attachments": [
+      {
+        "id": "110645254864338377",
+        "type": "image",
+        "url": "https://files.mastodon.social/media_attachments/files/110/645/254/864/338/377/original/5139f5309cc4ed17.png",
+        "preview_url": "https://files.mastodon.social/media_attachments/files/110/645/254/864/338/377/small/5139f5309cc4ed17.png",
+        "remote_url": null,
+        "preview_remote_url": null,
+        "text_url": null,
+        "meta": {
+          "original": {
+            "width": 435,
+            "height": 45,
+            "size": "435x45",
+            "aspect": 9.666666666666666
+          },
+          "small": {
+            "width": 435,
+            "height": 45,
+            "size": "435x45",
+            "aspect": 9.666666666666666
+          }
+        },
+        "description": null,
+        "blurhash": "UJRMl9WAxUWC-;j[a#j[~VozNMs:o#ayocay"
+      }
+    ],
+    "mentions": [],
+    "tags": [],
+    "emojis": [],
+    "card": null,
+    "poll": null
+  },
+  {
+    "id": "110645220913936066",
+    "created_at": "2023-07-02T15:34:46.640Z",
+    "in_reply_to_id": "110645214095805661",
+    "in_reply_to_account_id": "110597468247904411",
+    "sensitive": false,
+    "spoiler_text": "",
+    "visibility": "public",
+    "language": "en",
+    "uri": "https://mastodon.social/users/attomos/statuses/110645220913936066",
+    "url": "https://mastodon.social/@attomos/110645220913936066",
+    "replies_count": 0,
+    "reblogs_count": 0,
+    "favourites_count": 0,
+    "edited_at": "2023-07-02T15:41:30.097Z",
+    "content": "\u003cp\u003eAs you can see the Billable time is pretty much the same with the previous approach.\u003cbr /\u003eI need to optimize that.\u003c/p\u003e\u003cp\u003eI also don\u0026#39;t think that building all keyboard firmwares on push will scale well with my current keyboard collection 😭\u003c/p\u003e",
+    "reblog": null,
+    "application": {
+      "name": "Web",
+      "website": null
+    },
+    "account": {
+      "id": "110597468247904411",
+      "username": "attomos",
+      "acct": "attomos",
+      "display_name": "Atom",
+      "locked": false,
+      "bot": false,
+      "discoverable": false,
+      "group": false,
+      "created_at": "2023-06-24T00:00:00.000Z",
+      "note": "\u003cp\u003eThis is a place where I share progress of my \u003ca href=\"https://mastodon.social/tags/100DaysOfCode\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003e100DaysOfCode\u003c/span\u003e\u003c/a\u003e and side projects.\u003c/p\u003e",
+      "url": "https://mastodon.social/@attomos",
+      "avatar": "https://mastodon.social/avatars/original/missing.png",
+      "avatar_static": "https://mastodon.social/avatars/original/missing.png",
+      "header": "https://mastodon.social/headers/original/missing.png",
+      "header_static": "https://mastodon.social/headers/original/missing.png",
+      "followers_count": 0,
+      "following_count": 1,
+      "statuses_count": 17,
+      "last_status_at": "2023-07-10",
+      "noindex": false,
+      "emojis": [],
+      "roles": [],
+      "fields": [
+        {
+          "name": "pronouns",
+          "value": "he/him",
+          "verified_at": null
+        }
+      ]
+    },
+    "media_attachments": [],
+    "mentions": [],
+    "tags": [],
+    "emojis": [],
+    "card": null,
+    "poll": null
+  },
+  {
+    "id": "110645214095805661",
+    "created_at": "2023-07-02T15:33:02.695Z",
+    "in_reply_to_id": null,
+    "in_reply_to_account_id": null,
+    "sensitive": false,
+    "spoiler_text": "",
+    "visibility": "public",
+    "language": "en",
+    "uri": "https://mastodon.social/users/attomos/statuses/110645214095805661",
+    "url": "https://mastodon.social/@attomos/110645214095805661",
+    "replies_count": 2,
+    "reblogs_count": 0,
+    "favourites_count": 0,
+    "edited_at": null,
+    "content": "\u003cp\u003e\u003ca href=\"https://mastodon.social/tags/100DaysOfCode\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003e100DaysOfCode\u003c/span\u003e\u003c/a\u003e R2D8\u003c/p\u003e\u003cp\u003e- Finally solved container slowness by creating my own image.\u003cbr /\u003e- However the build speed improvement is not that significant; trying `workflow_dispatch.inputs` to manually select a keyboard for firmware build job.\u003cbr /\u003e- Working on path filter workflow to trigger builds automatically.\u003cbr /\u003e- Explored GitHub Codespaces for GitHub actions experimentation.\u003cbr /\u003e- Faced initial challenges, but working through them. Exploring this action \u003ca href=\"https://github.com/marketplace/actions/changed-files\" target=\"_blank\" rel=\"nofollow noopener noreferrer\" translate=\"no\"\u003e\u003cspan class=\"invisible\"\u003ehttps://\u003c/span\u003e\u003cspan class=\"ellipsis\"\u003egithub.com/marketplace/actions\u003c/span\u003e\u003cspan class=\"invisible\"\u003e/changed-files\u003c/span\u003e\u003c/a\u003e\u003c/p\u003e",
+    "reblog": null,
+    "application": {
+      "name": "Web",
+      "website": null
+    },
+    "account": {
+      "id": "110597468247904411",
+      "username": "attomos",
+      "acct": "attomos",
+      "display_name": "Atom",
+      "locked": false,
+      "bot": false,
+      "discoverable": false,
+      "group": false,
+      "created_at": "2023-06-24T00:00:00.000Z",
+      "note": "\u003cp\u003eThis is a place where I share progress of my \u003ca href=\"https://mastodon.social/tags/100DaysOfCode\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003e100DaysOfCode\u003c/span\u003e\u003c/a\u003e and side projects.\u003c/p\u003e",
+      "url": "https://mastodon.social/@attomos",
+      "avatar": "https://mastodon.social/avatars/original/missing.png",
+      "avatar_static": "https://mastodon.social/avatars/original/missing.png",
+      "header": "https://mastodon.social/headers/original/missing.png",
+      "header_static": "https://mastodon.social/headers/original/missing.png",
+      "followers_count": 0,
+      "following_count": 1,
+      "statuses_count": 17,
+      "last_status_at": "2023-07-10",
+      "noindex": false,
+      "emojis": [],
+      "roles": [],
+      "fields": [
+        {
+          "name": "pronouns",
+          "value": "he/him",
+          "verified_at": null
+        }
+      ]
+    },
+    "media_attachments": [
+      {
+        "id": "110645212786112871",
+        "type": "image",
+        "url": "https://files.mastodon.social/media_attachments/files/110/645/212/786/112/871/original/02216402daab1d7a.png",
+        "preview_url": "https://files.mastodon.social/media_attachments/files/110/645/212/786/112/871/small/02216402daab1d7a.png",
+        "remote_url": null,
+        "preview_remote_url": null,
+        "text_url": null,
+        "meta": {
+          "original": {
+            "width": 2560,
+            "height": 1055,
+            "size": "2560x1055",
+            "aspect": 2.4265402843601898
+          },
+          "small": {
+            "width": 747,
+            "height": 308,
+            "size": "747x308",
+            "aspect": 2.425324675324675
+          }
+        },
+        "description": null,
+        "blurhash": "U5SPeBRiR*e-0KRjjtRj55M{ayNGX7ofWCof"
+      },
+      {
+        "id": "110645213083804750",
+        "type": "image",
+        "url": "https://files.mastodon.social/media_attachments/files/110/645/213/083/804/750/original/a8b7883b071120cb.png",
+        "preview_url": "https://files.mastodon.social/media_attachments/files/110/645/213/083/804/750/small/a8b7883b071120cb.png",
+        "remote_url": null,
+        "preview_remote_url": null,
+        "text_url": null,
+        "meta": {
+          "original": {
+            "width": 887,
+            "height": 469,
+            "size": "887x469",
+            "aspect": 1.8912579957356077
+          },
+          "small": {
+            "width": 660,
+            "height": 349,
+            "size": "660x349",
+            "aspect": 1.8911174785100286
+          }
+        },
+        "description": null,
+        "blurhash": "U268Q:?wMxV=WExus:n$D%WBxus:%2ROj[WY"
+      }
+    ],
+    "mentions": [],
+    "tags": [
+      {
+        "name": "100daysofcode",
+        "url": "https://mastodon.social/tags/100daysofcode"
+      }
+    ],
+    "emojis": [],
+    "card": {
+      "url": "https://github.com/marketplace/actions/changed-files",
+      "title": "Changed Files - GitHub Marketplace",
+      "description": "Get all Added, Copied, Modified, Deleted, Renamed, Type changed, Unmerged, and Unknown files",
+      "language": "en",
+      "type": "link",
+      "author_name": "",
+      "author_url": "",
+      "provider_name": "GitHub",
+      "provider_url": "",
+      "html": "",
+      "width": 290,
+      "height": 290,
+      "image": "https://files.mastodon.social/cache/preview_cards/images/065/949/986/original/fda3b7cf79cdcc15.png",
+      "embed_url": "",
+      "blurhash": "UJQJyWIv^}?E-.9f9cay~RIXM~oeRnxYxYaz"
+    },
+    "poll": null
+  },
+  {
+    "id": "110634228695891048",
+    "created_at": "2023-06-30T16:59:18.765Z",
+    "in_reply_to_id": null,
+    "in_reply_to_account_id": null,
+    "sensitive": false,
+    "spoiler_text": "",
+    "visibility": "public",
+    "language": "en",
+    "uri": "https://mastodon.social/users/attomos/statuses/110634228695891048",
+    "url": "https://mastodon.social/@attomos/110634228695891048",
+    "replies_count": 0,
+    "reblogs_count": 0,
+    "favourites_count": 0,
+    "edited_at": null,
+    "content": "\u003cp\u003e\u003ca href=\"https://mastodon.social/tags/100DaysOfCode\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003e100DaysOfCode\u003c/span\u003e\u003c/a\u003e R2D7\u003c/p\u003e\u003cp\u003e- Mostly working on refactoring the keymaps source code.\u003cbr /\u003e- Setting up the ideal GitHub actions build pipeline is still in-progress. I tried to utilize the cache action again, however this time I re-arranged the cache action to be after `qmk -setup` action.\u003cbr /\u003e- Tomorrow is a holiday, I planned to watch some conference video tomorrow as well.\u003c/p\u003e",
+    "reblog": null,
+    "application": {
+      "name": "Web",
+      "website": null
+    },
+    "account": {
+      "id": "110597468247904411",
+      "username": "attomos",
+      "acct": "attomos",
+      "display_name": "Atom",
+      "locked": false,
+      "bot": false,
+      "discoverable": false,
+      "group": false,
+      "created_at": "2023-06-24T00:00:00.000Z",
+      "note": "\u003cp\u003eThis is a place where I share progress of my \u003ca href=\"https://mastodon.social/tags/100DaysOfCode\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003e100DaysOfCode\u003c/span\u003e\u003c/a\u003e and side projects.\u003c/p\u003e",
+      "url": "https://mastodon.social/@attomos",
+      "avatar": "https://mastodon.social/avatars/original/missing.png",
+      "avatar_static": "https://mastodon.social/avatars/original/missing.png",
+      "header": "https://mastodon.social/headers/original/missing.png",
+      "header_static": "https://mastodon.social/headers/original/missing.png",
+      "followers_count": 0,
+      "following_count": 1,
+      "statuses_count": 17,
+      "last_status_at": "2023-07-10",
+      "noindex": false,
+      "emojis": [],
+      "roles": [],
+      "fields": [
+        {
+          "name": "pronouns",
+          "value": "he/him",
+          "verified_at": null
+        }
+      ]
+    },
+    "media_attachments": [],
+    "mentions": [],
+    "tags": [
+      {
+        "name": "100daysofcode",
+        "url": "https://mastodon.social/tags/100daysofcode"
+      }
+    ],
+    "emojis": [],
+    "card": null,
+    "poll": null
+  },
+  {
+    "id": "110628426804787611",
+    "created_at": "2023-06-29T16:23:48.933Z",
+    "in_reply_to_id": null,
+    "in_reply_to_account_id": null,
+    "sensitive": false,
+    "spoiler_text": "",
+    "visibility": "public",
+    "language": "en",
+    "uri": "https://mastodon.social/users/attomos/statuses/110628426804787611",
+    "url": "https://mastodon.social/@attomos/110628426804787611",
+    "replies_count": 0,
+    "reblogs_count": 0,
+    "favourites_count": 0,
+    "edited_at": null,
+    "content": "\u003cp\u003e\u003ca href=\"https://mastodon.social/tags/100DaysOfCode\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003e100DaysOfCode\u003c/span\u003e\u003c/a\u003e R2D6\u003c/p\u003e\u003cp\u003e- Continue working on improving the pipeline build time\u003cbr /\u003e- I tried to use upload/download artifacts to re-use qmk_firmware without having to do `qmk setup` again and again in different matrices/jobs.\u003c/p\u003e\u003cp\u003eUnfortunately, the uploading step took too long. I think tomorrow I need to build my own image and publish it to GitHub Container registry.\u003c/p\u003e\u003cp\u003eMy plan is to rebuild the image every quarter to keep the build pipeline stable.\u003c/p\u003e",
+    "reblog": null,
+    "application": {
+      "name": "Web",
+      "website": null
+    },
+    "account": {
+      "id": "110597468247904411",
+      "username": "attomos",
+      "acct": "attomos",
+      "display_name": "Atom",
+      "locked": false,
+      "bot": false,
+      "discoverable": false,
+      "group": false,
+      "created_at": "2023-06-24T00:00:00.000Z",
+      "note": "\u003cp\u003eThis is a place where I share progress of my \u003ca href=\"https://mastodon.social/tags/100DaysOfCode\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003e100DaysOfCode\u003c/span\u003e\u003c/a\u003e and side projects.\u003c/p\u003e",
+      "url": "https://mastodon.social/@attomos",
+      "avatar": "https://mastodon.social/avatars/original/missing.png",
+      "avatar_static": "https://mastodon.social/avatars/original/missing.png",
+      "header": "https://mastodon.social/headers/original/missing.png",
+      "header_static": "https://mastodon.social/headers/original/missing.png",
+      "followers_count": 0,
+      "following_count": 1,
+      "statuses_count": 17,
+      "last_status_at": "2023-07-10",
+      "noindex": false,
+      "emojis": [],
+      "roles": [],
+      "fields": [
+        {
+          "name": "pronouns",
+          "value": "he/him",
+          "verified_at": null
+        }
+      ]
+    },
+    "media_attachments": [
+      {
+        "id": "110628415830176964",
+        "type": "image",
+        "url": "https://files.mastodon.social/media_attachments/files/110/628/415/830/176/964/original/037a76eb35656f70.png",
+        "preview_url": "https://files.mastodon.social/media_attachments/files/110/628/415/830/176/964/small/037a76eb35656f70.png",
+        "remote_url": null,
+        "preview_remote_url": null,
+        "text_url": null,
+        "meta": {
+          "original": {
+            "width": 860,
+            "height": 403,
+            "size": "860x403",
+            "aspect": 2.133995037220844
+          },
+          "small": {
+            "width": 701,
+            "height": 328,
+            "size": "701x328",
+            "aspect": 2.1371951219512195
+          }
+        },
+        "description": null,
+        "blurhash": "U2SZ2.IUnh$y^+E1nhV?~pS5s-jY?Gt6X9t6"
+      }
+    ],
+    "mentions": [],
+    "tags": [
+      {
+        "name": "100daysofcode",
+        "url": "https://mastodon.social/tags/100daysofcode"
+      }
+    ],
+    "emojis": [],
+    "card": null,
+    "poll": null
+  },
+  {
+    "id": "110622885354084764",
+    "created_at": "2023-06-28T16:54:33.108Z",
+    "in_reply_to_id": null,
+    "in_reply_to_account_id": null,
+    "sensitive": false,
+    "spoiler_text": "",
+    "visibility": "public",
+    "language": "en",
+    "uri": "https://mastodon.social/users/attomos/statuses/110622885354084764",
+    "url": "https://mastodon.social/@attomos/110622885354084764",
+    "replies_count": 0,
+    "reblogs_count": 0,
+    "favourites_count": 0,
+    "edited_at": null,
+    "content": "\u003cp\u003e\u003ca href=\"https://mastodon.social/tags/100DaysOfCode\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003e100DaysOfCode\u003c/span\u003e\u003c/a\u003e R2D5\u003c/p\u003e\u003cp\u003e- The result is not great, I couldn\u0026#39;t figure out a way to reuse a container from the previous job.\u003c/p\u003e\u003cp\u003eNeed to find a way to improve this anyway.\u003c/p\u003e\u003cp\u003eIn the worst-case scenario, I will create my own image specifically for this purpose and ensure it is regularly updated with the latest upstream qmk_firmware every month.\u003c/p\u003e\u003cp\u003eI\u0026#39;m determined to overcome these challenges and continue making progress in the second round. Onwards and upwards! 💪🚀\u003c/p\u003e",
+    "reblog": null,
+    "application": {
+      "name": "Web",
+      "website": null
+    },
+    "account": {
+      "id": "110597468247904411",
+      "username": "attomos",
+      "acct": "attomos",
+      "display_name": "Atom",
+      "locked": false,
+      "bot": false,
+      "discoverable": false,
+      "group": false,
+      "created_at": "2023-06-24T00:00:00.000Z",
+      "note": "\u003cp\u003eThis is a place where I share progress of my \u003ca href=\"https://mastodon.social/tags/100DaysOfCode\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003e100DaysOfCode\u003c/span\u003e\u003c/a\u003e and side projects.\u003c/p\u003e",
+      "url": "https://mastodon.social/@attomos",
+      "avatar": "https://mastodon.social/avatars/original/missing.png",
+      "avatar_static": "https://mastodon.social/avatars/original/missing.png",
+      "header": "https://mastodon.social/headers/original/missing.png",
+      "header_static": "https://mastodon.social/headers/original/missing.png",
+      "followers_count": 0,
+      "following_count": 1,
+      "statuses_count": 17,
+      "last_status_at": "2023-07-10",
+      "noindex": false,
+      "emojis": [],
+      "roles": [],
+      "fields": [
+        {
+          "name": "pronouns",
+          "value": "he/him",
+          "verified_at": null
+        }
+      ]
+    },
+    "media_attachments": [
+      {
+        "id": "110622872932827684",
+        "type": "image",
+        "url": "https://files.mastodon.social/media_attachments/files/110/622/872/932/827/684/original/8461e878935ec3df.png",
+        "preview_url": "https://files.mastodon.social/media_attachments/files/110/622/872/932/827/684/small/8461e878935ec3df.png",
+        "remote_url": null,
+        "preview_remote_url": null,
+        "text_url": null,
+        "meta": {
+          "original": {
+            "width": 1374,
+            "height": 638,
+            "size": "1374x638",
+            "aspect": 2.153605015673981
+          },
+          "small": {
+            "width": 704,
+            "height": 327,
+            "size": "704x327",
+            "aspect": 2.1529051987767582
+          }
+        },
+        "description": null,
+        "blurhash": "U1SY~z0LO@ZzNIROITD*5ZxCDiS%?HIVR+n$"
+      }
+    ],
+    "mentions": [],
+    "tags": [
+      {
+        "name": "100daysofcode",
+        "url": "https://mastodon.social/tags/100daysofcode"
+      }
+    ],
+    "emojis": [],
+    "card": null,
+    "poll": null
+  },
+  {
+    "id": "110617175501711917",
+    "created_at": "2023-06-27T16:42:27.697Z",
+    "in_reply_to_id": null,
+    "in_reply_to_account_id": null,
+    "sensitive": false,
+    "spoiler_text": "",
+    "visibility": "public",
+    "language": "en",
+    "uri": "https://mastodon.social/users/attomos/statuses/110617175501711917",
+    "url": "https://mastodon.social/@attomos/110617175501711917",
+    "replies_count": 0,
+    "reblogs_count": 0,
+    "favourites_count": 0,
+    "edited_at": null,
+    "content": "\u003cp\u003e\u003ca href=\"https://mastodon.social/tags/100DaysOfCode\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003e100DaysOfCode\u003c/span\u003e\u003c/a\u003e R2D4\u003c/p\u003e\u003cp\u003e- Fixed artifacts uploading step in the build pipeline\u003cbr /\u003e- Utilize GitHub Actions cache\u003c/p\u003e\u003cp\u003eBut I feel like the current approach is still not good enough.\u003cbr /\u003eThere\u0026#39;s a cache but each build job has to download the cache.\u003c/p\u003e\u003cp\u003eMaybe setting the pipeline that downloads the cache only once should be much better.\u003c/p\u003e",
+    "reblog": null,
+    "application": {
+      "name": "Web",
+      "website": null
+    },
+    "account": {
+      "id": "110597468247904411",
+      "username": "attomos",
+      "acct": "attomos",
+      "display_name": "Atom",
+      "locked": false,
+      "bot": false,
+      "discoverable": false,
+      "group": false,
+      "created_at": "2023-06-24T00:00:00.000Z",
+      "note": "\u003cp\u003eThis is a place where I share progress of my \u003ca href=\"https://mastodon.social/tags/100DaysOfCode\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003e100DaysOfCode\u003c/span\u003e\u003c/a\u003e and side projects.\u003c/p\u003e",
+      "url": "https://mastodon.social/@attomos",
+      "avatar": "https://mastodon.social/avatars/original/missing.png",
+      "avatar_static": "https://mastodon.social/avatars/original/missing.png",
+      "header": "https://mastodon.social/headers/original/missing.png",
+      "header_static": "https://mastodon.social/headers/original/missing.png",
+      "followers_count": 0,
+      "following_count": 1,
+      "statuses_count": 17,
+      "last_status_at": "2023-07-10",
+      "noindex": false,
+      "emojis": [],
+      "roles": [],
+      "fields": [
+        {
+          "name": "pronouns",
+          "value": "he/him",
+          "verified_at": null
+        }
+      ]
+    },
+    "media_attachments": [
+      {
+        "id": "110617165468201395",
+        "type": "image",
+        "url": "https://files.mastodon.social/media_attachments/files/110/617/165/468/201/395/original/8bb8c198b813630e.png",
+        "preview_url": "https://files.mastodon.social/media_attachments/files/110/617/165/468/201/395/small/8bb8c198b813630e.png",
+        "remote_url": null,
+        "preview_remote_url": null,
+        "text_url": null,
+        "meta": {
+          "original": {
+            "width": 352,
+            "height": 259,
+            "size": "352x259",
+            "aspect": 1.359073359073359
+          },
+          "small": {
+            "width": 352,
+            "height": 259,
+            "size": "352x259",
+            "aspect": 1.359073359073359
+          }
+        },
+        "description": null,
+        "blurhash": "U2SY~zIS0K~p?EMwM{xt5Axv-pIU?bxaV@M{"
+      },
+      {
+        "id": "110617165627290638",
+        "type": "image",
+        "url": "https://files.mastodon.social/media_attachments/files/110/617/165/627/290/638/original/db404cdfb2850b95.png",
+        "preview_url": "https://files.mastodon.social/media_attachments/files/110/617/165/627/290/638/small/db404cdfb2850b95.png",
+        "remote_url": null,
+        "preview_remote_url": null,
+        "text_url": null,
+        "meta": {
+          "original": {
+            "width": 352,
+            "height": 259,
+            "size": "352x259",
+            "aspect": 1.359073359073359
+          },
+          "small": {
+            "width": 352,
+            "height": 259,
+            "size": "352x259",
+            "aspect": 1.359073359073359
+          }
+        },
+        "description": null,
+        "blurhash": "U2SY~zIS01~p?EMwIoxt5Axv-pIU?bxaV@M{"
+      },
+      {
+        "id": "110617175153386917",
+        "type": "image",
+        "url": "https://files.mastodon.social/media_attachments/files/110/617/175/153/386/917/original/0be6b0206faa42dc.png",
+        "preview_url": "https://files.mastodon.social/media_attachments/files/110/617/175/153/386/917/small/0be6b0206faa42dc.png",
+        "remote_url": null,
+        "preview_remote_url": null,
+        "text_url": null,
+        "meta": {
+          "original": {
+            "width": 875,
+            "height": 665,
+            "size": "875x665",
+            "aspect": 1.3157894736842106
+          },
+          "small": {
+            "width": 550,
+            "height": 418,
+            "size": "550x418",
+            "aspect": 1.3157894736842106
+          }
+        },
+        "description": null,
+        "blurhash": "U4Ss88MxD%IU0Mxtt6t7oJRjRkWA?HNGR*jZ"
+      }
+    ],
+    "mentions": [],
+    "tags": [
+      {
+        "name": "100daysofcode",
+        "url": "https://mastodon.social/tags/100daysofcode"
+      }
+    ],
+    "emojis": [],
+    "card": null,
+    "poll": null
+  },
+  {
+    "id": "110617146509047365",
+    "created_at": "2023-06-27T16:35:05.278Z",
+    "in_reply_to_id": null,
+    "in_reply_to_account_id": null,
+    "sensitive": false,
+    "spoiler_text": "",
+    "visibility": "public",
+    "language": "en",
+    "uri": "https://mastodon.social/users/attomos/statuses/110617146509047365",
+    "url": "https://mastodon.social/@attomos/110617146509047365",
+    "replies_count": 0,
+    "reblogs_count": 0,
+    "favourites_count": 0,
+    "edited_at": null,
+    "content": "\u003cp\u003eWill this work?\u003c/p\u003e\u003cp\u003e👀\u003c/p\u003e",
+    "reblog": null,
+    "application": {
+      "name": "Web",
+      "website": null
+    },
+    "account": {
+      "id": "110597468247904411",
+      "username": "attomos",
+      "acct": "attomos",
+      "display_name": "Atom",
+      "locked": false,
+      "bot": false,
+      "discoverable": false,
+      "group": false,
+      "created_at": "2023-06-24T00:00:00.000Z",
+      "note": "\u003cp\u003eThis is a place where I share progress of my \u003ca href=\"https://mastodon.social/tags/100DaysOfCode\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003e100DaysOfCode\u003c/span\u003e\u003c/a\u003e and side projects.\u003c/p\u003e",
+      "url": "https://mastodon.social/@attomos",
+      "avatar": "https://mastodon.social/avatars/original/missing.png",
+      "avatar_static": "https://mastodon.social/avatars/original/missing.png",
+      "header": "https://mastodon.social/headers/original/missing.png",
+      "header_static": "https://mastodon.social/headers/original/missing.png",
+      "followers_count": 0,
+      "following_count": 1,
+      "statuses_count": 17,
+      "last_status_at": "2023-07-10",
+      "noindex": false,
+      "emojis": [],
+      "roles": [],
+      "fields": [
+        {
+          "name": "pronouns",
+          "value": "he/him",
+          "verified_at": null
+        }
+      ]
+    },
+    "media_attachments": [
+      {
+        "id": "110617145345134145",
+        "type": "image",
+        "url": "https://files.mastodon.social/media_attachments/files/110/617/145/345/134/145/original/69aaf80bdc159447.png",
+        "preview_url": "https://files.mastodon.social/media_attachments/files/110/617/145/345/134/145/small/69aaf80bdc159447.png",
+        "remote_url": null,
+        "preview_remote_url": null,
+        "text_url": null,
+        "meta": {
+          "original": {
+            "width": 1027,
+            "height": 185,
+            "size": "1027x185",
+            "aspect": 5.551351351351351
+          },
+          "small": {
+            "width": 1027,
+            "height": 185,
+            "size": "1027x185",
+            "aspect": 5.551351351351351
+          }
+        },
+        "description": null,
+        "blurhash": "U35Osn?v-mt8xuj?oft6vcxZtmoftSt7jra#"
+      }
+    ],
+    "mentions": [],
+    "tags": [],
+    "emojis": [],
+    "card": null,
+    "poll": null
+  },
+  {
+    "id": "110611448242037900",
+    "created_at": "2023-06-26T16:25:56.627Z",
+    "in_reply_to_id": null,
+    "in_reply_to_account_id": null,
+    "sensitive": false,
+    "spoiler_text": "",
+    "visibility": "public",
+    "language": "en",
+    "uri": "https://mastodon.social/users/attomos/statuses/110611448242037900",
+    "url": "https://mastodon.social/@attomos/110611448242037900",
+    "replies_count": 0,
+    "reblogs_count": 0,
+    "favourites_count": 0,
+    "edited_at": null,
+    "content": "\u003cp\u003e\u003ca href=\"https://mastodon.social/tags/100DaysOfCode\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003e100DaysOfCode\u003c/span\u003e\u003c/a\u003e R2D3\u003c/p\u003e\u003cp\u003eFinally managed to make my QMK userspace GitHub action work after countless failed builds.\u003c/p\u003e\u003cp\u003eThe end result is great, I need to make firmwares downloadable.\u003cbr /\u003eAnother thing is that there\u0026#39;s still some performance improvement to do like caching the QMK setup.\u003c/p\u003e\u003cp\u003eI\u0026#39;ll focus on these things tomorrow.\u003c/p\u003e",
+    "reblog": null,
+    "application": {
+      "name": "Web",
+      "website": null
+    },
+    "account": {
+      "id": "110597468247904411",
+      "username": "attomos",
+      "acct": "attomos",
+      "display_name": "Atom",
+      "locked": false,
+      "bot": false,
+      "discoverable": false,
+      "group": false,
+      "created_at": "2023-06-24T00:00:00.000Z",
+      "note": "\u003cp\u003eThis is a place where I share progress of my \u003ca href=\"https://mastodon.social/tags/100DaysOfCode\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003e100DaysOfCode\u003c/span\u003e\u003c/a\u003e and side projects.\u003c/p\u003e",
+      "url": "https://mastodon.social/@attomos",
+      "avatar": "https://mastodon.social/avatars/original/missing.png",
+      "avatar_static": "https://mastodon.social/avatars/original/missing.png",
+      "header": "https://mastodon.social/headers/original/missing.png",
+      "header_static": "https://mastodon.social/headers/original/missing.png",
+      "followers_count": 0,
+      "following_count": 1,
+      "statuses_count": 17,
+      "last_status_at": "2023-07-10",
+      "noindex": false,
+      "emojis": [],
+      "roles": [],
+      "fields": [
+        {
+          "name": "pronouns",
+          "value": "he/him",
+          "verified_at": null
+        }
+      ]
+    },
+    "media_attachments": [
+      {
+        "id": "110611332957500130",
+        "type": "image",
+        "url": "https://files.mastodon.social/media_attachments/files/110/611/332/957/500/130/original/0c8806a6c741e49a.png",
+        "preview_url": "https://files.mastodon.social/media_attachments/files/110/611/332/957/500/130/small/0c8806a6c741e49a.png",
+        "remote_url": null,
+        "preview_remote_url": null,
+        "text_url": null,
+        "meta": {
+          "original": {
+            "width": 658,
+            "height": 692,
+            "size": "658x692",
+            "aspect": 0.9508670520231214
+          },
+          "small": {
+            "width": 468,
+            "height": 492,
+            "size": "468x492",
+            "aspect": 0.9512195121951219
+          }
+        },
+        "description": null,
+        "blurhash": "U8Rfd]m$xA%islaxj]j@R.j]f5a#oHaxflj["
+      },
+      {
+        "id": "110611446734829533",
+        "type": "image",
+        "url": "https://files.mastodon.social/media_attachments/files/110/611/446/734/829/533/original/68b0b9930f313eba.png",
+        "preview_url": "https://files.mastodon.social/media_attachments/files/110/611/446/734/829/533/small/68b0b9930f313eba.png",
+        "remote_url": null,
+        "preview_remote_url": null,
+        "text_url": null,
+        "meta": {
+          "original": {
+            "width": 1474,
+            "height": 762,
+            "size": "1474x762",
+            "aspect": 1.9343832020997376
+          },
+          "small": {
+            "width": 667,
+            "height": 345,
+            "size": "667x345",
+            "aspect": 1.9333333333333333
+          }
+        },
+        "description": null,
+        "blurhash": "U2S$owxU?G-;E29FITM{~U4oIoRj~WIVM{of"
+      }
+    ],
+    "mentions": [],
+    "tags": [
+      {
+        "name": "100daysofcode",
+        "url": "https://mastodon.social/tags/100daysofcode"
+      }
+    ],
+    "emojis": [],
+    "card": null,
+    "poll": null
+  },
+  {
+    "id": "110605584327300187",
+    "created_at": "2023-06-25T15:34:40.387Z",
+    "in_reply_to_id": null,
+    "in_reply_to_account_id": null,
+    "sensitive": false,
+    "spoiler_text": "",
+    "visibility": "public",
+    "language": "en",
+    "uri": "https://mastodon.social/users/attomos/statuses/110605584327300187",
+    "url": "https://mastodon.social/@attomos/110605584327300187",
+    "replies_count": 0,
+    "reblogs_count": 0,
+    "favourites_count": 0,
+    "edited_at": null,
+    "content": "\u003cp\u003e\u003ca href=\"https://mastodon.social/tags/100DaysOfCode\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003e100DaysOfCode\u003c/span\u003e\u003c/a\u003e R2D2\u003c/p\u003e\u003cp\u003eWith multiple failing jobs.\u003c/p\u003e\u003cp\u003eI still cannot setup my QMK userspace GitHub action build pipeilne to work properly.\u003cbr /\u003eAt least learned few things about checkout action like sparse-checkout.\u003c/p\u003e\u003cp\u003eThe weird thing is that when I was trying the qmk_cli Docker image locally, everything works as expected. 🥹\u003c/p\u003e\u003cp\u003eTomorrow, I will try to use keymap.json instead of keymap.c file.\u003c/p\u003e\u003cp\u003eIf it still doesn\u0026#39;t work, maybe it\u0026#39;s time to contribute to QMK documentation. 🤔\u003c/p\u003e",
+    "reblog": null,
+    "application": {
+      "name": "Web",
+      "website": null
+    },
+    "account": {
+      "id": "110597468247904411",
+      "username": "attomos",
+      "acct": "attomos",
+      "display_name": "Atom",
+      "locked": false,
+      "bot": false,
+      "discoverable": false,
+      "group": false,
+      "created_at": "2023-06-24T00:00:00.000Z",
+      "note": "\u003cp\u003eThis is a place where I share progress of my \u003ca href=\"https://mastodon.social/tags/100DaysOfCode\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003e100DaysOfCode\u003c/span\u003e\u003c/a\u003e and side projects.\u003c/p\u003e",
+      "url": "https://mastodon.social/@attomos",
+      "avatar": "https://mastodon.social/avatars/original/missing.png",
+      "avatar_static": "https://mastodon.social/avatars/original/missing.png",
+      "header": "https://mastodon.social/headers/original/missing.png",
+      "header_static": "https://mastodon.social/headers/original/missing.png",
+      "followers_count": 0,
+      "following_count": 1,
+      "statuses_count": 17,
+      "last_status_at": "2023-07-10",
+      "noindex": false,
+      "emojis": [],
+      "roles": [],
+      "fields": [
+        {
+          "name": "pronouns",
+          "value": "he/him",
+          "verified_at": null
+        }
+      ]
+    },
+    "media_attachments": [],
+    "mentions": [],
+    "tags": [
+      {
+        "name": "100daysofcode",
+        "url": "https://mastodon.social/tags/100daysofcode"
+      }
+    ],
+    "emojis": [],
+    "card": null,
+    "poll": null
+  },
+  {
+    "id": "110603498424596613",
+    "created_at": "2023-06-25T06:44:12.036Z",
+    "in_reply_to_id": null,
+    "in_reply_to_account_id": null,
+    "sensitive": false,
+    "spoiler_text": "",
+    "visibility": "public",
+    "language": "en",
+    "uri": "https://mastodon.social/users/attomos/statuses/110603498424596613",
+    "url": "https://mastodon.social/@attomos/110603498424596613",
+    "replies_count": 0,
+    "reblogs_count": 0,
+    "favourites_count": 0,
+    "edited_at": null,
+    "content": "\u003cp\u003esadge\u003c/p\u003e\u003cp\u003eGitHub actions got partial outage when I was setting up GitHub actions for my repo.\u003c/p\u003e",
+    "reblog": null,
+    "application": {
+      "name": "Web",
+      "website": null
+    },
+    "account": {
+      "id": "110597468247904411",
+      "username": "attomos",
+      "acct": "attomos",
+      "display_name": "Atom",
+      "locked": false,
+      "bot": false,
+      "discoverable": false,
+      "group": false,
+      "created_at": "2023-06-24T00:00:00.000Z",
+      "note": "\u003cp\u003eThis is a place where I share progress of my \u003ca href=\"https://mastodon.social/tags/100DaysOfCode\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003e100DaysOfCode\u003c/span\u003e\u003c/a\u003e and side projects.\u003c/p\u003e",
+      "url": "https://mastodon.social/@attomos",
+      "avatar": "https://mastodon.social/avatars/original/missing.png",
+      "avatar_static": "https://mastodon.social/avatars/original/missing.png",
+      "header": "https://mastodon.social/headers/original/missing.png",
+      "header_static": "https://mastodon.social/headers/original/missing.png",
+      "followers_count": 0,
+      "following_count": 1,
+      "statuses_count": 17,
+      "last_status_at": "2023-07-10",
+      "noindex": false,
+      "emojis": [],
+      "roles": [],
+      "fields": [
+        {
+          "name": "pronouns",
+          "value": "he/him",
+          "verified_at": null
+        }
+      ]
+    },
+    "media_attachments": [
+      {
+        "id": "110603495908565989",
+        "type": "image",
+        "url": "https://files.mastodon.social/media_attachments/files/110/603/495/908/565/989/original/be21cf5a38bbd331.png",
+        "preview_url": "https://files.mastodon.social/media_attachments/files/110/603/495/908/565/989/small/be21cf5a38bbd331.png",
+        "remote_url": null,
+        "preview_remote_url": null,
+        "text_url": null,
+        "meta": {
+          "original": {
+            "width": 2222,
+            "height": 1152,
+            "size": "2222x1152",
+            "aspect": 1.9288194444444444
+          },
+          "small": {
+            "width": 667,
+            "height": 346,
+            "size": "667x346",
+            "aspect": 1.9277456647398843
+          }
+        },
+        "description": null,
+        "blurhash": "U3Ss88t701xbM|RjRjay59D%-pM{%MIUofRj"
+      }
+    ],
+    "mentions": [],
+    "tags": [],
+    "emojis": [],
+    "card": null,
+    "poll": null
+  },
+  {
+    "id": "110598541322607163",
+    "created_at": "2023-06-24T09:43:32.664Z",
+    "in_reply_to_id": null,
+    "in_reply_to_account_id": null,
+    "sensitive": false,
+    "spoiler_text": "",
+    "visibility": "public",
+    "language": "en",
+    "uri": "https://mastodon.social/users/attomos/statuses/110598541322607163",
+    "url": "https://mastodon.social/@attomos/110598541322607163",
+    "replies_count": 0,
+    "reblogs_count": 0,
+    "favourites_count": 0,
+    "edited_at": null,
+    "content": "\u003cp\u003e\u003ca href=\"https://mastodon.social/tags/100DaysOfCode\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003e100DaysOfCode\u003c/span\u003e\u003c/a\u003e R2D1\u003c/p\u003e\u003cp\u003eAdded \u003ca href=\"https://mastodon.social/tags/QMK\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003eQMK\u003c/span\u003e\u003c/a\u003e combos to my existing keymaps. Mainly I\u0026#39;d like to add `op` combo for backspace in my Alice layout keyboard only.\u003c/p\u003e\u003cp\u003eHowever, I ended up enable to feature to all my keyboards.\u003c/p\u003e\u003cp\u003eAlso did some refactoring in the old keymaps files. To replace magic numbers with enums (named layers) instead as well as remove the unused layers.\u003c/p\u003e\u003cp\u003eNext, I was planning to do nightly build setup for the keymaps repo.\u003c/p\u003e",
+    "reblog": null,
+    "application": {
+      "name": "Web",
+      "website": null
+    },
+    "account": {
+      "id": "110597468247904411",
+      "username": "attomos",
+      "acct": "attomos",
+      "display_name": "Atom",
+      "locked": false,
+      "bot": false,
+      "discoverable": false,
+      "group": false,
+      "created_at": "2023-06-24T00:00:00.000Z",
+      "note": "\u003cp\u003eThis is a place where I share progress of my \u003ca href=\"https://mastodon.social/tags/100DaysOfCode\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003e100DaysOfCode\u003c/span\u003e\u003c/a\u003e and side projects.\u003c/p\u003e",
+      "url": "https://mastodon.social/@attomos",
+      "avatar": "https://mastodon.social/avatars/original/missing.png",
+      "avatar_static": "https://mastodon.social/avatars/original/missing.png",
+      "header": "https://mastodon.social/headers/original/missing.png",
+      "header_static": "https://mastodon.social/headers/original/missing.png",
+      "followers_count": 0,
+      "following_count": 1,
+      "statuses_count": 17,
+      "last_status_at": "2023-07-10",
+      "noindex": false,
+      "emojis": [],
+      "roles": [],
+      "fields": [
+        {
+          "name": "pronouns",
+          "value": "he/him",
+          "verified_at": null
+        }
+      ]
+    },
+    "media_attachments": [],
+    "mentions": [],
+    "tags": [
+      {
+        "name": "100daysofcode",
+        "url": "https://mastodon.social/tags/100daysofcode"
+      },
+      {
+        "name": "qmk",
+        "url": "https://mastodon.social/tags/qmk"
+      }
+    ],
+    "emojis": [],
+    "card": null,
+    "poll": null
+  },
+  {
+    "id": "110597481161337224",
+    "created_at": "2023-06-24T05:13:55.888Z",
+    "in_reply_to_id": null,
+    "in_reply_to_account_id": null,
+    "sensitive": false,
+    "spoiler_text": "",
+    "visibility": "public",
+    "language": "en",
+    "uri": "https://mastodon.social/users/attomos/statuses/110597481161337224",
+    "url": "https://mastodon.social/@attomos/110597481161337224",
+    "replies_count": 0,
+    "reblogs_count": 0,
+    "favourites_count": 1,
+    "edited_at": null,
+    "content": "\u003cp\u003eHello, World\u003c/p\u003e\u003cp\u003eMy first post on Mastodon.\u003c/p\u003e\u003cp\u003eThis is going to be fun!\u003c/p\u003e",
+    "reblog": null,
+    "application": {
+      "name": "Web",
+      "website": null
+    },
+    "account": {
+      "id": "110597468247904411",
+      "username": "attomos",
+      "acct": "attomos",
+      "display_name": "Atom",
+      "locked": false,
+      "bot": false,
+      "discoverable": false,
+      "group": false,
+      "created_at": "2023-06-24T00:00:00.000Z",
+      "note": "\u003cp\u003eThis is a place where I share progress of my \u003ca href=\"https://mastodon.social/tags/100DaysOfCode\" class=\"mention hashtag\" rel=\"tag\"\u003e#\u003cspan\u003e100DaysOfCode\u003c/span\u003e\u003c/a\u003e and side projects.\u003c/p\u003e",
+      "url": "https://mastodon.social/@attomos",
+      "avatar": "https://mastodon.social/avatars/original/missing.png",
+      "avatar_static": "https://mastodon.social/avatars/original/missing.png",
+      "header": "https://mastodon.social/headers/original/missing.png",
+      "header_static": "https://mastodon.social/headers/original/missing.png",
+      "followers_count": 0,
+      "following_count": 1,
+      "statuses_count": 17,
+      "last_status_at": "2023-07-10",
+      "noindex": false,
+      "emojis": [],
+      "roles": [],
+      "fields": [
+        {
+          "name": "pronouns",
+          "value": "he/him",
+          "verified_at": null
+        }
+      ]
+    },
+    "media_attachments": [],
+    "mentions": [],
+    "tags": [],
+    "emojis": [],
+    "card": null,
+    "poll": null
+  }
+]

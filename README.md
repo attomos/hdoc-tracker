@@ -61,6 +61,9 @@
   - [ ] pypi
   - [ ] rust package
   - [ ] go package
+- [ ] round 2 (migrated to Mastodon)
+  - [x] Make sure content are always in HTML?? https://docs.joinmastodon.org/entities/Status/#content
+  - [ ] prepare new component for round 2 content
 
 ## bugs
 
