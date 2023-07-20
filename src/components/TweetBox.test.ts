@@ -1,7 +1,3 @@
-/**
- * @jest-environment jsdom
- */
-import "@testing-library/jest-dom";
 import { render } from "@testing-library/svelte";
 import TweetBox from "./TweetBox.svelte";
 

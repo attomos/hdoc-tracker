@@ -7,18 +7,18 @@ import {
 describe("dateUtils", () => {
   describe("getAddedData", () => {
     beforeAll(() => {
-      jest.useFakeTimers("modern"); // tell Jest to use a different timer implementation.
+      vi.useFakeTimers();
     });
 
     it("should return with days added correctly", () => {
-      jest.setSystemTime(new Date("2022-03-04").getTime());
+      vi.setSystemTime(new Date("2022-03-04").getTime());
       const date = new Date("2022-02-25");
       const newDate = getAddedDate(date, 7);
       expect(newDate).toEqual(new Date());
     });
 
     it("should return new date with days decreased correctly", () => {
-      jest.setSystemTime(new Date("2022-02-18").getTime());
+      vi.setSystemTime(new Date("2022-02-18").getTime());
       const date = new Date("2022-02-25");
       const newDate = getAddedDate(date, -7);
       expect(newDate).toEqual(new Date());
@@ -26,7 +26,7 @@ describe("dateUtils", () => {
 
     afterAll(() => {
       // Back to reality...
-      jest.useRealTimers();
+      vi.useRealTimers();
     });
   });
 
