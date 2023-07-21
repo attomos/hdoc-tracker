@@ -1,7 +1,0 @@
-python-dotenv==0.19.2
-requests==2.27.1
-types-requests==2.27.8
-types-urllib3==1.26.9
-PyGithub==1.55
-prettytable==3.2.0
-deepdiff==5.8.0
