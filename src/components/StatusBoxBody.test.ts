@@ -1,10 +1,10 @@
 import { render } from "@testing-library/svelte";
-import TweetBoxBody from "./TweetBoxBody.svelte";
+import StatusBoxBody from "./StatusBoxBody.svelte";
 
-describe("TweetBoxBody", () => {
+describe("StatusBoxBody", () => {
   it("should renders correctly", () => {
-    const tweet = {
-      text: "day 1 of #100DaysOfCode\ngood morning",
+    const status = {
+      parsed_content: "day 1 of #100DaysOfCode\ngood morning",
       entities: {
         day_list: [
           {
@@ -21,11 +21,11 @@ describe("TweetBoxBody", () => {
         like_count: 1,
         quote_count: 0,
       },
-      conversation_id: "1",
+      in_reply_to_id: "1",
       id: "1",
     };
-    const { getByTestId, getByRole, getByText } = render(TweetBoxBody, {
-      tweet,
+    const { getByTestId, getByRole, getByText } = render(StatusBoxBody, {
+      status,
     });
 
     // const profile = getByText("Atom Chaipreecha");

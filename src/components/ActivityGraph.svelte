@@ -1,7 +1,7 @@
 <script lang="ts">
   import { formatInTimeZone } from "date-fns-tz";
 
-  import type { Tweet } from "src/lib/types";
+  import type { Status } from "src/lib/types";
   import { onMount } from "svelte";
   import {
     DAYS,
@@ -9,26 +9,26 @@
     getWeeksForThisRound,
     MONTHS,
   } from "../lib/dateUtils";
-  import { tweets } from "../lib/stores";
+  import { statuses } from "../lib/stores";
   import { getFillColor } from "../lib/styleUtils";
-  import { computeStreaks, getTweetsLookupDict } from "../lib/tweetUtils";
+  import { computeStreaks, getStatusesLookupDict } from "../lib/statusUtils";
 
-  let tweetsLookup;
-  let tweetDates: string[];
+  let statusesLookup;
+  let statusDates: string[];
   let weeks;
 
-  tweets.subscribe(() => {
-    tweetsLookup = getTweetsLookupDict($tweets);
+  statuses.subscribe(() => {
+    statusesLookup = getStatusesLookupDict($statuses);
 
-    tweetDates = Object.keys(tweetsLookup);
-    const weeksForThisRound = getWeeksForThisRound(tweetDates);
+    statusDates = Object.keys(statusesLookup);
+    const weeksForThisRound = getWeeksForThisRound(statusDates);
 
     if (weeksForThisRound.length > 0) {
       weeks = weeksForThisRound.map((week) => {
         return week.map((date) => {
           return {
             date,
-            count: tweetsLookup[date]?.length || 0,
+            count: statusesLookup[date]?.length || 0,
             month: getMonthString(date),
           };
         });
@@ -36,10 +36,10 @@
     }
   });
 
-  const daysCount = Object.keys(tweetsLookup)
+  const daysCount = Object.keys(statusesLookup)
     .map((key) => {
-      return tweetsLookup[key].filter((tweet: Tweet) => {
-        return tweet.text.includes("of #100DaysOfCode");
+      return statusesLookup[key].filter((status: Status) => {
+        return status.parsed_content.includes("of #100DaysOfCode");
       });
     })
     .flat().length;
@@ -48,7 +48,7 @@
   const todayDate = formatInTimeZone(day, "Asia/Bangkok", "yyyy-MM-dd");
 
   const [longestStreak, currentStreak] = computeStreaks(
-    tweetsLookup,
+    statusesLookup,
     todayDate
   );
 
@@ -67,9 +67,9 @@
     ];
     const tooltip = document.getElementById("tooltip");
     if (count > 0) {
-      tooltip.innerText = `${count} tweets on ${date}`;
+      tooltip.innerText = `${count} statuses on ${date}`;
     } else {
-      tooltip.innerText = `No tweets on ${date}`;
+      tooltip.innerText = `No statuses on ${date}`;
     }
 
     tooltip.style.display = "block";

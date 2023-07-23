@@ -1,9 +1,9 @@
 <script lang="ts">
   import { todayDate } from "../lib/stores";
-  import type { Tweet } from "../lib/types";
+  import type { Status } from "../lib/types";
   import { formatTwitterDateToShortFormat } from "../lib/dateUtils";
 
-  export let tweet: Tweet;
+  export let status: Status;
 
   let formattedDate: string;
   let authorUrl: string;
@@ -16,11 +16,11 @@
 
   $: {
     formattedDate = formatTwitterDateToShortFormat(
-      tweet.created_at,
+      status.created_at,
       $todayDate
     );
     authorUrl = `https://twitter.com/attomos`;
-    tweetUrl = `https://twitter.com/attomos/status/${tweet.id}`;
+    tweetUrl = `https://twitter.com/attomos/status/${status.id}`;
   }
 </script>
 

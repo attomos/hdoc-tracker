@@ -1,13 +1,13 @@
 <script lang="ts">
   import { createEventDispatcher } from "svelte";
 
-  import { tweets } from "../lib/stores";
-  import { getExpandedEntities } from "../lib/tweetUtils";
-  import type { ExpandedEntities, Tweet } from "../lib/types";
+  import { statuses } from "../lib/stores";
+  import { getExpandedEntities } from "../lib/statusUtils";
+  import type { ExpandedEntities, Status } from "../lib/types";
   import EntityLink from "./EntityLink.svelte";
 
-  export let tweet: Tweet;
-  export let replies: Tweet[];
+  export let status: Status;
+  export let replies: Status[];
 
   const dispatch = createEventDispatcher();
 
@@ -17,7 +17,7 @@
 
   let expandedEntities: ExpandedEntities;
   $: {
-    expandedEntities = getExpandedEntities(tweet, $tweets);
+    expandedEntities = getExpandedEntities(status, $statuses);
   }
 </script>
 

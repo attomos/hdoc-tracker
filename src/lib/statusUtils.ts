@@ -1,21 +1,22 @@
 import { differenceInDays } from "date-fns/fp";
-import { formatTwitterDate } from "./dateUtils";
+
 import type {
   Demo,
   ExpandedEntities,
-  GroupedTweets,
+  GroupedStatuses,
   Src,
-  Tweet,
-  TweetTuple,
-  TweetUrl,
+  Status,
+  StatusTuple,
+  StatusUrl,
 } from "./types";
+import { formatTwitterDate } from "./dateUtils";
 
-function getTweets(tweets: GroupedTweets, searchTerm: string) {
+function getStatuses(tweets: GroupedStatuses, searchTerm: string) {
   if (searchTerm === "") return tweets;
-  const filteredTweets = Object.entries(tweets).filter((e: TweetTuple) => {
+  const filteredTweets = Object.entries(tweets).filter((e: StatusTuple) => {
     const [, value] = e;
-    const ans = value.some(({ text }: { text: string }) =>
-      text.toLowerCase().includes(searchTerm.toLowerCase())
+    const ans = value.some(({ parsed_content }: { parsed_content: string }) =>
+      parsed_content.toLowerCase().includes(searchTerm.toLowerCase())
     );
     return ans;
   });
@@ -24,7 +25,7 @@ function getTweets(tweets: GroupedTweets, searchTerm: string) {
 }
 
 function getTweetEntity<T>(
-  tweets: GroupedTweets,
+  tweets: GroupedStatuses,
   tweetId: string,
   entity: string
 ): T[] {
@@ -35,12 +36,16 @@ function getTweetEntity<T>(
 }
 
 export function getExpandedEntities(
-  tweet: Tweet,
-  tweets: GroupedTweets
+  status: Status,
+  groupedStatuses: GroupedStatuses
 ): ExpandedEntities {
-  const allUrls = getTweetEntity<TweetUrl>(tweets, tweet.id, "urls");
-  const demoList = getTweetEntity<Demo>(tweets, tweet.id, "demo_list");
-  const srcList = getTweetEntity<Src>(tweets, tweet.id, "src_list");
+  const allUrls = getTweetEntity<StatusUrl>(groupedStatuses, status.id, "urls");
+  const demoList = getTweetEntity<Demo>(
+    groupedStatuses,
+    status.id,
+    "demo_list"
+  );
+  const srcList = getTweetEntity<Src>(groupedStatuses, status.id, "src_list");
   const latestDemo = demoList?.at(-1);
   const latestSrc = srcList?.at(-1);
   const expandedDemo = allUrls.find((url) => url.url === latestDemo?.demo);
@@ -61,15 +66,15 @@ export function getExpandedEntities(
   };
 }
 
-function getTweetsLookupDict(tweets: GroupedTweets) {
+function getStatusesLookupDict(grouped: GroupedStatuses) {
   const lookup = {};
-  Object.keys(tweets).forEach((key) => {
-    tweets[key].forEach((tweet) => {
-      const createdAt = formatTwitterDate(tweet.created_at);
+  Object.keys(grouped).forEach((key) => {
+    grouped[key].forEach((status) => {
+      const createdAt = formatTwitterDate(status.created_at);
       if (lookup.hasOwnProperty(createdAt)) {
-        lookup[createdAt].push(tweet);
+        lookup[createdAt].push(status);
       } else {
-        lookup[createdAt] = [tweet];
+        lookup[createdAt] = [status];
       }
     });
   });
@@ -77,15 +82,15 @@ function getTweetsLookupDict(tweets: GroupedTweets) {
   return lookup;
 }
 
-function getTweetsCount(tweets: GroupedTweets) {
+function getStatusesCount(tweets: GroupedStatuses) {
   const groupCount = Object.keys(tweets).map((key) => {
     return tweets[key].length;
   }, 0);
   return groupCount.reduce((a, b) => a + b, 0);
 }
 
-function computeStreaks(tweetsLookup: any, todayDate: string) {
-  const days = Object.keys(tweetsLookup);
+function computeStreaks(statusesLookup: any, todayDate: string) {
+  const days = Object.keys(statusesLookup);
   days.sort();
 
   if (days.length === 0) {
@@ -147,4 +152,4 @@ function computeStreaks(tweetsLookup: any, todayDate: string) {
   return [streaks[longestStreakIdx], streaks.at(-1)];
 }
 
-export { getTweets, getTweetsLookupDict, getTweetsCount, computeStreaks };
+export { getStatuses, getStatusesLookupDict, getStatusesCount, computeStreaks };

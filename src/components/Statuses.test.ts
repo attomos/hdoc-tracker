@@ -1,9 +1,9 @@
 import { render } from "@testing-library/svelte";
-import Tweets from "./Tweets.svelte";
+import Statuses from "./Statuses.svelte";
 
-describe("Tweets", () => {
+describe("Statuses", () => {
   it("should", () => {
-    render(Tweets);
+    render(Statuses);
     expect(0).toBe(0);
   });
 });
