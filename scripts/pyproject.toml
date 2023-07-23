@@ -18,6 +18,7 @@ prettytable = "^3.8.0"
 deepdiff = "^6.3.1"
 pygithub = "^1.59.0"
 beautifulsoup4 = "^4.12.2"
+tinydb = "^4.8.0"
 
 
 [tool.poetry.group.dev.dependencies]

@@ -4,6 +4,7 @@ from hdoc_tracker.patterns import (
     MODERN_HDOC_PATTERN,
     SRC_PATTERN,
 )
+from hdoc_tracker.shapes import Tweet
 from hdoc_tracker.utils import (
     add_extra_entities_to_tweets,
     get_extra_entities,
@@ -136,101 +137,92 @@ def test_modern_hdoc_entites():
 
 
 def test_add_extra_entities_to_tweets():
-    tweets = {
-        "data": [
-            {
-                "id": 1,
-                "conversation_id": 1,
-                "text": "day 1 of #100DaysOfCode\nlearn web security basics\nsrc: https://github.com/attomos/web-security-101\ndemo: https://websec-attomos.vercel.app",
-                "entities": {
-                    "hashtags": [{"start": 10, "end": 24, "tag": "100DaysOfCode"}]
-                },
-            }
-        ]
-    }
+    tweets: list[Tweet] = [
+        {
+            "id": "1",
+            "conversation_id": "1",
+            "text": "day 1 of #100DaysOfCode\nlearn web security basics\nsrc: https://github.com/attomos/web-security-101\ndemo: https://websec-attomos.vercel.app",
+            "entities": {
+                "hashtags": [{"start": 10, "end": 24, "tag": "100DaysOfCode"}]
+            },
+        }
+    ]
     updated_tweets = add_extra_entities_to_tweets(tweets)
-    assert updated_tweets == {
-        "data": [
-            {
-                "id": 1,
-                "conversation_id": 1,
-                "text": "day 1 of #100DaysOfCode\nlearn web security basics\nsrc: https://github.com/attomos/web-security-101\ndemo: https://websec-attomos.vercel.app",
-                "entities": {
-                    "hashtags": [{"start": 10, "end": 24, "tag": "100DaysOfCode"}],
-                    "day_list": [{"day": "day 1", "start": 0, "end": 5}],
-                    "src_list": [
-                        {
-                            "src": "https://github.com/attomos/web-security-101",
-                            "start": 55,
-                            "fixed": False,
-                            "end": 98,
-                        }
-                    ],
-                    "demo_list": [
-                        {
-                            "demo": "https://websec-attomos.vercel.app",
-                            "start": 105,
-                            "fixed": False,
-                            "end": 138,
-                        }
-                    ],
-                },
-            }
-        ]
-    }
-    tweets = {
-        "data": [
-            {
-                "id": 1,
-                "conversation_id": 1,
-                "text": "R2D1 #100DaysOfCode\nlearn web security basics\nsrc: https://github.com/attomos/web-security-101\ndemo: https://websec-attomos.vercel.app",
-                "entities": {
-                    "hashtags": [{"start": 5, "end": 19, "tag": "100DaysOfCode"}]
-                },
-            }
-        ]
-    }
+    assert updated_tweets == [
+        {
+            "id": "1",
+            "conversation_id": "1",
+            "text": "day 1 of #100DaysOfCode\nlearn web security basics\nsrc: https://github.com/attomos/web-security-101\ndemo: https://websec-attomos.vercel.app",
+            "entities": {
+                "hashtags": [{"start": 10, "end": 24, "tag": "100DaysOfCode"}],
+                "day_list": [{"day": "day 1", "start": 0, "end": 5}],
+                "src_list": [
+                    {
+                        "src": "https://github.com/attomos/web-security-101",
+                        "start": 55,
+                        "fixed": False,
+                        "end": 98,
+                    }
+                ],
+                "demo_list": [
+                    {
+                        "demo": "https://websec-attomos.vercel.app",
+                        "start": 105,
+                        "fixed": False,
+                        "end": 138,
+                    }
+                ],
+            },
+        }
+    ]
+    tweets = [
+        {
+            "id": "1",
+            "conversation_id": "1",
+            "text": "R2D1 #100DaysOfCode\nlearn web security basics\nsrc: https://github.com/attomos/web-security-101\ndemo: https://websec-attomos.vercel.app",
+            "entities": {"hashtags": [{"start": 5, "end": 19, "tag": "100DaysOfCode"}]},
+        }
+    ]
     updated_tweets = add_extra_entities_to_tweets(tweets)
-    assert updated_tweets == {
-        "data": [
-            {
-                "id": 1,
-                "conversation_id": 1,
-                "text": "R2D1 #100DaysOfCode\nlearn web security basics\nsrc: https://github.com/attomos/web-security-101\ndemo: https://websec-attomos.vercel.app",
-                "entities": {
-                    "hashtags": [{"start": 5, "end": 19, "tag": "100DaysOfCode"}],
-                    "day_list": [
-                        {
-                            "day": "R2D1",
-                            "start": 0,
-                            "end": 4,
-                            "round_value": 2,
-                            "day_value": 1,
-                        }
-                    ],
-                    "src_list": [
-                        {
-                            "src": "https://github.com/attomos/web-security-101",
-                            "start": 51,
-                            "fixed": False,
-                            "end": 94,
-                        }
-                    ],
-                    "demo_list": [
-                        {
-                            "demo": "https://websec-attomos.vercel.app",
-                            "start": 101,
-                            "fixed": False,
-                            "end": 134,
-                        }
-                    ],
-                },
-            }
-        ]
-    }
+    assert updated_tweets == [
+        {
+            "id": "1",
+            "conversation_id": "1",
+            "text": "R2D1 #100DaysOfCode\nlearn web security basics\nsrc: https://github.com/attomos/web-security-101\ndemo: https://websec-attomos.vercel.app",
+            "entities": {
+                "hashtags": [{"start": 5, "end": 19, "tag": "100DaysOfCode"}],
+                "day_list": [
+                    {
+                        "day": "R2D1",
+                        "start": 0,
+                        "end": 4,
+                        "round_value": 2,
+                        "day_value": 1,
+                    }
+                ],
+                "src_list": [
+                    {
+                        "src": "https://github.com/attomos/web-security-101",
+                        "start": 51,
+                        "fixed": False,
+                        "end": 94,
+                    }
+                ],
+                "demo_list": [
+                    {
+                        "demo": "https://websec-attomos.vercel.app",
+                        "start": 101,
+                        "fixed": False,
+                        "end": 134,
+                    }
+                ],
+            },
+        }
+    ]
 
 
 def test_group_tweets_with_no_conversation():
+    # keep the data key since the function is not used in Mastodon data processing
     tweets = {
         "data": [
             {

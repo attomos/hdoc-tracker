@@ -1,12 +1,12 @@
 import json
-from math import floor
 import re
 from collections import OrderedDict, defaultdict
+from math import floor
 from pathlib import Path
-from typing import Any, Dict, List, Match, DefaultDict
+from typing import Any, DefaultDict, Match
 from typing import OrderedDict as OD
-from deepdiff import DeepDiff
 
+from deepdiff import DeepDiff
 
 from hdoc_tracker.patterns import (
     DEMO_PATTERN,
@@ -15,7 +15,7 @@ from hdoc_tracker.patterns import (
     SRC_PATTERN,
     PatternConfig,
 )
-
+from hdoc_tracker.shapes import Tweet
 
 STATS_PATH = Path("./stats.json")
 
@@ -49,9 +49,8 @@ def get_extra_entities(pc: PatternConfig, text: str):
             return build_entities(pc, m)
 
 
-def add_extra_entities_to_tweets(tweets) -> Dict:
-    tweets_data = tweets.get("data", [])
-    for tweet in tweets_data:
+def add_extra_entities_to_tweets(tweets: list[Tweet]) -> list[Tweet]:
+    for tweet in tweets:
         text = tweet.get("text", "")
         modern_hdoc_day = get_extra_entities(MODERN_HDOC_PATTERN, text)
         hdoc_day = get_extra_entities(HDOC_PATTERN, text)
@@ -70,7 +69,7 @@ def add_extra_entities_to_tweets(tweets) -> Dict:
 
 
 def group_tweets_by_conversation_id(tweets) -> OD:
-    grouped_tweets: OD[int, List] = OrderedDict(
+    grouped_tweets: OD[int, list] = OrderedDict(
         {t["conversation_id"]: [] for t in tweets["data"]}
     )
     for tweet in tweets["data"][::-1]:
@@ -86,9 +85,9 @@ def group_tweets_by_conversation_id(tweets) -> OD:
 
 
 def group_tweets_by_round(
-    conversations: Dict[str, List[Any]]
-) -> DefaultDict[str, List[str]]:
-    dd: DefaultDict[str, List[str]] = defaultdict(list)
+    conversations: dict[str, list[Any]]
+) -> DefaultDict[str, list[str]]:
+    dd: DefaultDict[str, list[str]] = defaultdict(list)
     for conversation, tweets in conversations.items():
         if len(tweets) > 0:
             day_list = tweets[0].get("entities", {}).get("day_list", [{}])
@@ -97,7 +96,7 @@ def group_tweets_by_round(
     return dd
 
 
-def merge_tweets(tweets_json: Dict, new_data: Dict) -> Dict:
+def merge_tweets(tweets_json: dict, new_data: dict) -> dict:
     for key in new_data.keys():
         updated_tweets = []
         old_tweets = tweets_json.get(key, [])
@@ -152,7 +151,7 @@ def update_stats(new_stats: str):
     STATS_PATH.write_text(new_stats)
 
 
-def get_recent_index(arr: List[Any]):
+def get_recent_index(arr: list[Any]):
     idx = floor(len(arr) * 0.7)
     if idx < len(arr):
         return idx

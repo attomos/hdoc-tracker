@@ -1,0 +1,493 @@
+{
+  "110690760113523563": [
+    {
+      "id": "110690760113523563",
+      "created_at": "2023-07-10T16:35:59.773Z",
+      "in_reply_to_id": null,
+      "url": "https://mastodon.social/@attomos/110690760113523563",
+      "content": "<p><a href=\"https://mastodon.social/tags/100DaysOfCode\" class=\"mention hashtag\" rel=\"tag\">#<span>100DaysOfCode</span></a> R2D12</p><p>Watched &quot;Premature Optimization&quot; video from CodeAesthetic. Oh man, I want to support this guy&#39;s Patreon.</p><p>The content and the video editing was so great. \ud83d\udc4d</p><p>You can check it out here <a href=\"https://www.youtube.com/watch?v=tKbV6BpH-C8\" target=\"_blank\" rel=\"nofollow noopener noreferrer\" translate=\"no\"><span class=\"invisible\">https://www.</span><span class=\"ellipsis\">youtube.com/watch?v=tKbV6BpH-C</span><span class=\"invisible\">8</span></a></p><p>Also revisit home-row mods for my keymaps.<br />This time, I followed bingocaller 60% keymaps for navigation layers. Worked well since I&#39;m an ex-vim user. \ud83d\ude0f</p><p>Also the second nav layer reminds me of my OLKB days. \ud83e\udd7a</p><p><a href=\"https://keymapdb.com/keymaps/bingocaller/\" target=\"_blank\" rel=\"nofollow noopener noreferrer\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"ellipsis\">keymapdb.com/keymaps/bingocall</span><span class=\"invisible\">er/</span></a></p>",
+      "parsed_content": "#\n100DaysOfCode\n R2D12\nWatched \"Premature Optimization\" video from CodeAesthetic. Oh man, I want to support this guy's Patreon.\nThe content and the video editing was so great. \ud83d\udc4d\nYou can check it out here \nhttps://www.\nyoutube.com/watch?v=tKbV6BpH-C\n8\nAlso revisit home-row mods for my keymaps.\nThis time, I followed bingocaller 60% keymaps for navigation layers. Worked well since I'm an ex-vim user. \ud83d\ude0f\nAlso the second nav layer reminds me of my OLKB days. \ud83e\udd7a\nhttps://\nkeymapdb.com/keymaps/bingocall\ner/",
+      "media_attachments": []
+    }
+  ],
+  "110683072401496366": [
+    {
+      "id": "110683072401496366",
+      "created_at": "2023-07-09T08:00:54.569Z",
+      "in_reply_to_id": null,
+      "url": "https://mastodon.social/@attomos/110683072401496366",
+      "content": "<p><a href=\"https://mastodon.social/tags/100DaysOfCode\" class=\"mention hashtag\" rel=\"tag\">#<span>100DaysOfCode</span></a> R2D11</p><p>Worked on cleaning up the keymaps repo.</p><p>- Some renaming and better comments<br />- Fix a bug when cp -r creates extra folder if the target folder already exists<br />- Major improvement on local build process</p><p><a href=\"https://mastodon.social/tags/TIL\" class=\"mention hashtag\" rel=\"tag\">#<span>TIL</span></a> that `qmk flash` also builds the firmware before flashing. Even better, I can just use `qmk flash --clean` to get the clean build.</p><p>I was doing `build` command before `qmk flash` which do the build twice. It was not optimal, but it&#39;s fixed now.</p><p>Time to move on! \ud83d\ude05</p>",
+      "parsed_content": "#\n100DaysOfCode\n R2D11\nWorked on cleaning up the keymaps repo.\n- Some renaming and better comments\n- Fix a bug when cp -r creates extra folder if the target folder already exists\n- Major improvement on local build process\n#\nTIL\n that `qmk flash` also builds the firmware before flashing. Even better, I can just use `qmk flash --clean` to get the clean build.\nI was doing `build` command before `qmk flash` which do the build twice. It was not optimal, but it's fixed now.\nTime to move on! \ud83d\ude05",
+      "media_attachments": []
+    }
+  ],
+  "110679116418620719": [
+    {
+      "id": "110679116418620719",
+      "created_at": "2023-07-08T15:14:51.060Z",
+      "in_reply_to_id": null,
+      "url": "https://mastodon.social/@attomos/110679116418620719",
+      "content": "<p><a href=\"https://mastodon.social/tags/100DaysOfCode\" class=\"mention hashtag\" rel=\"tag\">#<span>100DaysOfCode</span></a> R2D10</p><p>Simplified the build process both locally and on Github actions.<br />Now I can use the same `just` recipes to build in any environment.</p><p>I&#39;m not going to continue working on automatic build pipeline since it will be wasteful on the Billable time. Better keep that for something else.</p><p>Tomorrow, I plan to work on refactoring the keymaps repository and then transition to web application projects.</p>",
+      "parsed_content": "#\n100DaysOfCode\n R2D10\nSimplified the build process both locally and on Github actions.\nNow I can use the same `just` recipes to build in any environment.\nI'm not going to continue working on automatic build pipeline since it will be wasteful on the Billable time. Better keep that for something else.\nTomorrow, I plan to work on refactoring the keymaps repository and then transition to web application projects.",
+      "media_attachments": []
+    }
+  ],
+  "110651003140269610": [
+    {
+      "id": "110651003140269610",
+      "created_at": "2023-07-03T16:05:16.510Z",
+      "in_reply_to_id": null,
+      "url": "https://mastodon.social/@attomos/110651003140269610",
+      "content": "<p><a href=\"https://mastodon.social/tags/100DaysOfCode\" class=\"mention hashtag\" rel=\"tag\">#<span>100DaysOfCode</span></a> R2D9</p><p>Didn&#39;t work on the build pipeline today.</p><p>Instead I was implementing my ideal gaming layer for 60% keyboards by utilizing key overrides feature in QMK.</p><p>I use `ko_make_with_layers` to enable key override on certain layer only.<br />Need some recap on bitmask operations today. \ud83d\ude02</p><p>It was fun and <a href=\"https://mastodon.social/tags/TIL\" class=\"mention hashtag\" rel=\"tag\">#<span>TIL</span></a> that I need to explicitly put KC keys and possibly modifier keys in the target layer otherwise the `ko_make_with_layers` won&#39;t work.</p>",
+      "parsed_content": "#\n100DaysOfCode\n R2D9\nDidn't work on the build pipeline today.\nInstead I was implementing my ideal gaming layer for 60% keyboards by utilizing key overrides feature in QMK.\nI use `ko_make_with_layers` to enable key override on certain layer only.\nNeed some recap on bitmask operations today. \ud83d\ude02\nIt was fun and \n#\nTIL\n that I need to explicitly put KC keys and possibly modifier keys in the target layer otherwise the `ko_make_with_layers` won't work.",
+      "media_attachments": []
+    }
+  ],
+  "110645214095805661": [
+    {
+      "id": "110645264142688064",
+      "created_at": "2023-07-02T15:45:46.274Z",
+      "in_reply_to_id": "110645214095805661",
+      "url": "https://mastodon.social/@attomos/110645264142688064",
+      "content": "<p>For now, it&#39;s time to rebase and squash commits in this branch \ud83d\ude09</p>",
+      "parsed_content": "For now, it's time to rebase and squash commits in this branch \ud83d\ude09",
+      "media_attachments": [
+        {
+          "id": "110645254864338377",
+          "type": "image",
+          "url": "https://files.mastodon.social/media_attachments/files/110/645/254/864/338/377/original/5139f5309cc4ed17.png",
+          "preview_url": "https://files.mastodon.social/media_attachments/files/110/645/254/864/338/377/small/5139f5309cc4ed17.png",
+          "remote_url": null,
+          "preview_remote_url": null,
+          "text_url": null,
+          "meta": {
+            "original": {
+              "width": 435,
+              "height": 45,
+              "size": "435x45",
+              "aspect": 9.666666666666666
+            },
+            "small": {
+              "width": 435,
+              "height": 45,
+              "size": "435x45",
+              "aspect": 9.666666666666666
+            }
+          },
+          "description": null,
+          "blurhash": "UJRMl9WAxUWC-;j[a#j[~VozNMs:o#ayocay"
+        }
+      ]
+    },
+    {
+      "id": "110645220913936066",
+      "created_at": "2023-07-02T15:34:46.640Z",
+      "in_reply_to_id": "110645214095805661",
+      "url": "https://mastodon.social/@attomos/110645220913936066",
+      "content": "<p>As you can see the Billable time is pretty much the same with the previous approach.<br />I need to optimize that.</p><p>I also don&#39;t think that building all keyboard firmwares on push will scale well with my current keyboard collection \ud83d\ude2d</p>",
+      "parsed_content": "As you can see the Billable time is pretty much the same with the previous approach.\nI need to optimize that.\nI also don't think that building all keyboard firmwares on push will scale well with my current keyboard collection \ud83d\ude2d",
+      "media_attachments": []
+    },
+    {
+      "id": "110645214095805661",
+      "created_at": "2023-07-02T15:33:02.695Z",
+      "in_reply_to_id": null,
+      "url": "https://mastodon.social/@attomos/110645214095805661",
+      "content": "<p><a href=\"https://mastodon.social/tags/100DaysOfCode\" class=\"mention hashtag\" rel=\"tag\">#<span>100DaysOfCode</span></a> R2D8</p><p>- Finally solved container slowness by creating my own image.<br />- However the build speed improvement is not that significant; trying `workflow_dispatch.inputs` to manually select a keyboard for firmware build job.<br />- Working on path filter workflow to trigger builds automatically.<br />- Explored GitHub Codespaces for GitHub actions experimentation.<br />- Faced initial challenges, but working through them. Exploring this action <a href=\"https://github.com/marketplace/actions/changed-files\" target=\"_blank\" rel=\"nofollow noopener noreferrer\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"ellipsis\">github.com/marketplace/actions</span><span class=\"invisible\">/changed-files</span></a></p>",
+      "parsed_content": "#\n100DaysOfCode\n R2D8\n- Finally solved container slowness by creating my own image.\n- However the build speed improvement is not that significant; trying `workflow_dispatch.inputs` to manually select a keyboard for firmware build job.\n- Working on path filter workflow to trigger builds automatically.\n- Explored GitHub Codespaces for GitHub actions experimentation.\n- Faced initial challenges, but working through them. Exploring this action \nhttps://\ngithub.com/marketplace/actions\n/changed-files",
+      "media_attachments": [
+        {
+          "id": "110645212786112871",
+          "type": "image",
+          "url": "https://files.mastodon.social/media_attachments/files/110/645/212/786/112/871/original/02216402daab1d7a.png",
+          "preview_url": "https://files.mastodon.social/media_attachments/files/110/645/212/786/112/871/small/02216402daab1d7a.png",
+          "remote_url": null,
+          "preview_remote_url": null,
+          "text_url": null,
+          "meta": {
+            "original": {
+              "width": 2560,
+              "height": 1055,
+              "size": "2560x1055",
+              "aspect": 2.4265402843601898
+            },
+            "small": {
+              "width": 747,
+              "height": 308,
+              "size": "747x308",
+              "aspect": 2.425324675324675
+            }
+          },
+          "description": null,
+          "blurhash": "U5SPeBRiR*e-0KRjjtRj55M{ayNGX7ofWCof"
+        },
+        {
+          "id": "110645213083804750",
+          "type": "image",
+          "url": "https://files.mastodon.social/media_attachments/files/110/645/213/083/804/750/original/a8b7883b071120cb.png",
+          "preview_url": "https://files.mastodon.social/media_attachments/files/110/645/213/083/804/750/small/a8b7883b071120cb.png",
+          "remote_url": null,
+          "preview_remote_url": null,
+          "text_url": null,
+          "meta": {
+            "original": {
+              "width": 887,
+              "height": 469,
+              "size": "887x469",
+              "aspect": 1.8912579957356077
+            },
+            "small": {
+              "width": 660,
+              "height": 349,
+              "size": "660x349",
+              "aspect": 1.8911174785100286
+            }
+          },
+          "description": null,
+          "blurhash": "U268Q:?wMxV=WExus:n$D%WBxus:%2ROj[WY"
+        }
+      ]
+    }
+  ],
+  "110634228695891048": [
+    {
+      "id": "110634228695891048",
+      "created_at": "2023-06-30T16:59:18.765Z",
+      "in_reply_to_id": null,
+      "url": "https://mastodon.social/@attomos/110634228695891048",
+      "content": "<p><a href=\"https://mastodon.social/tags/100DaysOfCode\" class=\"mention hashtag\" rel=\"tag\">#<span>100DaysOfCode</span></a> R2D7</p><p>- Mostly working on refactoring the keymaps source code.<br />- Setting up the ideal GitHub actions build pipeline is still in-progress. I tried to utilize the cache action again, however this time I re-arranged the cache action to be after `qmk -setup` action.<br />- Tomorrow is a holiday, I planned to watch some conference video tomorrow as well.</p>",
+      "parsed_content": "#\n100DaysOfCode\n R2D7\n- Mostly working on refactoring the keymaps source code.\n- Setting up the ideal GitHub actions build pipeline is still in-progress. I tried to utilize the cache action again, however this time I re-arranged the cache action to be after `qmk -setup` action.\n- Tomorrow is a holiday, I planned to watch some conference video tomorrow as well.",
+      "media_attachments": []
+    }
+  ],
+  "110628426804787611": [
+    {
+      "id": "110628426804787611",
+      "created_at": "2023-06-29T16:23:48.933Z",
+      "in_reply_to_id": null,
+      "url": "https://mastodon.social/@attomos/110628426804787611",
+      "content": "<p><a href=\"https://mastodon.social/tags/100DaysOfCode\" class=\"mention hashtag\" rel=\"tag\">#<span>100DaysOfCode</span></a> R2D6</p><p>- Continue working on improving the pipeline build time<br />- I tried to use upload/download artifacts to re-use qmk_firmware without having to do `qmk setup` again and again in different matrices/jobs.</p><p>Unfortunately, the uploading step took too long. I think tomorrow I need to build my own image and publish it to GitHub Container registry.</p><p>My plan is to rebuild the image every quarter to keep the build pipeline stable.</p>",
+      "parsed_content": "#\n100DaysOfCode\n R2D6\n- Continue working on improving the pipeline build time\n- I tried to use upload/download artifacts to re-use qmk_firmware without having to do `qmk setup` again and again in different matrices/jobs.\nUnfortunately, the uploading step took too long. I think tomorrow I need to build my own image and publish it to GitHub Container registry.\nMy plan is to rebuild the image every quarter to keep the build pipeline stable.",
+      "media_attachments": [
+        {
+          "id": "110628415830176964",
+          "type": "image",
+          "url": "https://files.mastodon.social/media_attachments/files/110/628/415/830/176/964/original/037a76eb35656f70.png",
+          "preview_url": "https://files.mastodon.social/media_attachments/files/110/628/415/830/176/964/small/037a76eb35656f70.png",
+          "remote_url": null,
+          "preview_remote_url": null,
+          "text_url": null,
+          "meta": {
+            "original": {
+              "width": 860,
+              "height": 403,
+              "size": "860x403",
+              "aspect": 2.133995037220844
+            },
+            "small": {
+              "width": 701,
+              "height": 328,
+              "size": "701x328",
+              "aspect": 2.1371951219512195
+            }
+          },
+          "description": null,
+          "blurhash": "U2SZ2.IUnh$y^+E1nhV?~pS5s-jY?Gt6X9t6"
+        }
+      ]
+    }
+  ],
+  "110622885354084764": [
+    {
+      "id": "110622885354084764",
+      "created_at": "2023-06-28T16:54:33.108Z",
+      "in_reply_to_id": null,
+      "url": "https://mastodon.social/@attomos/110622885354084764",
+      "content": "<p><a href=\"https://mastodon.social/tags/100DaysOfCode\" class=\"mention hashtag\" rel=\"tag\">#<span>100DaysOfCode</span></a> R2D5</p><p>- The result is not great, I couldn&#39;t figure out a way to reuse a container from the previous job.</p><p>Need to find a way to improve this anyway.</p><p>In the worst-case scenario, I will create my own image specifically for this purpose and ensure it is regularly updated with the latest upstream qmk_firmware every month.</p><p>I&#39;m determined to overcome these challenges and continue making progress in the second round. Onwards and upwards! \ud83d\udcaa\ud83d\ude80</p>",
+      "parsed_content": "#\n100DaysOfCode\n R2D5\n- The result is not great, I couldn't figure out a way to reuse a container from the previous job.\nNeed to find a way to improve this anyway.\nIn the worst-case scenario, I will create my own image specifically for this purpose and ensure it is regularly updated with the latest upstream qmk_firmware every month.\nI'm determined to overcome these challenges and continue making progress in the second round. Onwards and upwards! \ud83d\udcaa\ud83d\ude80",
+      "media_attachments": [
+        {
+          "id": "110622872932827684",
+          "type": "image",
+          "url": "https://files.mastodon.social/media_attachments/files/110/622/872/932/827/684/original/8461e878935ec3df.png",
+          "preview_url": "https://files.mastodon.social/media_attachments/files/110/622/872/932/827/684/small/8461e878935ec3df.png",
+          "remote_url": null,
+          "preview_remote_url": null,
+          "text_url": null,
+          "meta": {
+            "original": {
+              "width": 1374,
+              "height": 638,
+              "size": "1374x638",
+              "aspect": 2.153605015673981
+            },
+            "small": {
+              "width": 704,
+              "height": 327,
+              "size": "704x327",
+              "aspect": 2.1529051987767582
+            }
+          },
+          "description": null,
+          "blurhash": "U1SY~z0LO@ZzNIROITD*5ZxCDiS%?HIVR+n$"
+        }
+      ]
+    }
+  ],
+  "110617175501711917": [
+    {
+      "id": "110617175501711917",
+      "created_at": "2023-06-27T16:42:27.697Z",
+      "in_reply_to_id": null,
+      "url": "https://mastodon.social/@attomos/110617175501711917",
+      "content": "<p><a href=\"https://mastodon.social/tags/100DaysOfCode\" class=\"mention hashtag\" rel=\"tag\">#<span>100DaysOfCode</span></a> R2D4</p><p>- Fixed artifacts uploading step in the build pipeline<br />- Utilize GitHub Actions cache</p><p>But I feel like the current approach is still not good enough.<br />There&#39;s a cache but each build job has to download the cache.</p><p>Maybe setting the pipeline that downloads the cache only once should be much better.</p>",
+      "parsed_content": "#\n100DaysOfCode\n R2D4\n- Fixed artifacts uploading step in the build pipeline\n- Utilize GitHub Actions cache\nBut I feel like the current approach is still not good enough.\nThere's a cache but each build job has to download the cache.\nMaybe setting the pipeline that downloads the cache only once should be much better.",
+      "media_attachments": [
+        {
+          "id": "110617165468201395",
+          "type": "image",
+          "url": "https://files.mastodon.social/media_attachments/files/110/617/165/468/201/395/original/8bb8c198b813630e.png",
+          "preview_url": "https://files.mastodon.social/media_attachments/files/110/617/165/468/201/395/small/8bb8c198b813630e.png",
+          "remote_url": null,
+          "preview_remote_url": null,
+          "text_url": null,
+          "meta": {
+            "original": {
+              "width": 352,
+              "height": 259,
+              "size": "352x259",
+              "aspect": 1.359073359073359
+            },
+            "small": {
+              "width": 352,
+              "height": 259,
+              "size": "352x259",
+              "aspect": 1.359073359073359
+            }
+          },
+          "description": null,
+          "blurhash": "U2SY~zIS0K~p?EMwM{xt5Axv-pIU?bxaV@M{"
+        },
+        {
+          "id": "110617165627290638",
+          "type": "image",
+          "url": "https://files.mastodon.social/media_attachments/files/110/617/165/627/290/638/original/db404cdfb2850b95.png",
+          "preview_url": "https://files.mastodon.social/media_attachments/files/110/617/165/627/290/638/small/db404cdfb2850b95.png",
+          "remote_url": null,
+          "preview_remote_url": null,
+          "text_url": null,
+          "meta": {
+            "original": {
+              "width": 352,
+              "height": 259,
+              "size": "352x259",
+              "aspect": 1.359073359073359
+            },
+            "small": {
+              "width": 352,
+              "height": 259,
+              "size": "352x259",
+              "aspect": 1.359073359073359
+            }
+          },
+          "description": null,
+          "blurhash": "U2SY~zIS01~p?EMwIoxt5Axv-pIU?bxaV@M{"
+        },
+        {
+          "id": "110617175153386917",
+          "type": "image",
+          "url": "https://files.mastodon.social/media_attachments/files/110/617/175/153/386/917/original/0be6b0206faa42dc.png",
+          "preview_url": "https://files.mastodon.social/media_attachments/files/110/617/175/153/386/917/small/0be6b0206faa42dc.png",
+          "remote_url": null,
+          "preview_remote_url": null,
+          "text_url": null,
+          "meta": {
+            "original": {
+              "width": 875,
+              "height": 665,
+              "size": "875x665",
+              "aspect": 1.3157894736842106
+            },
+            "small": {
+              "width": 550,
+              "height": 418,
+              "size": "550x418",
+              "aspect": 1.3157894736842106
+            }
+          },
+          "description": null,
+          "blurhash": "U4Ss88MxD%IU0Mxtt6t7oJRjRkWA?HNGR*jZ"
+        }
+      ]
+    }
+  ],
+  "110617146509047365": [
+    {
+      "id": "110617146509047365",
+      "created_at": "2023-06-27T16:35:05.278Z",
+      "in_reply_to_id": null,
+      "url": "https://mastodon.social/@attomos/110617146509047365",
+      "content": "<p>Will this work?</p><p>\ud83d\udc40</p>",
+      "parsed_content": "Will this work?\n\ud83d\udc40",
+      "media_attachments": [
+        {
+          "id": "110617145345134145",
+          "type": "image",
+          "url": "https://files.mastodon.social/media_attachments/files/110/617/145/345/134/145/original/69aaf80bdc159447.png",
+          "preview_url": "https://files.mastodon.social/media_attachments/files/110/617/145/345/134/145/small/69aaf80bdc159447.png",
+          "remote_url": null,
+          "preview_remote_url": null,
+          "text_url": null,
+          "meta": {
+            "original": {
+              "width": 1027,
+              "height": 185,
+              "size": "1027x185",
+              "aspect": 5.551351351351351
+            },
+            "small": {
+              "width": 1027,
+              "height": 185,
+              "size": "1027x185",
+              "aspect": 5.551351351351351
+            }
+          },
+          "description": null,
+          "blurhash": "U35Osn?v-mt8xuj?oft6vcxZtmoftSt7jra#"
+        }
+      ]
+    }
+  ],
+  "110611448242037900": [
+    {
+      "id": "110611448242037900",
+      "created_at": "2023-06-26T16:25:56.627Z",
+      "in_reply_to_id": null,
+      "url": "https://mastodon.social/@attomos/110611448242037900",
+      "content": "<p><a href=\"https://mastodon.social/tags/100DaysOfCode\" class=\"mention hashtag\" rel=\"tag\">#<span>100DaysOfCode</span></a> R2D3</p><p>Finally managed to make my QMK userspace GitHub action work after countless failed builds.</p><p>The end result is great, I need to make firmwares downloadable.<br />Another thing is that there&#39;s still some performance improvement to do like caching the QMK setup.</p><p>I&#39;ll focus on these things tomorrow.</p>",
+      "parsed_content": "#\n100DaysOfCode\n R2D3\nFinally managed to make my QMK userspace GitHub action work after countless failed builds.\nThe end result is great, I need to make firmwares downloadable.\nAnother thing is that there's still some performance improvement to do like caching the QMK setup.\nI'll focus on these things tomorrow.",
+      "media_attachments": [
+        {
+          "id": "110611332957500130",
+          "type": "image",
+          "url": "https://files.mastodon.social/media_attachments/files/110/611/332/957/500/130/original/0c8806a6c741e49a.png",
+          "preview_url": "https://files.mastodon.social/media_attachments/files/110/611/332/957/500/130/small/0c8806a6c741e49a.png",
+          "remote_url": null,
+          "preview_remote_url": null,
+          "text_url": null,
+          "meta": {
+            "original": {
+              "width": 658,
+              "height": 692,
+              "size": "658x692",
+              "aspect": 0.9508670520231214
+            },
+            "small": {
+              "width": 468,
+              "height": 492,
+              "size": "468x492",
+              "aspect": 0.9512195121951219
+            }
+          },
+          "description": null,
+          "blurhash": "U8Rfd]m$xA%islaxj]j@R.j]f5a#oHaxflj["
+        },
+        {
+          "id": "110611446734829533",
+          "type": "image",
+          "url": "https://files.mastodon.social/media_attachments/files/110/611/446/734/829/533/original/68b0b9930f313eba.png",
+          "preview_url": "https://files.mastodon.social/media_attachments/files/110/611/446/734/829/533/small/68b0b9930f313eba.png",
+          "remote_url": null,
+          "preview_remote_url": null,
+          "text_url": null,
+          "meta": {
+            "original": {
+              "width": 1474,
+              "height": 762,
+              "size": "1474x762",
+              "aspect": 1.9343832020997376
+            },
+            "small": {
+              "width": 667,
+              "height": 345,
+              "size": "667x345",
+              "aspect": 1.9333333333333333
+            }
+          },
+          "description": null,
+          "blurhash": "U2S$owxU?G-;E29FITM{~U4oIoRj~WIVM{of"
+        }
+      ]
+    }
+  ],
+  "110605584327300187": [
+    {
+      "id": "110605584327300187",
+      "created_at": "2023-06-25T15:34:40.387Z",
+      "in_reply_to_id": null,
+      "url": "https://mastodon.social/@attomos/110605584327300187",
+      "content": "<p><a href=\"https://mastodon.social/tags/100DaysOfCode\" class=\"mention hashtag\" rel=\"tag\">#<span>100DaysOfCode</span></a> R2D2</p><p>With multiple failing jobs.</p><p>I still cannot setup my QMK userspace GitHub action build pipeilne to work properly.<br />At least learned few things about checkout action like sparse-checkout.</p><p>The weird thing is that when I was trying the qmk_cli Docker image locally, everything works as expected. \ud83e\udd79</p><p>Tomorrow, I will try to use keymap.json instead of keymap.c file.</p><p>If it still doesn&#39;t work, maybe it&#39;s time to contribute to QMK documentation. \ud83e\udd14</p>",
+      "parsed_content": "#\n100DaysOfCode\n R2D2\nWith multiple failing jobs.\nI still cannot setup my QMK userspace GitHub action build pipeilne to work properly.\nAt least learned few things about checkout action like sparse-checkout.\nThe weird thing is that when I was trying the qmk_cli Docker image locally, everything works as expected. \ud83e\udd79\nTomorrow, I will try to use keymap.json instead of keymap.c file.\nIf it still doesn't work, maybe it's time to contribute to QMK documentation. \ud83e\udd14",
+      "media_attachments": []
+    }
+  ],
+  "110603498424596613": [
+    {
+      "id": "110603498424596613",
+      "created_at": "2023-06-25T06:44:12.036Z",
+      "in_reply_to_id": null,
+      "url": "https://mastodon.social/@attomos/110603498424596613",
+      "content": "<p>sadge</p><p>GitHub actions got partial outage when I was setting up GitHub actions for my repo.</p>",
+      "parsed_content": "sadge\nGitHub actions got partial outage when I was setting up GitHub actions for my repo.",
+      "media_attachments": [
+        {
+          "id": "110603495908565989",
+          "type": "image",
+          "url": "https://files.mastodon.social/media_attachments/files/110/603/495/908/565/989/original/be21cf5a38bbd331.png",
+          "preview_url": "https://files.mastodon.social/media_attachments/files/110/603/495/908/565/989/small/be21cf5a38bbd331.png",
+          "remote_url": null,
+          "preview_remote_url": null,
+          "text_url": null,
+          "meta": {
+            "original": {
+              "width": 2222,
+              "height": 1152,
+              "size": "2222x1152",
+              "aspect": 1.9288194444444444
+            },
+            "small": {
+              "width": 667,
+              "height": 346,
+              "size": "667x346",
+              "aspect": 1.9277456647398843
+            }
+          },
+          "description": null,
+          "blurhash": "U3Ss88t701xbM|RjRjay59D%-pM{%MIUofRj"
+        }
+      ]
+    }
+  ],
+  "110598541322607163": [
+    {
+      "id": "110598541322607163",
+      "created_at": "2023-06-24T09:43:32.664Z",
+      "in_reply_to_id": null,
+      "url": "https://mastodon.social/@attomos/110598541322607163",
+      "content": "<p><a href=\"https://mastodon.social/tags/100DaysOfCode\" class=\"mention hashtag\" rel=\"tag\">#<span>100DaysOfCode</span></a> R2D1</p><p>Added <a href=\"https://mastodon.social/tags/QMK\" class=\"mention hashtag\" rel=\"tag\">#<span>QMK</span></a> combos to my existing keymaps. Mainly I&#39;d like to add `op` combo for backspace in my Alice layout keyboard only.</p><p>However, I ended up enable to feature to all my keyboards.</p><p>Also did some refactoring in the old keymaps files. To replace magic numbers with enums (named layers) instead as well as remove the unused layers.</p><p>Next, I was planning to do nightly build setup for the keymaps repo.</p>",
+      "parsed_content": "#\n100DaysOfCode\n R2D1\nAdded \n#\nQMK\n combos to my existing keymaps. Mainly I'd like to add `op` combo for backspace in my Alice layout keyboard only.\nHowever, I ended up enable to feature to all my keyboards.\nAlso did some refactoring in the old keymaps files. To replace magic numbers with enums (named layers) instead as well as remove the unused layers.\nNext, I was planning to do nightly build setup for the keymaps repo.",
+      "media_attachments": []
+    }
+  ],
+  "110597481161337224": [
+    {
+      "id": "110597481161337224",
+      "created_at": "2023-06-24T05:13:55.888Z",
+      "in_reply_to_id": null,
+      "url": "https://mastodon.social/@attomos/110597481161337224",
+      "content": "<p>Hello, World</p><p>My first post on Mastodon.</p><p>This is going to be fun!</p>",
+      "parsed_content": "Hello, World\nMy first post on Mastodon.\nThis is going to be fun!",
+      "media_attachments": []
+    }
+  ]
+}
