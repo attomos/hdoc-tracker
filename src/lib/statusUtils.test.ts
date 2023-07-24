@@ -13,12 +13,6 @@ const mockStatuses: GroupedStatuses = {
       id: "1234",
       created_at: "2022-02-19T12:15:37.000Z",
       parsed_content: "nothing",
-      public_metrics: {
-        retweet_count: 7,
-        reply_count: 2,
-        like_count: 2,
-        quote_count: 0,
-      },
       author_id: "2699175613",
     },
     {
@@ -27,12 +21,6 @@ const mockStatuses: GroupedStatuses = {
       id: "1235",
       created_at: "2022-02-19T12:16:01.000Z",
       parsed_content: "just a comment",
-      public_metrics: {
-        retweet_count: 7,
-        reply_count: 2,
-        like_count: 2,
-        quote_count: 0,
-      },
       author_id: "2699175613",
     },
   ],
@@ -43,12 +31,6 @@ const mockStatuses: GroupedStatuses = {
       id: "5555",
       created_at: "2022-02-19T12:15:37.000Z",
       parsed_content: "this is for testing yo #100DaysOfCode",
-      public_metrics: {
-        retweet_count: 7,
-        reply_count: 2,
-        like_count: 2,
-        quote_count: 0,
-      },
       author_id: "2699175613",
     },
     {
@@ -91,12 +73,6 @@ const mockStatuses: GroupedStatuses = {
       created_at: "2022-02-19T12:16:01.000Z",
       parsed_content:
         "src: https://t.co/src #100DaysOfCode demo: https://t.co/app",
-      public_metrics: {
-        retweet_count: 7,
-        reply_count: 2,
-        like_count: 2,
-        quote_count: 0,
-      },
       author_id: "2699175613",
     },
   ],
@@ -136,12 +112,6 @@ const mockStatuses: GroupedStatuses = {
       created_at: "2022-02-28T16:41:53.000Z",
       parsed_content:
         "day 49 of #100DaysOfCode\n\nContinue with my progress tracker website.\n\n- Fixed days count logic\n- Added client side routing using svelte-navigator\n\ndemo: https://t.co/RUdHzhtdjW https://t.co/9Kl0MZgskN",
-      public_metrics: {
-        retweet_count: 8,
-        reply_count: 0,
-        like_count: 6,
-        quote_count: 0,
-      },
       author_id: "2699175613",
     },
   ],
@@ -181,12 +151,6 @@ const mockStatuses: GroupedStatuses = {
       created_at: "2022-02-19T12:15:37.000Z",
       parsed_content:
         'day 40 of #100DaysOfCode \n\n- Complete freeCodeCamp "Tribute Page" challenge\ndemo: https://t.co/xdgnwdedub\n- Add total days, longest streak, and current streak to the tracker project. https://t.co/yVD7oZb9rL',
-      public_metrics: {
-        retweet_count: 7,
-        reply_count: 2,
-        like_count: 2,
-        quote_count: 0,
-      },
       author_id: "2699175613",
     },
     {
@@ -214,12 +178,6 @@ const mockStatuses: GroupedStatuses = {
       id: "1495208706946256897",
       created_at: "2022-02-20T01:28:30.000Z",
       parsed_content: "fixed demo: https://t.co/jLcMovxM7E\n\n#100DaysOfCode",
-      public_metrics: {
-        retweet_count: 2,
-        reply_count: 1,
-        like_count: 2,
-        quote_count: 0,
-      },
       author_id: "2699175613",
     },
   ],
@@ -267,12 +225,6 @@ const mockStatuses: GroupedStatuses = {
       },
       in_reply_to_id: "1483483848403202052",
       author_id: "2699175613",
-      public_metrics: {
-        retweet_count: 8,
-        reply_count: 1,
-        like_count: 3,
-        quote_count: 0,
-      },
       parsed_content:
         "day 11 of #100DaysOfCode \n\nCreated a custom element to put #100DaysOfCode ribbon. It has some customizability so that you can put it in either top right or top left corner of the web page.\n\nsrc: https://t.co/8pHew9P6Zl\nnpm: https://t.co/rk6AqGEIHx\nPlease check out the demo below. https://t.co/GimkrJmNPr",
       created_at: "2022-01-18T16:58:05.000Z",
@@ -338,12 +290,6 @@ const mockStatuses: GroupedStatuses = {
       },
       in_reply_to_id: "1479514795829174274",
       author_id: "2699175613",
-      public_metrics: {
-        retweet_count: 12,
-        reply_count: 0,
-        like_count: 3,
-        quote_count: 0,
-      },
       parsed_content:
         "day 5 of #100DaysOfCode \n\nI made my 100-days-of-code repo a GitHub Pages so that all days are accessible.\n\nFor the actual project of day 5, I created a simple search form found in Tailwind CSS documentation.\n\nsrc: https://t.co/sxheLXSxla\ndemo: https://t.co/lmexIesDo1 https://t.co/GazKrsmuJb",
       created_at: "2022-01-07T18:06:30.000Z",
@@ -363,12 +309,6 @@ describe("statusUtils", () => {
             id: "1234",
             created_at: "2022-02-19T12:15:37.000Z",
             parsed_content: "nothing",
-            public_metrics: {
-              retweet_count: 7,
-              reply_count: 2,
-              like_count: 2,
-              quote_count: 0,
-            },
             author_id: "2699175613",
           },
           {
@@ -377,12 +317,6 @@ describe("statusUtils", () => {
             id: "1235",
             created_at: "2022-02-19T12:16:01.000Z",
             parsed_content: "just a comment",
-            public_metrics: {
-              retweet_count: 7,
-              reply_count: 2,
-              like_count: 2,
-              quote_count: 0,
-            },
             author_id: "2699175613",
           },
         ],
@@ -399,12 +333,6 @@ describe("statusUtils", () => {
             id: "1234",
             created_at: "2022-02-19T12:15:37.000Z",
             parsed_content: "nothing",
-            public_metrics: {
-              retweet_count: 7,
-              reply_count: 2,
-              like_count: 2,
-              quote_count: 0,
-            },
             author_id: "2699175613",
           },
           {
@@ -413,12 +341,6 @@ describe("statusUtils", () => {
             id: "1235",
             created_at: "2022-02-19T12:16:01.000Z",
             parsed_content: "just a comment",
-            public_metrics: {
-              retweet_count: 7,
-              reply_count: 2,
-              like_count: 2,
-              quote_count: 0,
-            },
             author_id: "2699175613",
           },
         ],

@@ -1,7 +1,6 @@
 export type Status = {
   entities: Entities;
   created_at: string;
-  public_metrics: PublicMetrics;
   in_reply_to_id: string;
   author_id: string;
   id: string;
@@ -67,13 +66,6 @@ export type Src = CustomEntityBase & {
 export type Demo = CustomEntityBase & {
   demo: string;
   fixed: boolean;
-};
-
-export type PublicMetrics = {
-  retweet_count: number;
-  reply_count: number;
-  like_count: number;
-  quote_count: number;
 };
 
 export type ExpandedEntity = {

@@ -15,12 +15,6 @@ describe("StatusBoxBody", () => {
         ],
       },
       created_at: "2022-03-21T16:48:22.000Z",
-      public_metrics: {
-        retweet_count: 1,
-        reply_count: 0,
-        like_count: 1,
-        quote_count: 0,
-      },
       in_reply_to_id: "1",
       id: "1",
     };
