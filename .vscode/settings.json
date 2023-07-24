@@ -2,13 +2,5 @@
   "terminal.integrated.env.osx": {
     "PYTHONPATH": "${workspaceFolder}/scripts"
   },
-  "python.testing.pytestArgs": [
-    "scripts",
-    "--cov=scripts/hdoc_tracker",
-    "--cov-report",
-    "html:scripts/htmlcov",
-    "tests"
-  ],
-  "python.testing.unittestEnabled": false,
-  "python.testing.pytestEnabled": true,
+  "python.analysis.extraPaths": ["./scripts"]
 }
