@@ -7,7 +7,6 @@
 
   let formattedDate: string;
   let authorUrl: string;
-  let tweetUrl: string;
 
   // TODO: hard-coded for now, until I do Cloudflare Workers thing.
   // Also see globalObjects.json
@@ -20,7 +19,6 @@
       $todayDate
     );
     authorUrl = `https://twitter.com/attomos`;
-    tweetUrl = `https://twitter.com/attomos/status/${status.id}`;
   }
 </script>
 
@@ -41,7 +39,7 @@
   <div title="long date here">
     <a
       class="rounded-sm outline-none hover:underline focus-visible:underline"
-      href={tweetUrl}
+      href={status.url}
       target="_blank"
       data-testid="timestamp"
     >

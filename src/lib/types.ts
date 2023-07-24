@@ -5,6 +5,7 @@ export type Status = {
   author_id: string;
   id: string;
   parsed_content: string;
+  url: string;
 };
 
 export type StatusTuple = [string, Status[]];
