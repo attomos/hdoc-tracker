@@ -15,7 +15,7 @@ const data = writable<GroupedStatuses>({});
 // );
 
 // const url = writable("http://localhost:3000/grouped.json");
-const url = writable("https://hdoc-tracker.attomos.workers.dev?round=3"); // TODO: clean up this mess later
+const url = writable("https://hdoc-tracker.attomos.workers.dev?round=1"); // TODO: clean up this mess later
 
 async function fetchTweets() {
   loading.set(true);
@@ -23,11 +23,18 @@ async function fetchTweets() {
   const result = await response.json();
 
   // Cloudflare Workers is too fast, need to add some delay here...
-  setTimeout(() => {
-    data.set(JSON.parse(result.result));
-    // data.set(result);
-    loading.set(false);
-  }, 300);
+  const resultValue = JSON.parse(result.result);
+  // reverse sort resultValue by key
+  const sortedResult = Object.keys(resultValue)
+    .sort((a, b) => parseInt(b, 10) - parseInt(a, 10))
+    .reduce((obj, key) => {
+      obj[key] = resultValue[key];
+      return obj;
+    }, {});
+
+  data.set(sortedResult);
+
+  loading.set(false);
 }
 
 url.subscribe(() => fetchTweets());
