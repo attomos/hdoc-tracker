@@ -9,7 +9,7 @@
     "upstash": "node main.js"
   },
   "dependencies": {
-    "@upstash/redis": "^1.3.1",
+    "@upstash/redis": "^1.22.0",
     "dotenv": "^16.0.0"
   }
 }
