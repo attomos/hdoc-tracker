@@ -3,7 +3,7 @@ import { getStatuses } from "./statusUtils";
 import type { GroupedStatuses, Status } from "./types";
 
 export const searchTerm = writable("");
-export const currentRound = writable("1");
+export const currentRound = writable("2");
 
 export const loading = writable(true);
 const data = writable<GroupedStatuses>({});
