@@ -15,16 +15,18 @@
     e.stopPropagation();
   }
 
-  const extraClass =
-    status.in_reply_to_id === status.id ? "" : "status-box-child";
+  const isRootStatus =
+    status.in_reply_to_id === null || status.in_reply_to_id === status.id;
+
+  const extraClass = isRootStatus ? "" : "status-box-child";
 </script>
 
 <li role="option" on:click={handleStatusBoxClick}>
   <div class="status-box {extraClass}" tabindex="0">
-    <StatusBoxHeader status={status} />
-    <StatusBoxBody status={status} />
+    <StatusBoxHeader {status} />
+    <StatusBoxBody {status} />
     {#if !hideFooter}
-      <StatusBoxFooter status={status} {replies} on:openReply={handleRepliesClick} />
+      <StatusBoxFooter {status} {replies} on:openReply={handleRepliesClick} />
     {/if}
   </div>
 </li>
