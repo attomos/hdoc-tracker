@@ -8,22 +8,32 @@ export const currentRound = writable("1");
 export const loading = writable(true);
 const data = writable<GroupedStatuses>({});
 
-// const url = derived(
-//   currentRound,
-//   ($currentRound) =>
-//     `https://hdoc-tracker.attomos.workers.dev?round=${$currentRound}`
-// );
+const url = derived(
+  currentRound,
+  ($currentRound) =>
+    `https://hdoc-tracker.attomos.workers.dev?round=${$currentRound}`
+);
 
-// const url = writable("http://localhost:3000/grouped.json");
-const url = writable("https://hdoc-tracker.attomos.workers.dev?round=1"); // TODO: clean up this mess later
+function replaceSomeUnicode(text: string) {
+  // TODO: find a better name for this function
+  const regex = /\\U([0-9a-fA-F]{8})/g;
+
+  // Function to replace the matched \U sequences with the equivalent JavaScript Unicode sequences
+  function replaceUnicode(match, p1) {
+    const hexValue = parseInt(p1, 16);
+    return String.fromCodePoint(hexValue);
+  }
+
+  return text.replace(regex, replaceUnicode);
+}
 
 async function fetchTweets() {
   loading.set(true);
   const response = await fetch(get(url));
-  const result = await response.json();
+  const result = await response.text();
 
-  // Cloudflare Workers is too fast, need to add some delay here...
-  const resultValue = JSON.parse(result.result);
+  const tmp = JSON.parse(replaceSomeUnicode(result));
+  const resultValue = JSON.parse(tmp.result);
   // reverse sort resultValue by key
   const sortedResult = Object.keys(resultValue)
     .sort((a, b) => parseInt(b, 10) - parseInt(a, 10))
@@ -50,7 +60,10 @@ export const topLevelStatuses = derived(statuses, ($tweets) =>
     let rootTweet: Status;
     let replies = [];
     $tweets[conversationId].forEach((status) => {
-      if (status.in_reply_to_id === status.id) {
+      if (
+        status.in_reply_to_id === null ||
+        status.in_reply_to_id === status.id
+      ) {
         rootTweet = status;
       } else {
         replies.push(status);
