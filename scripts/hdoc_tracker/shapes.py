@@ -1,4 +1,4 @@
-from typing import Any, Literal, NotRequired, TypedDict
+from typing import Any, Literal, TypedDict
 
 
 class MediaAttachment(TypedDict):
@@ -30,3 +30,40 @@ class Tweet(TypedDict):
 
 class LegacyTweets(TypedDict):
     data: list[Tweet]
+
+
+class Entity(TypedDict):
+    start: int
+    end: int
+
+
+class Hashtag(Entity):
+    tag: str
+
+
+class StatusUrl(Entity):
+    url: str
+    expanded_url: str
+    display_url: str
+
+
+class HdocDay(Entity):
+    day: str
+
+
+class Src(Entity):
+    src: str
+    fixed: bool
+
+
+class Demo(Entity):
+    demo: str
+    fixed: bool
+
+
+class Entities(TypedDict, total=False):
+    hashtags: list[Hashtag]
+    urls: list[StatusUrl]
+    day_list: list[HdocDay]
+    src_list: list[Src]
+    demo_list: list[Demo]

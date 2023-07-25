@@ -35,6 +35,13 @@ MODERN_HDOC_PATTERN = PatternConfig(
     target_group_position=1,
     details=[("round_value", "int", 3), ("day_value", "int", 5)],
 )
+MODERN_HDOC_PATTERN2 = PatternConfig(
+    key=PatternKey.modern_day,
+    pattern=re.compile(r"#100DaysOfCode ((R(\d{1,}))(D(\d{1,3})))"),
+    expected_groups_len=5,
+    target_group_position=1,
+    details=[("round_value", "int", 3), ("day_value", "int", 5)],
+)
 DEMO_PATTERN = PatternConfig(
     key=PatternKey.demo,
     pattern=re.compile(r"(fixed )?demo: ([\w\.\/:-]+)"),

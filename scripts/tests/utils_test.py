@@ -1,7 +1,10 @@
+import pytest
+
 from hdoc_tracker.patterns import (
     DEMO_PATTERN,
     HDOC_PATTERN,
     MODERN_HDOC_PATTERN,
+    MODERN_HDOC_PATTERN2,
     SRC_PATTERN,
 )
 from hdoc_tracker.shapes import Tweet
@@ -12,6 +15,7 @@ from hdoc_tracker.utils import (
     group_tweets_by_conversation_id,
     group_tweets_by_round,
     merge_tweets,
+    parse_html_content,
 )
 
 
@@ -130,6 +134,52 @@ def test_modern_hdoc_entites():
             }
         ]
     }
+    entities = get_extra_entities(pattern, "d1 of #100DaysOfCode")
+    assert not entities
+    entities = get_extra_entities(pattern, "day 1 of #100DaysOfCode")
+    assert not entities
+
+
+def test_modern_hdoc_entites2():
+    pattern = MODERN_HDOC_PATTERN2
+    entities = get_extra_entities(pattern, "#100DaysOfCode R2D1")
+    assert entities == {
+        "day_list": [
+            {"day": "R2D1", "start": 15, "end": 19, "round_value": 2, "day_value": 1}
+        ]
+    }
+    entities = get_extra_entities(pattern, "#100DaysOfCode R2D10")
+    assert entities == {
+        "day_list": [
+            {"day": "R2D10", "start": 15, "end": 20, "round_value": 2, "day_value": 10}
+        ]
+    }
+    entities = get_extra_entities(pattern, "#100DaysOfCode R20D100")
+    assert entities == {
+        "day_list": [
+            {
+                "day": "R20D100",
+                "start": 15,
+                "end": 22,
+                "round_value": 20,
+                "day_value": 100,
+            }
+        ]
+    }
+    entities = get_extra_entities(pattern, "#100DaysOfCode R200D100")
+    assert entities == {
+        "day_list": [
+            {
+                "day": "R200D100",
+                "start": 15,
+                "end": 23,
+                "round_value": 200,
+                "day_value": 100,
+            }
+        ]
+    }
+    entities = get_extra_entities(pattern, "R2D1 #100DaysOfCode")
+    assert not entities
     entities = get_extra_entities(pattern, "d1 of #100DaysOfCode")
     assert not entities
     entities = get_extra_entities(pattern, "day 1 of #100DaysOfCode")
@@ -821,3 +871,31 @@ def test_get_recent_index():
     arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     idx = get_recent_index(arr)
     assert idx == 7
+
+
+html1 = ("what is good everyone?", "what is good everyone?")
+html2 = ("<p>what is good everyone?</p>", "what is good everyone?")
+html3 = (
+    """<p><a href=\"https://mastodon.social/tags/100DaysOfCode\" class=\"mention hashtag\" rel=\"tag\">#<span>100DaysOfCode</span></a> R2D19</p><p>- Successfully migrated tweets to Mastodon data format.<br />- Uploaded the converted data to upstash Redis and the UI is now works with Mastodon data.</p><p>Next: clean up some hard-coded part from round 1 code and also picking a better data structure to use in Redis. And then, I need to enrich Mastodon data with entities like these src and demo URLs.</p><p>src: <a href=\"https://github.com/attomos/hdoc-tracker/commit/4eaf922100862a62da70f18158bb3021ac300b8a\" target=\"_blank\" rel=\"nofollow noopener noreferrer\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"ellipsis\">github.com/attomos/hdoc-tracke</span><span class=\"invisible\">r/commit/4eaf922100862a62da70f18158bb3021ac300b8a</span></a></p>""",
+    """\
+#100DaysOfCode R2D19
+
+- Successfully migrated tweets to Mastodon data format.
+- Uploaded the converted data to upstash Redis and the UI is now works with Mastodon data.
+
+Next: clean up some hard-coded part from round 1 code and also picking a better data structure to use in Redis. And then, I need to enrich Mastodon data with entities like these src and demo URLs.
+
+src: https://github.com/attomos/hdoc-tracker/commit/4eaf922100862a62da70f18158bb3021ac300b8a""",
+)
+
+
+@pytest.mark.parametrize(
+    "html_content, expected",
+    [
+        html2,
+        html1,
+        html3,
+    ],
+)
+def test_parse_html_content(html_content, expected):
+    assert parse_html_content(html_content) == expected

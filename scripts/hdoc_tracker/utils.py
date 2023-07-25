@@ -6,6 +6,7 @@ from pathlib import Path
 from typing import Any, DefaultDict, Match
 from typing import OrderedDict as OD
 
+from bs4 import BeautifulSoup
 from deepdiff import DeepDiff
 
 from hdoc_tracker.patterns import (
@@ -158,7 +159,19 @@ def get_recent_index(arr: list[Any]):
     return -1
 
 
-if __name__ == "__main__":
-    text = "R2D1 #100DaysOfCode"
-    modern_hdoc_day = get_extra_entities(MODERN_HDOC_PATTERN, text)
-    print(modern_hdoc_day)
+def parse_html_content(html_content: str):
+    """Parse HTML content from Mastodon API
+
+    Calling get_text() directly won't work even with the separator or strip arguments.
+    This function is will get the desired text while retaining the proper line breaks.
+
+    Args:
+        html_content (str): HTML content from Mastodon API
+    """
+    soup = BeautifulSoup(html_content, "html.parser")
+    for elem in soup.find_all(["br"]):
+        elem.replace_with(elem.text + "\n")
+    for elem in soup.find_all(["p"]):
+        elem.replace_with(elem.text + "\n\n")
+
+    return soup.get_text().strip()
