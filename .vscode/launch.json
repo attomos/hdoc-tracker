@@ -11,6 +11,14 @@
       "program": "${file}",
       "console": "integratedTerminal",
       "cwd": "${workspaceFolder}/scripts"
+    },
+    {
+      "name": "get_statuses.py",
+      "type": "python",
+      "request": "launch",
+      "program": "hdoc_tracker/get_statuses.py",
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}/scripts"
     }
   ]
 }

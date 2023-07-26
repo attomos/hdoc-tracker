@@ -46,9 +46,14 @@ def main():
     raw_statuses = fetch_statuses()
     statuses = []
 
+    # refine each status object and enrich with entities
     for raw_status in raw_statuses:
-        # refine status object and enrich with entities
-        if "/activity" in raw_status["url"]:
+        # exclude reblogs and non-#100DaysOfCode statuses
+        tags_names = [tag["name"].lower() for tag in raw_status["tags"]]
+        if raw_status.get("reblog") or (
+            not raw_status["in_reply_to_id"] and "100daysofcode" not in tags_names
+        ):
+            print(f"skipping status {raw_status['id']}")
             continue
         status: Status = {
             "id": raw_status["id"],
