@@ -1,4 +1,4 @@
-# hdoc-tracker [25/54]
+# hdoc-tracker [28/62]
 
 ## TODO
 
@@ -43,6 +43,13 @@
   - [x] Filter by round
   - [x] need an API for new rounds (or for the sake of learning 😏)
 - [ ] support for new rounds (UI)
+  - [ ] round selector (that ListBox)
+  - [ ] ListBox could use some CSS and custom div
+  - [ ] routing
+- [ ] data fetching
+  - [x] merge tweets
+  - [x] merge tweets unit test
+  - [ ] create a single commit for multiple JSON files update
 - [ ] put more context in automatic commits
   - [ ] time taken
   - [ ] pretty stats table (probably better add a comment in each automatic tweet)
@@ -54,12 +61,16 @@
   - [ ] pypi
   - [ ] rust package
   - [ ] go package
+- [ ] round 2 (migrated to Mastodon)
+  - [x] Make sure content are always in HTML?? https://docs.joinmastodon.org/entities/Status/#content
+  - [ ] prepare new component for round 2 content
 
 ## bugs
 
 - [x] time zone bug in `formatTwitterDate` function
 - [x] no streaks, but display the most recent streak instead
-- [ ] compare_tweets bug (counting number of tweets has some issues, e.g., what about replies tweets)
+- [x] compare_tweets bug (counting number of tweets has some issues, e.g., what about replies tweets)
+- [ ] plus4months bug, activity graph should continue as long as it has new data or reach day 100
 
 ## useful resources
 
@@ -87,7 +98,7 @@
 | tweets count (round 2) | 180                                 |
 | elapsed time (seconds) | 3.33                                |
 
-### daily run (fetch only recent tweets, controlled by since_id)
+### flowchart for data fetching/processing pipeline
 
 ```mermaid
 graph TD
@@ -100,8 +111,8 @@ graph TD
     F2 --> A
     subgraph get_tweets.py
     A(Fetch tweets from Twitter API) --> B(Extract metadata)
-    B --> B2(group tweets by #100DaysOfCode round)
-    B2 --> B3(group tweets by conversion_id)
+    B --> B2(group tweets by conversation_id)
+    B2 --> B3(group tweets by round)
     B3 --> B4(write the results to files)
     end
     B4 --> U1(push changes to GitHub)

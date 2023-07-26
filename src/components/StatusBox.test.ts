@@ -1,14 +1,10 @@
-/**
- * @jest-environment jsdom
- */
-import "@testing-library/jest-dom";
 import { render } from "@testing-library/svelte";
-import TweetBox from "./TweetBox.svelte";
+import StatusBox from "./StatusBox.svelte";
 
-describe("TweetBox", () => {
+describe("StatusBox", () => {
   it("should renders correctly", () => {
-    const tweet = {
-      text: "day 1 of #100DaysOfCode\ngood morning",
+    const status = {
+      parsed_content: "day 1 of #100DaysOfCode\ngood morning",
       entities: {
         day_list: [
           {
@@ -19,17 +15,14 @@ describe("TweetBox", () => {
         ],
       },
       created_at: "2022-03-21T16:48:22.000Z",
-      public_metrics: {
-        retweet_count: 1,
-        reply_count: 0,
-        like_count: 1,
-        quote_count: 0,
-      },
-      conversation_id: "1",
+      in_reply_to_id: "1",
       id: "1",
     };
     const replies = [];
-    const { getByTestId, getByRole } = render(TweetBox, { tweet, replies });
+    const { getByTestId, getByRole } = render(StatusBox, {
+      status,
+      replies,
+    });
 
     const option = getByRole("option");
     const mark = getByTestId("mark");
@@ -39,8 +32,8 @@ describe("TweetBox", () => {
   });
 
   it("should renders without a mark for old entities data", () => {
-    const tweet = {
-      text: "day 1 of #100DaysOfCode\ngood morning",
+    const status = {
+      parsed_content: "day 1 of #100DaysOfCode\ngood morning",
       entities: {
         days: [
           {
@@ -51,18 +44,15 @@ describe("TweetBox", () => {
         ],
       },
       created_at: "2022-03-21T16:48:22.000Z",
-      public_metrics: {
-        retweet_count: 1,
-        reply_count: 0,
-        like_count: 1,
-        quote_count: 0,
-      },
-      conversation_id: "1",
+      in_reply_to_id: "1",
       id: "1",
     };
 
     const replies = [];
-    const { queryByTestId, getByRole } = render(TweetBox, { tweet, replies });
+    const { queryByTestId, getByRole } = render(StatusBox, {
+      status,
+      replies,
+    });
 
     const option = getByRole("option");
     const mark = queryByTestId("mark");

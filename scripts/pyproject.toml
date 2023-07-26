@@ -1,3 +1,38 @@
 [build-system]
-requires = ["setuptools>=42", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "scripts"
+version = "0.1.0"
+description = "Scripts for collecting and storing data"
+authors = ["Nattaphoom Chaipreecha <attomos@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+python-dotenv = "^1.0.0"
+requests = "^2.31.0"
+prettytable = "^3.8.0"
+deepdiff = "^6.3.1"
+pygithub = "^1.59.0"
+beautifulsoup4 = "^4.12.2"
+tinydb = "^4.8.0"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.7.0"
+mypy = "^1.4.1"
+pytest = "^7.4.0"
+pytest-cov = "^4.1.0"
+ruff = "^0.0.278"
+
+[tool.ruff]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = [
+  "tests"
+]
+addopts = "--cov=hdoc_tracker --cov-report html --cov-report term:skip-covered"

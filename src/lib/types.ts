@@ -1,27 +1,23 @@
-export type Tweet = {
-  text: string;
+export type Status = {
   entities: Entities;
   created_at: string;
-  public_metrics: PublicMetrics;
-  conversation_id: string;
+  in_reply_to_id: string;
   author_id: string;
   id: string;
+  parsed_content: string;
+  url: string;
 };
 
-export type TweetTuple = [string, Tweet[]];
+export type StatusTuple = [string, Status[]];
 
-export type GroupedTweets = {
-  [key: string]: Tweet[];
-};
-
-export type TweetResponse = {
-  data: Tweet[];
+export type GroupedStatuses = {
+  [key: string]: Status[];
 };
 
 export type Entities = {
   hashtags?: Hashtag[];
-  urls?: TweetUrl[];
-  annotations?: TweetAnnotation[];
+  urls?: StatusUrl[];
+  annotations?: StatusAnnotation[]; // TODO: deletable?
   day_list?: HdocDay[];
   modern_day_list?: ModernHdocDay[];
   src_list?: Src[];
@@ -34,7 +30,7 @@ export type Hashtag = {
   tag: string;
 };
 
-export type TweetUrl = {
+export type StatusUrl = {
   start: number;
   end: number;
   url: string;
@@ -42,7 +38,7 @@ export type TweetUrl = {
   display_url: string;
 };
 
-export type TweetAnnotation = {
+export type StatusAnnotation = {
   start: number;
   end: number;
   probability: number;
@@ -71,13 +67,6 @@ export type Src = CustomEntityBase & {
 export type Demo = CustomEntityBase & {
   demo: string;
   fixed: boolean;
-};
-
-export type PublicMetrics = {
-  retweet_count: number;
-  reply_count: number;
-  like_count: number;
-  quote_count: number;
 };
 
 export type ExpandedEntity = {

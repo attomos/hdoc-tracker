@@ -7,7 +7,7 @@ dotenv.config();
 const redis = Redis.fromEnv();
 
 (async function run() {
-  const data = fs.readFileSync("../scripts/tweets.json", "utf-8");
-  const res = redis.set("round1", data);
+  const data = fs.readFileSync("../scripts/round2.json", "utf-8");
+  const res = redis.json.set("round2", "$", data);
   console.log(res);
 })();

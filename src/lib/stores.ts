@@ -1,12 +1,12 @@
 import { derived, writable, get } from "svelte/store";
-import { getTweets } from "./tweetUtils";
-import type { GroupedTweets, Tweet } from "./types";
+import { getStatuses } from "./statusUtils";
+import type { GroupedStatuses, Status } from "./types";
 
 export const searchTerm = writable("");
-export const currentRound = writable("1");
+export const currentRound = writable("2");
 
 export const loading = writable(true);
-const data = writable<GroupedTweets>({});
+const data = writable<GroupedStatuses>({});
 
 const url = derived(
   currentRound,
@@ -14,35 +14,59 @@ const url = derived(
     `https://hdoc-tracker.attomos.workers.dev?round=${$currentRound}`
 );
 
+function replaceSomeUnicode(text: string) {
+  // TODO: find a better name for this function
+  const regex = /\\U([0-9a-fA-F]{8})/g;
+
+  // Function to replace the matched \U sequences with the equivalent JavaScript Unicode sequences
+  function replaceUnicode(match, p1) {
+    const hexValue = parseInt(p1, 16);
+    return String.fromCodePoint(hexValue);
+  }
+
+  return text.replace(regex, replaceUnicode);
+}
+
 async function fetchTweets() {
   loading.set(true);
   const response = await fetch(get(url));
-  const result = await response.json();
+  const result = await response.text();
 
-  // Cloudflare Workers is too fast, need to add some delay here...
-  setTimeout(() => {
-    data.set(JSON.parse(result.result));
-    loading.set(false);
-  }, 300);
+  const tmp = JSON.parse(replaceSomeUnicode(result));
+  const resultValue = JSON.parse(tmp.result);
+  // reverse sort resultValue by key
+  const sortedResult = Object.keys(resultValue)
+    .sort((a, b) => parseInt(b, 10) - parseInt(a, 10))
+    .reduce((obj, key) => {
+      obj[key] = resultValue[key];
+      return obj;
+    }, {});
+
+  data.set(sortedResult);
+
+  loading.set(false);
 }
 
 url.subscribe(() => fetchTweets());
 
 export const todayDate = writable(new Date());
 
-export const tweets = derived([data, searchTerm], ([$data, $searchTerm]) =>
-  getTweets($data, $searchTerm)
+export const statuses = derived([data, searchTerm], ([$data, $searchTerm]) =>
+  getStatuses($data, $searchTerm)
 );
 
-export const topLevelTweets = derived(tweets, ($tweets) =>
+export const topLevelStatuses = derived(statuses, ($tweets) =>
   Object.keys($tweets).map((conversationId) => {
-    let rootTweet: Tweet;
+    let rootTweet: Status;
     let replies = [];
-    $tweets[conversationId].forEach((tweet) => {
-      if (tweet.conversation_id === tweet.id) {
-        rootTweet = tweet;
+    $tweets[conversationId].forEach((status) => {
+      if (
+        status.in_reply_to_id === null ||
+        status.in_reply_to_id === status.id
+      ) {
+        rootTweet = status;
       } else {
-        replies.push(tweet);
+        replies.push(status);
       }
     });
 

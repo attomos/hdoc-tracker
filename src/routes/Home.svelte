@@ -2,7 +2,7 @@
   import { loading } from "../lib/stores";
 
   import ActivityGraph from "../components/ActivityGraph.svelte";
-  import Tweets from "../components/Tweets.svelte";
+  import Tweets from "../components/Statuses.svelte";
   import Loading from "../components/Loading.svelte";
 </script>
 

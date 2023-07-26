@@ -1,10 +1,13 @@
 import json
-from math import floor
 import re
-from collections import OrderedDict
+from collections import OrderedDict, defaultdict
+from math import floor
 from pathlib import Path
-from typing import Any, Dict, List, Match
+from typing import Any, DefaultDict, Match
 from typing import OrderedDict as OD
+
+from bs4 import BeautifulSoup
+from deepdiff import DeepDiff
 
 from hdoc_tracker.patterns import (
     DEMO_PATTERN,
@@ -13,7 +16,7 @@ from hdoc_tracker.patterns import (
     SRC_PATTERN,
     PatternConfig,
 )
-
+from hdoc_tracker.shapes import Tweet
 
 STATS_PATH = Path("./stats.json")
 
@@ -32,7 +35,13 @@ def build_entities(pc: PatternConfig, m: Match):
     if pc.optional_flag and pc.optional_flag_position:
         flag = bool(m.group(pc.optional_flag_position))
         entities[pc.optional_flag] = flag
-    return {f"{pc.key.value}_list": [entities]}
+    if pc.details:
+        for detail_key, detail_type, detail_index in pc.details:
+            if detail_type == "int":
+                entities[detail_key] = int(m.group(detail_index))
+            else:
+                entities[detail_key] = m.group(detail_index)
+    return {f"{key}_list": [entities]}
 
 
 def get_extra_entities(pc: PatternConfig, text: str):
@@ -41,9 +50,8 @@ def get_extra_entities(pc: PatternConfig, text: str):
             return build_entities(pc, m)
 
 
-def add_extra_entities_to_tweets(tweets) -> Dict:
-    tweets_data = tweets.get("data", [])
-    for tweet in tweets_data:
+def add_extra_entities_to_tweets(tweets: list[Tweet]) -> list[Tweet]:
+    for tweet in tweets:
         text = tweet.get("text", "")
         modern_hdoc_day = get_extra_entities(MODERN_HDOC_PATTERN, text)
         hdoc_day = get_extra_entities(HDOC_PATTERN, text)
@@ -61,8 +69,8 @@ def add_extra_entities_to_tweets(tweets) -> Dict:
     return tweets
 
 
-def group_tweets(tweets) -> OD:
-    grouped_tweets: OD[int, List] = OrderedDict(
+def group_tweets_by_conversation_id(tweets) -> OD:
+    grouped_tweets: OD[int, list] = OrderedDict(
         {t["conversation_id"]: [] for t in tweets["data"]}
     )
     for tweet in tweets["data"][::-1]:
@@ -77,6 +85,62 @@ def group_tweets(tweets) -> OD:
     return grouped_tweets
 
 
+def group_tweets_by_round(
+    conversations: dict[str, list[Any]]
+) -> DefaultDict[str, list[str]]:
+    dd: DefaultDict[str, list[str]] = defaultdict(list)
+    for conversation, tweets in conversations.items():
+        if len(tweets) > 0:
+            day_list = tweets[0].get("entities", {}).get("day_list", [{}])
+            round_value = day_list[0].get("round_value", 1)
+            dd[f"round{round_value}"].append(conversation)
+    return dd
+
+
+def merge_tweets(tweets_json: dict, new_data: dict) -> dict:
+    for key in new_data.keys():
+        updated_tweets = []
+        old_tweets = tweets_json.get(key, [])
+        new_tweets = new_data[key]
+        merged_tweets = old_tweets + new_tweets
+        lookup_dict = {}
+        for tweet in merged_tweets:
+            id = tweet.get("id")
+            if id not in lookup_dict:
+                lookup_dict[id] = tweet
+        all_tweet_ids = [tweet.get("id") for tweet in merged_tweets]
+        sorted_ids = sorted(set(all_tweet_ids))
+        for id in sorted_ids:
+            if id in lookup_dict:
+                updated_tweets.append(lookup_dict[id])
+        tweets_json[key] = updated_tweets
+    od = OrderedDict(tweets_json)
+    for key in sorted(od.keys(), reverse=True):
+        od.move_to_end(key)
+    return od
+
+
+def compare_tweets(old_tweets_text, new_tweets_text):
+    old_json = json.loads(old_tweets_text)
+    new_json = json.loads(new_tweets_text)
+
+    old_count = 0
+    new_count = 0
+    for k, v in old_json.items():
+        old_count += len(v)
+
+    for k, v in new_json.items():
+        new_count += len(v)
+    return old_count == new_count
+
+
+def compare_json_string(old_json_str: str, new_json_str: str):
+    old_json = json.loads(old_json_str)
+    new_json = json.loads(new_json_str)
+    diff = DeepDiff(old_json, new_json, ignore_order=True)
+    return len(diff.keys()) != 0
+
+
 def load_stats():
     if STATS_PATH.exists():
         return json.loads(STATS_PATH.read_text())
@@ -88,8 +152,26 @@ def update_stats(new_stats: str):
     STATS_PATH.write_text(new_stats)
 
 
-def get_recent_index(arr: List[Any]):
+def get_recent_index(arr: list[Any]):
     idx = floor(len(arr) * 0.7)
     if idx < len(arr):
         return idx
     return -1
+
+
+def parse_html_content(html_content: str):
+    """Parse HTML content from Mastodon API
+
+    Calling get_text() directly won't work even with the separator or strip arguments.
+    This function is will get the desired text while retaining the proper line breaks.
+
+    Args:
+        html_content (str): HTML content from Mastodon API
+    """
+    soup = BeautifulSoup(html_content, "html.parser")
+    for elem in soup.find_all(["br"]):
+        elem.replace_with(elem.text + "\n")
+    for elem in soup.find_all(["p"]):
+        elem.replace_with(elem.text + "\n\n")
+
+    return soup.get_text().strip()

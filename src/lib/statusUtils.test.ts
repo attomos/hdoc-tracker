@@ -1,50 +1,36 @@
-import { computeStreaks, getExpandedEntities, getTweets } from "./tweetUtils";
-import type { GroupedTweets } from "./types";
+import {
+  computeStreaks,
+  getExpandedEntities,
+  getStatuses,
+} from "./statusUtils";
+import type { GroupedStatuses } from "./types";
 
-const mockTweets: GroupedTweets = {
+const mockStatuses: GroupedStatuses = {
   "1234": [
     {
       entities: {},
-      conversation_id: "1234",
+      in_reply_to_id: "1234",
       id: "1234",
       created_at: "2022-02-19T12:15:37.000Z",
-      text: "nothing",
-      public_metrics: {
-        retweet_count: 7,
-        reply_count: 2,
-        like_count: 2,
-        quote_count: 0,
-      },
+      parsed_content: "nothing",
       author_id: "2699175613",
     },
     {
       entities: {},
-      conversation_id: "1234",
+      in_reply_to_id: "1234",
       id: "1235",
       created_at: "2022-02-19T12:16:01.000Z",
-      text: "just a comment",
-      public_metrics: {
-        retweet_count: 7,
-        reply_count: 2,
-        like_count: 2,
-        quote_count: 0,
-      },
+      parsed_content: "just a comment",
       author_id: "2699175613",
     },
   ],
   "5555": [
     {
       entities: {},
-      conversation_id: "5555",
+      in_reply_to_id: "5555",
       id: "5555",
       created_at: "2022-02-19T12:15:37.000Z",
-      text: "this is for testing yo #100DaysOfCode",
-      public_metrics: {
-        retweet_count: 7,
-        reply_count: 2,
-        like_count: 2,
-        quote_count: 0,
-      },
+      parsed_content: "this is for testing yo #100DaysOfCode",
       author_id: "2699175613",
     },
     {
@@ -82,16 +68,11 @@ const mockTweets: GroupedTweets = {
           },
         ],
       },
-      conversation_id: "5555",
+      in_reply_to_id: "5555",
       id: "5556",
       created_at: "2022-02-19T12:16:01.000Z",
-      text: "src: https://t.co/src #100DaysOfCode demo: https://t.co/app",
-      public_metrics: {
-        retweet_count: 7,
-        reply_count: 2,
-        like_count: 2,
-        quote_count: 0,
-      },
+      parsed_content:
+        "src: https://t.co/src #100DaysOfCode demo: https://t.co/app",
       author_id: "2699175613",
     },
   ],
@@ -126,16 +107,11 @@ const mockTweets: GroupedTweets = {
           },
         ],
       },
-      conversation_id: "1498337671441424384",
+      in_reply_to_id: "1498337671441424384",
       id: "1498337671441424384",
       created_at: "2022-02-28T16:41:53.000Z",
-      text: "day 49 of #100DaysOfCode\n\nContinue with my progress tracker website.\n\n- Fixed days count logic\n- Added client side routing using svelte-navigator\n\ndemo: https://t.co/RUdHzhtdjW https://t.co/9Kl0MZgskN",
-      public_metrics: {
-        retweet_count: 8,
-        reply_count: 0,
-        like_count: 6,
-        quote_count: 0,
-      },
+      parsed_content:
+        "day 49 of #100DaysOfCode\n\nContinue with my progress tracker website.\n\n- Fixed days count logic\n- Added client side routing using svelte-navigator\n\ndemo: https://t.co/RUdHzhtdjW https://t.co/9Kl0MZgskN",
       author_id: "2699175613",
     },
   ],
@@ -170,16 +146,11 @@ const mockTweets: GroupedTweets = {
           },
         ],
       },
-      conversation_id: "1495009175201808388",
+      in_reply_to_id: "1495009175201808388",
       id: "1495009175201808388",
       created_at: "2022-02-19T12:15:37.000Z",
-      text: 'day 40 of #100DaysOfCode \n\n- Complete freeCodeCamp "Tribute Page" challenge\ndemo: https://t.co/xdgnwdedub\n- Add total days, longest streak, and current streak to the tracker project. https://t.co/yVD7oZb9rL',
-      public_metrics: {
-        retweet_count: 7,
-        reply_count: 2,
-        like_count: 2,
-        quote_count: 0,
-      },
+      parsed_content:
+        'day 40 of #100DaysOfCode \n\n- Complete freeCodeCamp "Tribute Page" challenge\ndemo: https://t.co/xdgnwdedub\n- Add total days, longest streak, and current streak to the tracker project. https://t.co/yVD7oZb9rL',
       author_id: "2699175613",
     },
     {
@@ -203,16 +174,10 @@ const mockTweets: GroupedTweets = {
           },
         ],
       },
-      conversation_id: "1495009175201808388",
+      in_reply_to_id: "1495009175201808388",
       id: "1495208706946256897",
       created_at: "2022-02-20T01:28:30.000Z",
-      text: "fixed demo: https://t.co/jLcMovxM7E\n\n#100DaysOfCode",
-      public_metrics: {
-        retweet_count: 2,
-        reply_count: 1,
-        like_count: 2,
-        quote_count: 0,
-      },
+      parsed_content: "fixed demo: https://t.co/jLcMovxM7E\n\n#100DaysOfCode",
       author_id: "2699175613",
     },
   ],
@@ -258,15 +223,10 @@ const mockTweets: GroupedTweets = {
           },
         ],
       },
-      conversation_id: "1483483848403202052",
+      in_reply_to_id: "1483483848403202052",
       author_id: "2699175613",
-      public_metrics: {
-        retweet_count: 8,
-        reply_count: 1,
-        like_count: 3,
-        quote_count: 0,
-      },
-      text: "day 11 of #100DaysOfCode \n\nCreated a custom element to put #100DaysOfCode ribbon. It has some customizability so that you can put it in either top right or top left corner of the web page.\n\nsrc: https://t.co/8pHew9P6Zl\nnpm: https://t.co/rk6AqGEIHx\nPlease check out the demo below. https://t.co/GimkrJmNPr",
+      parsed_content:
+        "day 11 of #100DaysOfCode \n\nCreated a custom element to put #100DaysOfCode ribbon. It has some customizability so that you can put it in either top right or top left corner of the web page.\n\nsrc: https://t.co/8pHew9P6Zl\nnpm: https://t.co/rk6AqGEIHx\nPlease check out the demo below. https://t.co/GimkrJmNPr",
       created_at: "2022-01-18T16:58:05.000Z",
     },
   ],
@@ -307,7 +267,7 @@ const mockTweets: GroupedTweets = {
             end: 71,
             probability: 0.6946,
             type: "Product",
-            normalized_text: "GitHub Pages",
+            normalized_parsed_content: "GitHub Pages",
           },
         ],
         day_list: [{ day: "day 5", start: 0, end: 5 }],
@@ -328,52 +288,35 @@ const mockTweets: GroupedTweets = {
           },
         ],
       },
-      conversation_id: "1479514795829174274",
+      in_reply_to_id: "1479514795829174274",
       author_id: "2699175613",
-      public_metrics: {
-        retweet_count: 12,
-        reply_count: 0,
-        like_count: 3,
-        quote_count: 0,
-      },
-      text: "day 5 of #100DaysOfCode \n\nI made my 100-days-of-code repo a GitHub Pages so that all days are accessible.\n\nFor the actual project of day 5, I created a simple search form found in Tailwind CSS documentation.\n\nsrc: https://t.co/sxheLXSxla\ndemo: https://t.co/lmexIesDo1 https://t.co/GazKrsmuJb",
+      parsed_content:
+        "day 5 of #100DaysOfCode \n\nI made my 100-days-of-code repo a GitHub Pages so that all days are accessible.\n\nFor the actual project of day 5, I created a simple search form found in Tailwind CSS documentation.\n\nsrc: https://t.co/sxheLXSxla\ndemo: https://t.co/lmexIesDo1 https://t.co/GazKrsmuJb",
       created_at: "2022-01-07T18:06:30.000Z",
     },
   ],
 };
 
-describe("tweetUtils", () => {
-  describe("getTweets", () => {
-    it("should return correctly when the search term is found in top-level tweet", () => {
-      const result = getTweets(mockTweets, "nothing");
+describe("statusUtils", () => {
+  describe("getStatuses", () => {
+    it("should return correctly when the search term is found in top-level status", () => {
+      const result = getStatuses(mockStatuses, "nothing");
       expect(result).toEqual({
         "1234": [
           {
             entities: {},
-            conversation_id: "1234",
+            in_reply_to_id: "1234",
             id: "1234",
             created_at: "2022-02-19T12:15:37.000Z",
-            text: "nothing",
-            public_metrics: {
-              retweet_count: 7,
-              reply_count: 2,
-              like_count: 2,
-              quote_count: 0,
-            },
+            parsed_content: "nothing",
             author_id: "2699175613",
           },
           {
             entities: {},
-            conversation_id: "1234",
+            in_reply_to_id: "1234",
             id: "1235",
             created_at: "2022-02-19T12:16:01.000Z",
-            text: "just a comment",
-            public_metrics: {
-              retweet_count: 7,
-              reply_count: 2,
-              like_count: 2,
-              quote_count: 0,
-            },
+            parsed_content: "just a comment",
             author_id: "2699175613",
           },
         ],
@@ -381,35 +324,23 @@ describe("tweetUtils", () => {
     });
 
     it("should return correctly when the search term is found in replies", () => {
-      const result = getTweets(mockTweets, "just a comment");
+      const result = getStatuses(mockStatuses, "just a comment");
       expect(result).toEqual({
         "1234": [
           {
             entities: {},
-            conversation_id: "1234",
+            in_reply_to_id: "1234",
             id: "1234",
             created_at: "2022-02-19T12:15:37.000Z",
-            text: "nothing",
-            public_metrics: {
-              retweet_count: 7,
-              reply_count: 2,
-              like_count: 2,
-              quote_count: 0,
-            },
+            parsed_content: "nothing",
             author_id: "2699175613",
           },
           {
             entities: {},
-            conversation_id: "1234",
+            in_reply_to_id: "1234",
             id: "1235",
             created_at: "2022-02-19T12:16:01.000Z",
-            text: "just a comment",
-            public_metrics: {
-              retweet_count: 7,
-              reply_count: 2,
-              like_count: 2,
-              quote_count: 0,
-            },
+            parsed_content: "just a comment",
             author_id: "2699175613",
           },
         ],
@@ -419,18 +350,18 @@ describe("tweetUtils", () => {
 
   describe("computeStreaks", () => {
     it("should compute streaks correctly for 0 day (no data)", () => {
-      const tweetsLookup = {};
+      const statusesLookup = {};
       const todayDate = "2022-01-01";
-      const streaks = computeStreaks(tweetsLookup, todayDate);
+      const streaks = computeStreaks(statusesLookup, todayDate);
       expect(streaks).toEqual([{}, {}]);
     });
 
     it("should compute streaks correctly for 1 day", () => {
-      const tweetsLookup = {
+      const statusesLookup = {
         "2022-01-01": [],
       };
       const todayDate = "2022-01-01";
-      const streaks = computeStreaks(tweetsLookup, todayDate);
+      const streaks = computeStreaks(statusesLookup, todayDate);
       expect(streaks).toEqual([
         {
           start: 0,
@@ -446,13 +377,13 @@ describe("tweetUtils", () => {
     });
 
     it("should compute streaks correctly for 2 days in a row (head)", () => {
-      const tweetsLookup = {
+      const statusesLookup = {
         "2022-01-01": [],
         "2022-01-02": [],
         "2022-01-04": [],
       };
       const todayDate = "2022-01-04";
-      const streaks = computeStreaks(tweetsLookup, todayDate);
+      const streaks = computeStreaks(statusesLookup, todayDate);
       expect(streaks).toEqual([
         {
           start: 0,
@@ -468,13 +399,13 @@ describe("tweetUtils", () => {
     });
 
     it("should compute streaks correctly for 2 days in a row (tail)", () => {
-      const tweetsLookup = {
+      const statusesLookup = {
         "2022-01-01": [],
         "2022-01-03": [],
         "2022-01-04": [],
       };
       const todayDate = "2022-01-04";
-      const streaks = computeStreaks(tweetsLookup, todayDate);
+      const streaks = computeStreaks(statusesLookup, todayDate);
       expect(streaks).toEqual([
         {
           start: 1,
@@ -490,13 +421,13 @@ describe("tweetUtils", () => {
     });
 
     it("should compute streaks correctly for sparse days (every other day)", () => {
-      const tweetsLookup = {
+      const statusesLookup = {
         "2022-01-01": [],
         "2022-01-03": [],
         "2022-01-05": [],
       };
       const todayDate = "2022-01-05";
-      const streaks = computeStreaks(tweetsLookup, todayDate);
+      const streaks = computeStreaks(statusesLookup, todayDate);
       expect(streaks).toEqual([
         {
           start: 2,
@@ -512,7 +443,7 @@ describe("tweetUtils", () => {
     });
 
     it("should compute streaks correctly when all streaks have number of days (3-3-3)", () => {
-      const tweetsLookup = {
+      const statusesLookup = {
         "2022-01-01": [],
         "2022-01-02": [],
         "2022-01-03": [],
@@ -524,7 +455,7 @@ describe("tweetUtils", () => {
         "2022-01-11": [],
       };
       const todayDate = "2022-01-11";
-      const streaks = computeStreaks(tweetsLookup, todayDate);
+      const streaks = computeStreaks(statusesLookup, todayDate);
       expect(streaks).toEqual([
         {
           start: 6,
@@ -540,13 +471,13 @@ describe("tweetUtils", () => {
     });
 
     it("should compute streaks correctly for 3 days for longest and 0 days for current", () => {
-      const tweetsLookup = {
+      const statusesLookup = {
         "2022-01-01": [],
         "2022-01-02": [],
         "2022-01-03": [],
       };
       const todayDate = "2022-01-05";
-      const streaks = computeStreaks(tweetsLookup, todayDate);
+      const streaks = computeStreaks(statusesLookup, todayDate);
       expect(streaks).toEqual([
         {
           start: 0,
@@ -560,8 +491,8 @@ describe("tweetUtils", () => {
 
   describe("getExpandedEntities", () => {
     it("should return correctly when there's no entity at all", () => {
-      const tweet = mockTweets["1234"][0];
-      const expandedEntities = getExpandedEntities(tweet, mockTweets);
+      const status = mockStatuses["1234"][0];
+      const expandedEntities = getExpandedEntities(status, mockStatuses);
       expect(expandedEntities).toEqual({
         demo: {
           href: "",
@@ -574,9 +505,9 @@ describe("tweetUtils", () => {
       });
     });
 
-    it("should return correctly when the tweet has fixed demo in the replies", () => {
-      const tweet = mockTweets["1495009175201808388"][0];
-      const expandedEntities = getExpandedEntities(tweet, mockTweets);
+    it("should return correctly when the status has fixed demo in the replies", () => {
+      const status = mockStatuses["1495009175201808388"][0];
+      const expandedEntities = getExpandedEntities(status, mockStatuses);
       expect(expandedEntities).toEqual({
         demo: {
           href: "https://codepen.io/attomos/full/PoOQLrp",
@@ -589,9 +520,9 @@ describe("tweetUtils", () => {
       });
     });
 
-    it("should return correctly when the tweet has only the demo", () => {
-      const tweet = mockTweets["1498337671441424384"][0];
-      const expandedEntities = getExpandedEntities(tweet, mockTweets);
+    it("should return correctly when the status has only the demo", () => {
+      const status = mockStatuses["1498337671441424384"][0];
+      const expandedEntities = getExpandedEntities(status, mockStatuses);
       expect(expandedEntities).toEqual({
         demo: {
           href: "https://hdoc-tracker.vercel.app/",
@@ -604,9 +535,9 @@ describe("tweetUtils", () => {
       });
     });
 
-    it("should return correctly when the tweet has only the src", () => {
-      const tweet = mockTweets["1483483848403202052"][0];
-      const expandedEntities = getExpandedEntities(tweet, mockTweets);
+    it("should return correctly when the status has only the src", () => {
+      const status = mockStatuses["1483483848403202052"][0];
+      const expandedEntities = getExpandedEntities(status, mockStatuses);
       expect(expandedEntities).toEqual({
         demo: {
           href: "",
@@ -619,9 +550,9 @@ describe("tweetUtils", () => {
       });
     });
 
-    it("should return correctly when top level tweet has both demo and src", () => {
-      const tweet = mockTweets["1479514795829174274"][0];
-      const expandedEntities = getExpandedEntities(tweet, mockTweets);
+    it("should return correctly when top level status has both demo and src", () => {
+      const status = mockStatuses["1479514795829174274"][0];
+      const expandedEntities = getExpandedEntities(status, mockStatuses);
       expect(expandedEntities).toEqual({
         demo: {
           href: "https://attomos.github.io/100-days-of-code/days/day5/",
@@ -635,8 +566,8 @@ describe("tweetUtils", () => {
     });
 
     it("should return correctly when demo and src are in replies only", () => {
-      const tweet = mockTweets["5555"][0];
-      const expandedEntities = getExpandedEntities(tweet, mockTweets);
+      const status = mockStatuses["5555"][0];
+      const expandedEntities = getExpandedEntities(status, mockStatuses);
       expect(expandedEntities).toEqual({
         demo: {
           href: "https://test-attomos.vercel.app",

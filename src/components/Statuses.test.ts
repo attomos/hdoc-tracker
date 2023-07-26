@@ -1,9 +1,9 @@
 import { render } from "@testing-library/svelte";
-import ActivityGraph from "./ActivityGraph.svelte";
+import Statuses from "./Statuses.svelte";
 
-describe("ActivityGraph", () => {
+describe("Statuses", () => {
   it("should", () => {
-    // render(ActivityGraph);
+    render(Statuses);
     expect(0).toBe(0);
   });
 });

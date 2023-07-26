@@ -12,7 +12,7 @@
     element.classList.add("selected");
     if (shouldScroll) {
       const rect = element.getBoundingClientRect();
-      const ul = document.querySelector("#tweet-list");
+      const ul = document.querySelector("#status-list");
       const main = document.querySelector("main");
       const ulParent = ul.parentElement;
       const ulParentRect = main.getBoundingClientRect();
@@ -30,7 +30,7 @@
   }
 
   function findNextOption(currentOption: HTMLLIElement): HTMLLIElement {
-    const ul = document.querySelector("#tweet-list");
+    const ul = document.querySelector("#status-list");
     const listItems = Array.from(ul.querySelectorAll("li"));
     const currentIndex = listItems.indexOf(currentOption);
     const nextItem =
@@ -41,7 +41,7 @@
   }
 
   function findPrevOption(currentOption: HTMLLIElement): HTMLLIElement {
-    const ul = document.querySelector("#tweet-list");
+    const ul = document.querySelector("#status-list");
     const listItems = Array.from(ul.querySelectorAll("li"));
     const currentIndex = listItems.indexOf(currentOption);
     const nextItem =
@@ -96,7 +96,7 @@
     }
 
     const selectedItem = document.querySelector(
-      "#tweet-list li[role='option'][aria-selected='true']"
+      "#status-list li[role='option'][aria-selected='true']"
     );
 
     let itemToFocus: HTMLLIElement;
@@ -114,7 +114,7 @@
     }
   }
 
-  function handleTweetBoxClick(e: MouseEvent) {
+  function handleStatusBoxClick(e: MouseEvent) {
     if (!(e.target instanceof Element)) return;
     if (e.target.matches("a")) {
       return;
@@ -127,7 +127,7 @@
   }
 
   function handleClickAtLayout(e: MouseEvent) {
-    if (e.target instanceof Element && !e.target.closest(".tweet-box")) {
+    if (e.target instanceof Element && !e.target.closest(".status-box")) {
       const currentItem = getSelectedItemOrFirstChild();
       if (!currentItem) return;
       deselectCurrentItem(currentItem);
@@ -136,12 +136,12 @@
 
   function getSelectedItemOrFirstChild(): HTMLLIElement {
     return (
-      document.querySelector("#tweet-list li[aria-selected='true']") ||
-      document.querySelector("#tweet-list li:first-child")
+      document.querySelector("#status-list li[aria-selected='true']") ||
+      document.querySelector("#status-list li:first-child")
     );
   }
 
-  export { handleTweetBoxClick };
+  export { handleStatusBoxClick };
 </script>
 
 <script lang="ts">
@@ -197,11 +197,11 @@
     <div class="flex flex-col gap-3">
       <div>
         <StyledKbd>j</StyledKbd>
-        <span>Select next tweet</span>
+        <span>Select next status</span>
       </div>
       <div>
         <StyledKbd>k</StyledKbd>
-        <span>Select previous tweet</span>
+        <span>Select previous status</span>
       </div>
       <div>
         <StyledKbd>/</StyledKbd>

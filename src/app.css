@@ -60,23 +60,23 @@
     @apply cursor-pointer;
   }
 
-  .tweet-box {
+  .status-box {
     @apply relative mb-4 flex cursor-pointer flex-col rounded-lg bg-zinc-100 p-4 text-sm focus:border-none focus:outline-none focus:ring-2 focus:ring-purple-100 dark:bg-gray-800 dark:focus:ring-violet-900;
   }
 
-  .selected .tweet-box {
+  .selected .status-box {
     @apply bg-zinc-200 ring-2 ring-purple-400 dark:bg-gray-900 dark:ring-violet-600;
   }
 
-  .selected .tweet-box div {
+  .selected .status-box div {
     @apply border-t-gray-300 dark:border-t-gray-500;
   }
 
-  .tweet-box-child {
+  .status-box-child {
     @apply ml-8;
   }
 
-  .tweet-box-child::before {
+  .status-box-child::before {
     content: "";
     position: absolute;
     top: 0.25rem;
@@ -86,7 +86,7 @@
     @apply bg-gray-200 dark:bg-gray-500;
   }
 
-  .selected .tweet-box-child::before {
+  .selected .status-box-child::before {
     @apply bg-gray-300 dark:bg-gray-500;
   }
 

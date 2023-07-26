@@ -6,20 +6,24 @@ from typing import Dict, List, Tuple
 
 import requests
 from dotenv import load_dotenv
-from prettytable import PrettyTable, MARKDOWN
-
+from prettytable import MARKDOWN, PrettyTable
 
 from hdoc_tracker.utils import (
     add_extra_entities_to_tweets,
     get_recent_index,
-    group_tweets,
+    group_tweets_by_conversation_id,
+    group_tweets_by_round,
     load_stats,
+    merge_tweets,
     update_stats,
 )
 
 load_dotenv()
 BEARER_TOKEN = os.getenv("BEARER_TOKEN", "")
 
+# my first round of #100DaysOfCode, probably YAGNI because since_id
+# but cannot underestimate people with 300k++ tweets in case I want to support
+# another user as well
 DEFAULT_START_TIME = "2022-01-01T00:00:00Z"
 
 
@@ -31,7 +35,7 @@ def make_request(url, headers, payload, hashtags_filter: List[str] = []) -> Dict
 
     json_response = response.json()
     if hashtags_filter:
-        data = json_response["data"]
+        data = json_response.get("data", [])
         filtered_tweets = []
         for tweet in data:
             tags = set(
@@ -98,20 +102,44 @@ def main():
     previous_stats = {"start_time": DEFAULT_START_TIME, **load_stats()}
     tweets, new_stats = get_tweets(previous_stats)
     tweets = add_extra_entities_to_tweets(tweets)
-    grouped_tweets = group_tweets(tweets)
-    out_path = Path("tweets.json")
-    out_path.write_text(json.dumps(grouped_tweets))
+    grouped_tweets = group_tweets_by_conversation_id(tweets)
+    rounds = group_tweets_by_round(grouped_tweets)
+
+    for round, conversation_ids in rounds.items():
+        print(conversation_ids)
+        updated_tweets = {
+            k: v for k, v in grouped_tweets.items() if k in conversation_ids
+        }
+        path = Path(f"{round}.json")
+        if path.exists():
+            tweets_json = json.loads(path.read_text())
+            merged_tweets = merge_tweets(tweets_json, updated_tweets)
+        else:
+            merged_tweets = updated_tweets
+        new_stats[f"{round} conversation count"] = len(merged_tweets.keys())
+        t0 = [tweets for _, tweets in merged_tweets.items()]
+        flatten = [item for sublist in t0 for item in sublist]
+        new_stats[f"{round} tweets count"] = len(flatten)
+        path.write_text(json.dumps(merged_tweets))
+
     end = timer()
     new_stats["time_taken"] = end - start
     conversation_ids = sorted(
         [tweet.get("conversation_id") for tweet in tweets.get("data", [])]
     )
     recent_index = get_recent_index(conversation_ids)
-    recent_conversation_id = conversation_ids[recent_index]
-    new_stats["since_id"] = recent_conversation_id
+    try:
+        recent_conversation_id = conversation_ids[recent_index]
+        new_stats["since_id"] = recent_conversation_id
+    except IndexError as e:
+        print(e)
+        print("possibly up-to-date, no need to update since_id")
+        new_stats["since_id"] = previous_stats["since_id"]
     pt = PrettyTable()
     pt.set_style(MARKDOWN)
     pt.field_names = ["field", "data"]
+    if "since_id" in previous_stats:
+        pt.add_row(["previous since_id", previous_stats["since_id"]])
     for k, v in new_stats.items():
         pt.add_row([k, v])
     print(pt)

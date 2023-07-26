@@ -1,20 +1,16 @@
-/**
- * @jest-environment jsdom
- */
-import "@testing-library/jest-dom";
 import { render } from "@testing-library/svelte";
 import { todayDate } from "../lib/stores";
-import TweetBoxHeader from "./TweetBoxHeader.svelte";
+import StatusBoxHeader from "./StatusBoxHeader.svelte";
 
 afterEach(() => {
   todayDate.set(new Date());
 });
 
-describe("TweetBoxHeader", () => {
+describe("StatusBoxHeader", () => {
   it("should renders correctly", () => {
     todayDate.set(new Date("2022-12-01"));
-    const tweet = {
-      text: "day 1 of #100DaysOfCode\ngood morning",
+    const status = {
+      parsed_content: "day 1 of #100DaysOfCode\ngood morning",
       entities: {
         day_list: [
           {
@@ -25,17 +21,11 @@ describe("TweetBoxHeader", () => {
         ],
       },
       created_at: "2022-03-21T16:48:22.000Z",
-      public_metrics: {
-        retweet_count: 1,
-        reply_count: 0,
-        like_count: 1,
-        quote_count: 0,
-      },
-      conversation_id: "1",
+      in_reply_to_id: "1",
       id: "1",
     };
-    const { getByTestId, getByText } = render(TweetBoxHeader, {
-      tweet,
+    const { getByTestId, getByText } = render(StatusBoxHeader, {
+      status,
     });
 
     const profile = getByText("Atom Chaipreecha");
@@ -49,8 +39,8 @@ describe("TweetBoxHeader", () => {
 
   it("should renders timestamp correctly", () => {
     todayDate.set(new Date("2023-12-01"));
-    const tweet = {
-      text: "day 1 of #100DaysOfCode\ngood morning",
+    const status = {
+      parsed_content: "day 1 of #100DaysOfCode\ngood morning",
       entities: {
         day_list: [
           {
@@ -61,17 +51,11 @@ describe("TweetBoxHeader", () => {
         ],
       },
       created_at: "2022-03-21T16:48:22.000Z",
-      public_metrics: {
-        retweet_count: 1,
-        reply_count: 0,
-        like_count: 1,
-        quote_count: 0,
-      },
-      conversation_id: "1",
+      in_reply_to_id: "1",
       id: "1",
     };
-    const { getByTestId, getByText } = render(TweetBoxHeader, {
-      tweet,
+    const { getByTestId, getByText } = render(StatusBoxHeader, {
+      status,
     });
 
     const profile = getByText("Atom Chaipreecha");
